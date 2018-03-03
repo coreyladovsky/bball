@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Basketball</title>
+    <script>src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="d3/d3.v4.js"></script>
+    <link href="./css/style.css" rel="stylesheet">
+  </head>
+  <body>
+    <h1>Enter Your Favorite Basketball team:</h1>
+    <form class="basketball-team-form" action="index.html" method="GET">
+      <input type="text" name="" value="">
+
+    </form>
+    <script type="text/javascript">
+      $("form").on("sumbit", (e) => {
+        e.preventDefault();
+        let team = $("input")[0].value.downcase()
+        let teamRoster = "http://data.nba.net/data/10s/prod/v1/2017/teams" + team + "/roster.json"
+        $.ajax({
+          method: "GET",
+          url: teamRoster
+        })
+        .then(res =>{
+          console.log(res);
+        })
+      })
+
+
+    </script>
+  </body>
+</html>
