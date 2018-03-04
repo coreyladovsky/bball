@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <title>Basketball</title>
-    <script>src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="d3/d3.v4.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://d3js.org/d3.v5.js"></script>
     <link href="./css/style.css" rel="stylesheet">
   </head>
   <body>
@@ -14,19 +14,48 @@
 
     </form>
     <script type="text/javascript">
-      $("form").on("sumbit", (e) => {
+      $("form").on("submit", (e) => {
         e.preventDefault();
-        let team = $("input")[0].value.downcase()
-        let teamRoster = "http://data.nba.net/data/10s/prod/v1/2017/teams" + team + "/roster.json"
-        $.ajax({
-          method: "GET",
-          url: teamRoster
-        })
-        .then(res =>{
-          console.log(res);
-        })
+        let team = $("input")[0].value.toLowerCase()
+        let teamRoster = "http://data.nba.net/data/10s/prod/v1/2017/teams/" + team + "/roster.json"
+        // $.ajax({
+        //   method: "GET",
+        //   url: teamRoster
+        // }).then(res =>{
+        //   console.log(res);
+        // })
+      //   let xhr = new XMLHttpRequest();
+      //   if ("withCredentials" in xhr) {
+      //     xhr.open("GET", teamRoster, true)
+      //   } else if (typeof XDomainRequest != "undefined") {
+      //     xhr = new XDomainRequest();
+      //     xhr.open("GET", teamRoster);
+      //   } else {
+      //     xhr = null;
+      //   }
+      //   return xhr;
+
+      // var xhr = createCORSRequest('GET', teamRoster);
+      // if (!xhr) {
+      //   throw new Error('CORS not supported');
+      // } else {
+      // }
+
       })
 
+      //
+      // function createCORSRequest(method, url) {
+      //   var xhr = new XMLHttpRequest();
+      //   if ("withCredentials" in xhr) {
+      //     xhr.open(method, url, true);
+      //   } else if (typeof XDomainRequest != "undefined") {
+      //     xhr = new XDomainRequest();
+      //     xhr.open(method, url);
+      //   } else {
+      //     xhr = null;
+      //   }
+      //   return xhr;
+      // }
 
     </script>
   </body>
