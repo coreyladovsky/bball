@@ -5,9 +5,7 @@
     <title>Basketball</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://d3js.org/d3.v5.js"></script>
-    <!-- <script src="https://data.nba.net/data/10s/prod/v1/2017/teams.json"> -->
 
-    <!-- </script> -->
     <link href="./css/style.css" rel="stylesheet">
   </head>
   <body>
@@ -20,26 +18,29 @@
       $("form").on("submit", (e) => {
         e.preventDefault();
         let team = $("input")[0].value.toLowerCase()
-        let teamRoster = "http://data.nba.net/data/10s/prod/v1/2017/teams/" + team + "/roster.json"
-        $.ajax({
-          url: teamRoster,
-          // headers: {
-          //   'Content-Type': 'application/x-www-form-urlencoded'
-          // },
-          type: "GET",
-          // dataType: "jsonp",
-          // data: {},
-          success: function (res) {
-            console.log(res);
-          },
-          error: function() {
-            console.log("Error, sorry dude");
-          }
+        let teamRosterUrl = "http://data.nba.net/data/10s/prod/v1/2017/teams/" + team + "/roster.json"
+        let teamRoster = fetchData(teamRosterUrl).then((res) => {
+          res.league.standard.players.map((obj) => {
+            console.log(obj.personId);
+          })
         })
 
 
       })
+
+      const fetchData = (url) => {
+        return $.ajax({
+          url: "https://crossorigin.me/" + url,
+          type: "GET",
+          // success: function (res) {
+          //   console.log(res);
+          // },
+          // error: function() {
+          //   console.log("Error, sorry dude");
+          // }
+        })
+      }
     </script>
-    <script src="./bundle.js"></script>
+    <!-- <script src="./bundle.js"></script> -->
   </body>
 </html>
