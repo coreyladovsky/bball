@@ -5,27 +5,41 @@
     <title>Basketball</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://d3js.org/d3.v5.js"></script>
+    <!-- <script src="https://data.nba.net/data/10s/prod/v1/2017/teams.json"> -->
+
+    <!-- </script> -->
     <link href="./css/style.css" rel="stylesheet">
   </head>
   <body>
     <h1>Enter Your Favorite Basketball team:</h1>
-    <!-- <form class="basketball-team-form" action="index.html" method="GET"> -->
+    <form class="basketball-team-form" action="index.html" method="GET"> -->
       <input type="text" name="" value="">
 
-    <!-- </form> -->
-    <!-- <script type="text/javascript">
+    </form>
+    <script type="text/javascript">
       $("form").on("submit", (e) => {
         e.preventDefault();
         let team = $("input")[0].value.toLowerCase()
         let teamRoster = "http://data.nba.net/data/10s/prod/v1/2017/teams/" + team + "/roster.json"
         $.ajax({
-          method: "GET",
-          url: teamRoster
-        }).then(res =>{
-          console.log(res);
+          url: teamRoster,
+          // headers: {
+          //   'Content-Type': 'application/x-www-form-urlencoded'
+          // },
+          type: "GET",
+          // dataType: "jsonp",
+          // data: {},
+          success: function (res) {
+            console.log(res);
+          },
+          error: function() {
+            console.log("Error, sorry dude");
+          }
         })
+
+
       })
-    </script> -->
+    </script>
     <script src="./bundle.js"></script>
   </body>
 </html>
