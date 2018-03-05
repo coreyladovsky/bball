@@ -30,8 +30,9 @@
       })
 
       const fetchData = (url) => {
+        console.log(url);
         return $.ajax({
-          url: url,
+          url,
           type: "GET",
           // success: function (res) {
           //   console.log(res);
