@@ -18,7 +18,7 @@
       $("form").on("submit", (e) => {
         e.preventDefault();
         let team = $("input")[0].value.toLowerCase()
-        let teamRosterUrl = "data.nba.net/data/10s/prod/v1/2017/teams/" + team + "/roster.json"
+        let teamRosterUrl = "https://data.nba.net/data/10s/prod/v1/2017/teams/" + team + "/roster.json"
         var playerNames = []
         let teamRoster = fetchData(teamRosterUrl).then((res) => {
           res.league.standard.players.map((obj) => {
