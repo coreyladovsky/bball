@@ -19,6 +19,7 @@
         e.preventDefault();
         let team = $("input")[0].value.toLowerCase()
         let teamRosterUrl = "http://data.nba.net/data/10s/prod/v1/2017/teams/" + team + "/roster.json"
+        var playerNames = []
         let teamRoster = fetchData(teamRosterUrl).then((res) => {
           res.league.standard.players.map((obj) => {
             console.log(obj.personId);
@@ -30,7 +31,7 @@
 
       const fetchData = (url) => {
         return $.ajax({
-          url: "https://crossorigin.me/" + url,
+          url:  url,
           type: "GET",
           // success: function (res) {
           //   console.log(res);
