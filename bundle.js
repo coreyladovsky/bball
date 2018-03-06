@@ -770,13 +770,6 @@ document.addEventListener("DOMContentLoaded", function () {
   var store = (0, _store2.default)();
   var root = document.getElementById("root");
   _reactDom2.default.render(_react2.default.createElement(_root2.default, { store: store }), root);
-
-  window.getState = store.getState;
-  window.dispatch = store.dispatch;
-  window.fetchAllPlayers = _player_actions.fetchAllPlayers;
-  window.fetchPlayerStats = _player_actions.fetchPlayerStats;
-  window.fetchAllTeams = _team_actions.fetchAllTeams;
-  window.fetchTeamRoster = _team_actions.fetchTeamRoster;
 });
 
 /***/ }),
@@ -25414,13 +25407,27 @@ Object.defineProperty(exports, "__esModule", {
 
 var _team_actions = __webpack_require__(148);
 
-var _merge2 = __webpack_require__(150);
+var _merge = __webpack_require__(150);
 
-var _merge3 = _interopRequireDefault(_merge2);
+var _merge2 = _interopRequireDefault(_merge);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+var cleanerData = function cleanerData(teamArray) {
+  var allTeamsHash = {};
+  teamArray.forEach(function (teamObj) {
+    if (teamObj.isNBAFranchise) {
+      allTeamsHash[teamObj.teamId] = teamObj;
+    }
+  });
+  return allTeamsHash;
+};
+
+var cleanerTeam = function cleanerTeam(playerArray) {
+  return playerArray.map(function (playerObj) {
+    return playerObj.personId;
+  });
+};
 
 var TeamReducer = function TeamReducer() {
   var oldState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
@@ -25429,9 +25436,11 @@ var TeamReducer = function TeamReducer() {
   Object.freeze(oldState);
   switch (action.type) {
     case _team_actions.RECEIVE_TEAMS:
-      return action.teams;
+      return cleanerData(action.teams.league.standard);
     case _team_actions.RECEIVE_TEAM:
-      return (0, _merge3.default)({}, oldState, _defineProperty({}, action.team.id, action.team));
+      var newState = Object.assign({}, oldState);
+      newState[action.team.league.standard.teamId].playerRoster = cleanerTeam(action.team.league.standard.players);
+      return newState;
     default:
       return oldState;
   }
@@ -26314,17 +26323,17 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 var RECEIVE_TEAMS = exports.RECEIVE_TEAMS = "RECEIVE_TEAMS";
 var RECEIVE_TEAM = exports.RECEIVE_TEAM = "RECEIVE_TEAM";
 
-var receiveTeams = exports.receiveTeams = function receiveTeams(players) {
+var receiveTeams = exports.receiveTeams = function receiveTeams(teams) {
   return {
     type: RECEIVE_TEAMS,
-    players: players
+    teams: teams
   };
 };
 
-var receiveTeam = exports.receiveTeam = function receiveTeam(player) {
+var receiveTeam = exports.receiveTeam = function receiveTeam(team) {
   return {
     type: RECEIVE_TEAM,
-    player: player
+    team: team
   };
 };
 

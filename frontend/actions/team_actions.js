@@ -3,15 +3,15 @@ import * as APIUtil from "../util/api_util";
 export const RECEIVE_TEAMS = "RECEIVE_TEAMS";
 export const RECEIVE_TEAM = "RECEIVE_TEAM";
 
-export const receiveTeams = players => ({
+export const receiveTeams = teams => ({
   type: RECEIVE_TEAMS,
-  players
+  teams
 });
 
 
-export const receiveTeam = player => ({
+export const receiveTeam = team => ({
   type: RECEIVE_TEAM,
-  player
+  team
 });
 
 
