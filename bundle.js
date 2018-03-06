@@ -18088,19 +18088,58 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRouterDom = __webpack_require__(86);
+
+var _team_container = __webpack_require__(220);
+
+var _team_container2 = _interopRequireDefault(_team_container);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var App = function App() {
-  return _react2.default.createElement(
-    'div',
-    null,
-    'What up NBA!'
-  );
-};
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var App = function (_React$Component) {
+  _inherits(App, _React$Component);
+
+  function App() {
+    _classCallCheck(this, App);
+
+    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
+  }
+
+  _createClass(App, [{
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      this.props.fetchAllTeams();
+      this.props.fetchAllPlayers();
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          _reactRouterDom.Switch,
+          null,
+          _react2.default.createElement(_team_container2.default, null)
+        )
+      );
+    }
+  }]);
+
+  return App;
+}(_react2.default.Component);
 
 exports.default = App;
 
@@ -25272,9 +25311,9 @@ var _reactRedux = __webpack_require__(59);
 
 var _reactRouterDom = __webpack_require__(86);
 
-var _app = __webpack_require__(26);
+var _app_container = __webpack_require__(219);
 
-var _app2 = _interopRequireDefault(_app);
+var _app_container2 = _interopRequireDefault(_app_container);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -25286,11 +25325,11 @@ var Root = function Root(_ref) {
     _react2.default.createElement(
       _reactRouterDom.HashRouter,
       null,
-      _react2.default.createElement(_app2.default, null)
+      _react2.default.createElement(_app_container2.default, null)
     )
   );
 };
-
+// import App from "./app";
 exports.default = Root;
 
 /***/ }),
@@ -28624,6 +28663,191 @@ var fetchPlayerStats = exports.fetchPlayerStats = function fetchPlayerStats(play
     });
   };
 };
+
+/***/ }),
+/* 219 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = __webpack_require__(59);
+
+var _app = __webpack_require__(26);
+
+var _app2 = _interopRequireDefault(_app);
+
+var _team_actions = __webpack_require__(148);
+
+var _player_actions = __webpack_require__(218);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  return {
+    players: state.players,
+    teams: state.teams
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
+  return {
+    fetchAllTeams: function fetchAllTeams() {
+      return dispatch((0, _team_actions.fetchAllTeams)());
+    },
+    fetchAllPlayers: function fetchAllPlayers() {
+      return dispatch((0, _player_actions.fetchAllPlayers)());
+    }
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_app2.default);
+
+/***/ }),
+/* 220 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = __webpack_require__(59);
+
+var _team_show = __webpack_require__(221);
+
+var _team_show2 = _interopRequireDefault(_team_show);
+
+var _team_actions = __webpack_require__(148);
+
+var _player_actions = __webpack_require__(218);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  debugger;
+  return {
+    teams: Object.values(state.teams),
+    players: state.players
+    // team: state.teams[ownProps.match.params.teamId]
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
+  return {
+    fetchTeamRoster: function fetchTeamRoster(teamUrl) {
+      return dispatch((0, _team_actions.fetchTeamRoster)(teamUrl));
+    },
+    fetchPlayerStats: function fetchPlayerStats(playerID) {
+      return dispatch((0, _player_actions.fetchPlayerStats)(playerID));
+    }
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_team_show2.default);
+
+/***/ }),
+/* 221 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var TeamShow = function (_React$Component) {
+  _inherits(TeamShow, _React$Component);
+
+  function TeamShow(props) {
+    _classCallCheck(this, TeamShow);
+
+    var _this = _possibleConstructorReturn(this, (TeamShow.__proto__ || Object.getPrototypeOf(TeamShow)).call(this, props));
+
+    _this.state = { currentTeamId: null };
+    _this.changeTeams = _this.changeTeams.bind(_this);
+    return _this;
+  }
+
+  _createClass(TeamShow, [{
+    key: "componentWillMount",
+    value: function componentWillMount() {}
+  }, {
+    key: "dropDownTeams",
+    value: function dropDownTeams() {
+      if (this.props.teams.length > 0) {
+        return this.props.teams.map(function (team) {
+          return _react2.default.createElement(
+            "option",
+            { key: team.teamId, value: team.urlName },
+            team.fullName
+          );
+        });
+      } else {
+        return null;
+      }
+    }
+  }, {
+    key: "changeTeams",
+    value: function changeTeams(e) {
+      debugger;
+      this.props.fetchTeamRoster(e.currentTarget.value);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return _react2.default.createElement(
+        "div",
+        null,
+        _react2.default.createElement(
+          "h1",
+          null,
+          "Please select the team you wish to learn about: "
+        ),
+        _react2.default.createElement(
+          "select",
+          { onChange: this.changeTeams },
+          _react2.default.createElement(
+            "option",
+            { defaultValue: true },
+            "TEAMS"
+          ),
+          this.dropDownTeams()
+        ),
+        _react2.default.createElement(
+          "div",
+          null,
+          this.props.team
+        )
+      );
+    }
+  }]);
+
+  return TeamShow;
+}(_react2.default.Component);
+
+exports.default = TeamShow;
 
 /***/ })
 /******/ ]);
