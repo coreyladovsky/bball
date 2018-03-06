@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script src="./bundle.js"></script>
     <meta charset="utf-8">
     <title>Basketball</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -9,6 +10,10 @@
     <link href="./css/style.css" rel="stylesheet">
   </head>
   <body>
+
+    <div id="root">
+
+    </div>
     <h1>Enter Your Favorite Basketball team:</h1>
     <form class="basketball-team-form" action="index.html" method="GET"> -->
       <input type="text" name="" value="">
@@ -19,12 +24,7 @@
       return $.ajax({
         url: "https://crossorigin.me/" + url,
         type: "GET",
-        // success: function (res) {
-        //   console.log(res);
-        // },
-        // error: function() {
-        //   console.log("Error, sorry dude");
-        // }
+
       })
     }
       let allPlayersHash = {};
@@ -51,6 +51,5 @@
       })
 
     </script>
-    <!-- <script src="./bundle.js"></script> -->
   </body>
 </html>
