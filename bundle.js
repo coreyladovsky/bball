@@ -760,12 +760,23 @@ var _store = __webpack_require__(113);
 
 var _store2 = _interopRequireDefault(_store);
 
+var _player_actions = __webpack_require__(218);
+
+var _team_actions = __webpack_require__(148);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 document.addEventListener("DOMContentLoaded", function () {
   var store = (0, _store2.default)();
   var root = document.getElementById("root");
   _reactDom2.default.render(_react2.default.createElement(_root2.default, { store: store }), root);
+
+  window.getState = store.getState;
+  window.dispatch = store.dispatch;
+  window.fetchAllPlayers = _player_actions.fetchAllPlayers;
+  window.fetchPlayerStats = _player_actions.fetchPlayerStats;
+  window.fetchAllTeams = _team_actions.fetchAllTeams;
+  window.fetchTeamRoster = _team_actions.fetchTeamRoster;
 });
 
 /***/ }),
@@ -25373,9 +25384,9 @@ Object.defineProperty(exports, "__esModule", {
 
 var _redux = __webpack_require__(67);
 
-var _players_reducer = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./players_reducer\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+var _player_reducer = __webpack_require__(217);
 
-var _players_reducer2 = _interopRequireDefault(_players_reducer);
+var _player_reducer2 = _interopRequireDefault(_player_reducer);
 
 var _team_reducer = __webpack_require__(117);
 
@@ -25384,7 +25395,7 @@ var _team_reducer2 = _interopRequireDefault(_team_reducer);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var RootReducer = (0, _redux.combineReducers)({
-  players: _players_reducer2.default,
+  players: _player_reducer2.default,
   teams: _team_reducer2.default
 });
 
@@ -28505,6 +28516,105 @@ function isIterateeCall(value, index, object) {
 
 module.exports = isIterateeCall;
 
+
+/***/ }),
+/* 217 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _player_actions = __webpack_require__(218);
+
+var _merge2 = __webpack_require__(150);
+
+var _merge3 = _interopRequireDefault(_merge2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var cleanerData = function cleanerData(playerArray) {
+  var allPlayerHash = {};
+  playerArray.forEach(function (playerObj) {
+    allPlayerHash[playerObj.personId] = playerObj;
+  });
+  return allPlayerHash;
+};
+
+var PlayerReducer = function PlayerReducer() {
+  var oldState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments[1];
+
+
+  Object.freeze(oldState);
+  switch (action.type) {
+    case _player_actions.RECEIVE_PLAYERS:
+      return cleanerData(action.players.league.standard);
+    case _player_actions.RECEIVE_PLAYER:
+      return (0, _merge3.default)({}, oldState, _defineProperty({}, action.playerID, action.player.league.standard.stats.latest));
+    default:
+      return oldState;
+  }
+};
+
+exports.default = PlayerReducer;
+
+/***/ }),
+/* 218 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.fetchPlayerStats = exports.fetchAllPlayers = exports.receivePlayer = exports.receivePlayers = exports.RECEIVE_PLAYER = exports.RECEIVE_PLAYERS = undefined;
+
+var _api_util = __webpack_require__(149);
+
+var APIUtil = _interopRequireWildcard(_api_util);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+var RECEIVE_PLAYERS = exports.RECEIVE_PLAYERS = "RECEIVE_PLAYERS";
+var RECEIVE_PLAYER = exports.RECEIVE_PLAYER = "RECEIVE_PLAYER";
+
+var receivePlayers = exports.receivePlayers = function receivePlayers(players) {
+  return {
+    type: RECEIVE_PLAYERS,
+    players: players
+  };
+};
+
+var receivePlayer = exports.receivePlayer = function receivePlayer(player, playerID) {
+  return {
+    type: RECEIVE_PLAYER,
+    player: player,
+    playerID: playerID
+  };
+};
+
+var fetchAllPlayers = exports.fetchAllPlayers = function fetchAllPlayers() {
+  return function (dispatch) {
+    return APIUtil.fetchData("http://data.nba.net/data/10s/prod/v1/2017/players.json").then(function (players) {
+      return dispatch(receivePlayers(players));
+    });
+  };
+};
+
+var fetchPlayerStats = exports.fetchPlayerStats = function fetchPlayerStats(playerID) {
+  return function (dispatch) {
+    return APIUtil.fetchData("http://data.nba.net/data/10s/prod/v1/2017/players/" + playerID + "_profile.json").then(function (player) {
+      return dispatch(receivePlayer(player, playerID));
+    });
+  };
+};
 
 /***/ })
 /******/ ]);

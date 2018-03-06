@@ -9,9 +9,10 @@ export const receivePlayers = players => ({
 });
 
 
-export const receivePlayer = player => ({
+export const receivePlayer = (player, playerID) => ({
   type: RECEIVE_PLAYER,
-  player
+  player,
+   playerID
 });
 
 
@@ -22,5 +23,5 @@ export const fetchAllPlayers  = () => dispatch =>
 
   export const fetchPlayerStats = (playerID) => dispatch =>
   APIUtil.fetchData(`http://data.nba.net/data/10s/prod/v1/2017/players/${playerID}_profile.json`).then(
-    player => dispatch(receivePlayer(player))
+    player => dispatch(receivePlayer(player, playerID))
   );
