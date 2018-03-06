@@ -15,33 +15,41 @@
 
     </form>
     <script type="text/javascript">
+    const fetchData = (url) => {
+      return $.ajax({
+        url: "https://crossorigin.me/" + url,
+        type: "GET",
+        // success: function (res) {
+        //   console.log(res);
+        // },
+        // error: function() {
+        //   console.log("Error, sorry dude");
+        // }
+      })
+    }
+      let allPlayersHash = {};
+      var allPlayers = fetchData("http://data.nba.net/data/10s/prod/v1/2017/players.json").then((res) => {
+        res.league.standard.map((obj) => {
+          allPlayersHash[obj.personId] = obj
+
+        })
+      })
       $("form").on("submit", (e) => {
         e.preventDefault();
+        console.log(allPlayersHash);
         let team = $("input")[0].value.toLowerCase()
-        let teamRosterUrl = "https://data.nba.net/data/10s/prod/v1/2017/teams/" + team + "/roster.json"
-        var playerNames = []
+        let teamRosterUrl = "http://data.nba.net/data/10s/prod/v1/2017/teams/" + team + "/roster.json"
         let teamRoster = fetchData(teamRosterUrl).then((res) => {
-          res.league.standard.players.map((obj) => {
-            console.log(obj.personId);
+          var teamId = res.league.standard.teamId
+          var playerNames = res.league.standard.players.map((obj) => {
+            return [obj.personId, allPlayersHash[obj.personId]]
           })
+          console.log(playerNames);
         })
 
 
       })
 
-      const fetchData = (url) => {
-        console.log(url);
-        return $.ajax({
-          url,
-          type: "GET",
-          // success: function (res) {
-          //   console.log(res);
-          // },
-          // error: function() {
-          //   console.log("Error, sorry dude");
-          // }
-        })
-      }
     </script>
     <!-- <script src="./bundle.js"></script> -->
   </body>
