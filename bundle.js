@@ -26897,7 +26897,8 @@ var PlayerReducer = function PlayerReducer() {
   Object.freeze(oldState);
   switch (action.type) {
     case _player_actions.RECEIVE_PLAYERS:
-      return cleanerData(action.players.league.standard);
+      var newState = (0, _merge3.default)({}, oldState, cleanerData(action.players.league.standard));
+      return newState;
     case _player_actions.RECEIVE_PLAYER:
       return (0, _merge3.default)({}, oldState, _defineProperty({}, action.playerID, action.player.league.standard.stats.latest));
     default:
