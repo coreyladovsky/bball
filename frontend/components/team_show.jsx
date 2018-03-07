@@ -23,8 +23,12 @@ class TeamShow extends React.Component {
     if(!this.props.team) {
       return null;
     }  else if(this.props.teamPlayers.length > 0){
-      debugger
-      return <div>players</div>;
+          let ready = this.props.teamPlayers.every(player => player.ppg);
+          if(ready) {
+            return <div>All Set!</div>;
+          } else {
+            return <div>waiting</div>;
+          }
     } else {
 
       return(

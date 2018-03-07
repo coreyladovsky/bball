@@ -26659,12 +26659,22 @@ var TeamShow = function (_React$Component) {
       if (!this.props.team) {
         return null;
       } else if (this.props.teamPlayers.length > 0) {
-        debugger;
-        return _react2.default.createElement(
-          'div',
-          null,
-          'players'
-        );
+        var ready = this.props.teamPlayers.every(function (player) {
+          return player.ppg;
+        });
+        if (ready) {
+          return _react2.default.createElement(
+            'div',
+            null,
+            'All Set!'
+          );
+        } else {
+          return _react2.default.createElement(
+            'div',
+            null,
+            'waiting'
+          );
+        }
       } else {
 
         return _react2.default.createElement(
