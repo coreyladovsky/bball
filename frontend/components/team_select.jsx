@@ -29,7 +29,9 @@ class TeamSelect extends React.Component {
     this.setState({currentTeamId: e.currentTarget.value});
     this.props.teams.forEach(team => {
       if(team.teamId === e.currentTarget.value) {
-        this.props.fetchTeamRoster(team.urlName).then(this.props.history.push(`teams/${team.urlName}/${team.teamId}`));
+        this.props.fetchTeamRoster(team.urlName).then(() => {
+          this.props.history.push(`/teams/${team.urlName}/${team.teamId}`);
+        });
       }
     });
   }

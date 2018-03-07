@@ -23,11 +23,15 @@ const TeamReducer = (oldState = {}, action) => {
   Object.freeze(oldState);
   switch(action.type) {
       case RECEIVE_TEAMS:
-        return cleanerData(action.teams.league.standard);
+      newState = merge({}, oldState, cleanerData(action.teams.league.standard));
+        return newState;
       case RECEIVE_TEAM:
          let newState = Object.assign({}, oldState);
+         if(!newState[action.team.league.standard.teamId]) {
+           newState[action.team.league.standard.teamId] = {playerRoster: []};
+         }
          newState[action.team.league.standard.teamId].playerRoster = cleanerTeam(action.team.league.standard.players);
-         return newState;
+       return newState;
       default:
         return oldState;
   }

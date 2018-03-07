@@ -26375,10 +26375,10 @@ var App = function (_React$Component) {
   }
 
   _createClass(App, [{
-    key: 'componentWillMount',
-    value: function componentWillMount() {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
       this.props.fetchAllTeams();
-      this.props.fetchAllPlayers();
+      // this.props.fetchAllPlayers();
     }
   }, {
     key: 'render',
@@ -26514,7 +26514,9 @@ var TeamSelect = function (_React$Component) {
       this.setState({ currentTeamId: e.currentTarget.value });
       this.props.teams.forEach(function (team) {
         if (team.teamId === e.currentTarget.value) {
-          _this2.props.fetchTeamRoster(team.urlName).then(_this2.props.history.push("teams/" + team.urlName + "/" + team.teamId));
+          _this2.props.fetchTeamRoster(team.urlName).then(function () {
+            _this2.props.history.push("/teams/" + team.urlName + "/" + team.teamId);
+          });
         }
       });
     }
@@ -26578,17 +26580,17 @@ var _player_actions = __webpack_require__(12);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  var teamPlayers = [];
-  if (state.teams[ownProps.match.params.teamId] !== undefined) {
-    if (state.teams[ownProps.match.params.teamId].playerRoster !== undefined && !jQuery.isEmptyObject(state.players)) {
-      state.teams[ownProps.match.params.teamId].playerRoster.forEach(function (playerId) {
-        teamPlayers.push(state.players[playerId]);
-      });
-    }
-  }
+  // let teamPlayers = [];
+  // if(state.teams[ownProps.match.params.teamId] !== undefined) {
+  //   if(state.teams[ownProps.match.params.teamId].playerRoster  !== undefined && !jQuery.isEmptyObject(state.players) ){
+  //     state.teams[ownProps.match.params.teamId].playerRoster.forEach(playerId => {
+  //       teamPlayers.push(state.players[playerId]);
+  //     });
+  //   }
+  // }
   return {
-    team: state.teams[ownProps.match.params.teamId],
-    teamPlayers: teamPlayers
+    // team: state.teams[ownProps.match.params.teamId],
+    // teamPlayers
   };
 };
 
@@ -26599,6 +26601,12 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
     },
     fetchPlayerStats: function fetchPlayerStats(playerID) {
       return dispatch((0, _player_actions.fetchPlayerStats)(playerID));
+    },
+    fetchAllTeams: function fetchAllTeams() {
+      return dispatch((0, _team_actions.fetchAllTeams)());
+    },
+    fetchAllPlayers: function fetchAllPlayers() {
+      return dispatch((0, _player_actions.fetchAllPlayers)());
     }
   };
 };
@@ -26645,17 +26653,23 @@ var TeamShow = function (_React$Component) {
   }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
-      var _this2 = this;
+      // this.props.fetchTeamRoster(this.props.match.params.urlName).then(
+      //   (res) => {
+      //     res.team.league.standard.players.forEach(player => {
+      //       this.props.fetchPlayerStats(player.personId);
+      //     });
+      //   }
+      // );
 
-      this.props.fetchTeamRoster(this.props.match.params.urlName).then(function (res) {
-        res.team.league.standard.players.forEach(function (player) {
-          _this2.props.fetchPlayerStats(player.personId);
-        });
-      });
     }
   }, {
     key: 'render',
     value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        'asdf'
+      );
       if (!this.props.team) {
         return null;
       } else if (this.props.teamPlayers.length > 0) {
@@ -28992,9 +29006,13 @@ var TeamReducer = function TeamReducer() {
   Object.freeze(oldState);
   switch (action.type) {
     case _team_actions.RECEIVE_TEAMS:
-      return cleanerData(action.teams.league.standard);
+      newState = (0, _merge2.default)({}, oldState, cleanerData(action.teams.league.standard));
+      return newState;
     case _team_actions.RECEIVE_TEAM:
       var newState = Object.assign({}, oldState);
+      if (!newState[action.team.league.standard.teamId]) {
+        newState[action.team.league.standard.teamId] = { playerRoster: [] };
+      }
       newState[action.team.league.standard.teamId].playerRoster = cleanerTeam(action.team.league.standard.players);
       return newState;
     default:

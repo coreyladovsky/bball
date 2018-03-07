@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+
 import App from "./app";
 import { fetchAllTeams } from "./actions/team_actions";
 import { fetchAllPlayers } from "./actions/player_actions";

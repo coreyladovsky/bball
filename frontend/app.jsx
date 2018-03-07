@@ -3,9 +3,9 @@ import { Route, Switch } from 'react-router-dom';
 import TeamSelectContainer from './components/team_select_container';
 
 class App extends React.Component  {
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchAllTeams();
-    this.props.fetchAllPlayers();
+    // this.props.fetchAllPlayers();
   }
 
   render() {
