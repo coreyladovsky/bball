@@ -4250,6 +4250,8 @@ document.addEventListener("DOMContentLoaded", function () {
   window.getState = store.getState;
   window.fetchAllTeams = _team_actions.fetchAllTeams;
   window.fetchTeamRoster = _team_actions.fetchTeamRoster;
+  window.fetchPlayerStats = _player_actions.fetchPlayerStats;
+  window.fetchAllPlayers = _player_actions.fetchAllPlayers;
 });
 
 /***/ }),
@@ -26576,8 +26578,17 @@ var _player_actions = __webpack_require__(12);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
+  var teamPlayers = [];
+  if (state.teams[ownProps.match.params.teamId] !== undefined) {
+    if (state.teams[ownProps.match.params.teamId].playerRoster !== undefined && !jQuery.isEmptyObject(state.players)) {
+      state.teams[ownProps.match.params.teamId].playerRoster.forEach(function (playerId) {
+        teamPlayers.push(state.players[playerId]);
+      });
+    }
+  }
   return {
-    team: state.teams[ownProps.match.params.teamId]
+    team: state.teams[ownProps.match.params.teamId],
+    teamPlayers: teamPlayers
   };
 };
 
@@ -26634,14 +26645,28 @@ var TeamShow = function (_React$Component) {
   }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
-      this.props.fetchTeamRoster(this.props.match.params.urlName);
+      var _this2 = this;
+
+      this.props.fetchTeamRoster(this.props.match.params.urlName).then(function (res) {
+        res.team.league.standard.players.forEach(function (player) {
+          _this2.props.fetchPlayerStats(player.personId);
+        });
+      });
     }
   }, {
     key: 'render',
     value: function render() {
       if (!this.props.team) {
         return null;
+      } else if (this.props.teamPlayers.length > 0) {
+        debugger;
+        return _react2.default.createElement(
+          'div',
+          null,
+          'players'
+        );
       } else {
+
         return _react2.default.createElement(
           'div',
           null,
@@ -26685,7 +26710,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var configureStore = function configureStore() {
   var preloadedState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  return (0, _redux.createStore)(_root_reducer2.default, preloadedState, (0, _redux.applyMiddleware)(_reduxThunk2.default));
+  return (0, _redux.createStore)(_root_reducer2.default, preloadedState, (0, _redux.applyMiddleware)(_reduxThunk2.default, _reduxLogger2.default));
 };
 
 exports.default = configureStore;

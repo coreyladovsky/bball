@@ -15,5 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
   window.getState = store.getState;
   window.fetchAllTeams = fetchAllTeams;
   window.fetchTeamRoster = fetchTeamRoster;
-
+  window.fetchPlayerStats = fetchPlayerStats;
+  window.fetchAllPlayers = fetchAllPlayers;
 });
