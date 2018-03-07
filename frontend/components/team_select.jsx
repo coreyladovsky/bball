@@ -13,6 +13,7 @@ class TeamSelect extends React.Component {
 
   }
 
+
   dropDownTeams() {
 
     if(this.props.teams.length > 0) {
@@ -26,14 +27,24 @@ class TeamSelect extends React.Component {
   }
 
   changeTeams(e) {
-    this.setState({currentTeamId: e.currentTarget.value});
-    this.props.teams.forEach(team => {
-      if(team.teamId === e.currentTarget.value) {
-        this.props.fetchTeamRoster(team.urlName).then(() => {
-          this.props.history.push(`/teams/${team.urlName}/${team.teamId}`);
-        });
+
+    for (let i = 0; i < this.props.teams.length; i++) {
+      if(this.props.teams[i].teamId === e.currentTarget.value) {
+          this.props.history.push(`/teams/${this.props.teams[i].urlName}/${this.props.teams[i].teamId}`);
+          this.props.location.pathname = this.props.history.location.pathname;
+          this.setState({currentTeamId: e.currentTarget.value});
+
       }
-    });
+    }
+
+
+    // this.props.teams.forEach(team => {
+    //   if(team.teamId === e.currentTarget.value) {
+    //       this.props.history.push(`/teams/${team.urlName}/${team.teamId}`);
+    //
+    //   }
+    //
+    // });
   }
 
   render(){
