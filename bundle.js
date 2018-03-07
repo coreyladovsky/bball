@@ -26541,7 +26541,7 @@ var TeamSelect = function (_React$Component) {
         _react2.default.createElement(
           "div",
           null,
-          _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/teams/:urlName:teamId", component: _team_show_container2.default })
+          _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/teams/:urlName/:teamId", component: _team_show_container2.default })
         )
       );
     }
@@ -26576,12 +26576,6 @@ var _player_actions = __webpack_require__(12);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  var players = void 0;
-  // if(state.teams) {
-  //   debugger
-  //   players = state.teams[ownProps.match.params.teamId].playerRoster;
-  // }
-  debugger;
   return {
     team: state.teams[ownProps.match.params.teamId]
   };
@@ -26640,21 +26634,20 @@ var TeamShow = function (_React$Component) {
   }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
-      debugger;
       this.props.fetchTeamRoster(this.props.match.params.urlName);
     }
   }, {
     key: 'render',
     value: function render() {
-      debugger;
       if (!this.props.team) {
         return null;
+      } else {
+        return _react2.default.createElement(
+          'div',
+          null,
+          'working'
+        );
       }
-      return _react2.default.createElement(
-        'div',
-        null,
-        this.props.team.urlName
-      );
     }
   }]);
 

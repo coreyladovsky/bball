@@ -45,7 +45,7 @@ class TeamSelect extends React.Component {
         </select>
 
         <div>
-          <Route exact path="/teams/:urlName:teamId" component={TeamShowContainer} />
+          <Route exact path="/teams/:urlName/:teamId" component={TeamShowContainer} />
         </div>
       </div>
     );

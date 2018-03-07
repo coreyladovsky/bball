@@ -9,20 +9,19 @@ class TeamShow extends React.Component {
   }
 
   componentDidMount(){
-    debugger
     this.props.fetchTeamRoster(this.props.match.params.urlName);
   }
 
   render(){
-    debugger
     if(!this.props.team) {
       return null;
+    } else {
+      return(
+        <div>
+          working
+        </div>
+      );
     }
-    return(
-      <div>
-        {this.props.team.urlName}
-      </div>
-    );
   }
 }
 
