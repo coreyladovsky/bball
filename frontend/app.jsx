@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import TeamContainer from './components/team_container';
+import TeamSelectContainer from './components/team_select_container';
 
 class App extends React.Component  {
   componentWillMount() {
@@ -12,7 +12,7 @@ class App extends React.Component  {
     return(
       <div>
         <Switch>
-          <TeamContainer />
+          <Route path="/" component={TeamSelectContainer}/>
         </Switch>
       </div>
     );

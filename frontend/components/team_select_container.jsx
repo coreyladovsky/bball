@@ -1,15 +1,13 @@
 import { connect } from "react-redux";
-import teamShow from "./team_show";
+import TeamSelect from "./team_select";
 import { fetchTeamRoster } from "../actions/team_actions";
 import { fetchPlayerStats } from "../actions/player_actions";
 
 const mapStateToProps = (state, ownProps) => {
-  debugger
-  return {
+  return ({
     teams: Object.values(state.teams),
     players: state.players,
-    // team: state.teams[ownProps.match.params.teamId]
-  };
+  });
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
@@ -19,4 +17,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(teamShow);
+export default connect(mapStateToProps, mapDispatchToProps)(TeamSelect);

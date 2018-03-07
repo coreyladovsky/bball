@@ -1,44 +1,26 @@
-import React from "react";
+import React from 'react';
 
 class TeamShow extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {currentTeamId: null };
-    this.changeTeams = this.changeTeams.bind(this);
   }
 
   componentWillMount() {
-
   }
 
-  dropDownTeams() {
-    if(this.props.teams.length > 0) {
-      return this.props.teams.map((team) => {
-        return <option key={team.teamId} value={team.urlName}>{team.fullName}</option>;
-      });
-
-    } else {
-      return null;
-    }
-  }
-
-  changeTeams(e) {
+  componentDidMount(){
     debugger
-    this.props.fetchTeamRoster(e.currentTarget.value);
+    this.props.fetchTeamRoster(this.props.match.params.urlName);
   }
 
   render(){
+    debugger
+    if(!this.props.team) {
+      return null;
+    }
     return(
       <div>
-        <h1>Please select the team you wish to learn about: </h1>
-        <select onChange={this.changeTeams}>
-          <option defaultValue>TEAMS</option>
-          {this.dropDownTeams()}
-        </select>
-
-        <div>
-          {this.props.team}
-        </div>
+        {this.props.team.urlName}
       </div>
     );
   }
