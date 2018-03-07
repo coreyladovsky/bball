@@ -26378,7 +26378,7 @@ var App = function (_React$Component) {
     key: 'componentDidMount',
     value: function componentDidMount() {
       this.props.fetchAllTeams();
-      // this.props.fetchAllPlayers();
+      this.props.fetchAllPlayers();
     }
   }, {
     key: 'render',
@@ -26590,17 +26590,17 @@ var _reactRouter = __webpack_require__(151);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  // let teamPlayers = [];
-  // if(state.teams[ownProps.match.params.teamId] !== undefined) {
-  //   if(state.teams[ownProps.match.params.teamId].playerRoster  !== undefined && !jQuery.isEmptyObject(state.players) ){
-  //     state.teams[ownProps.match.params.teamId].playerRoster.forEach(playerId => {
-  //       teamPlayers.push(state.players[playerId]);
-  //     });
-  //   }
-  // }
+  var teamPlayers = [];
+  if (state.teams[ownProps.match.params.teamId] !== undefined) {
+    if (state.teams[ownProps.match.params.teamId].playerRoster !== undefined && !jQuery.isEmptyObject(state.players)) {
+      state.teams[ownProps.match.params.teamId].playerRoster.forEach(function (playerId) {
+        teamPlayers.push(state.players[playerId]);
+      });
+    }
+  }
   return {
-    // team: state.teams[ownProps.match.params.teamId],
-    // teamPlayers
+    team: state.teams[ownProps.match.params.teamId],
+    teamPlayers: teamPlayers
   };
 };
 
@@ -26663,24 +26663,17 @@ var TeamShow = function (_React$Component) {
   }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
-      // this.props.fetchTeamRoster(this.props.match.params.urlName).then(
-      //   (res) => {
-      //     res.team.league.standard.players.forEach(player => {
-      //       this.props.fetchPlayerStats(player.personId);
-      //     });
-      //   }
-      // );
+      var _this2 = this;
 
-
+      this.props.fetchTeamRoster(this.props.match.params.urlName).then(function (res) {
+        res.team.league.standard.players.forEach(function (player) {
+          _this2.props.fetchPlayerStats(player.personId);
+        });
+      });
     }
   }, {
     key: 'render',
     value: function render() {
-      return _react2.default.createElement(
-        'div',
-        null,
-        'asdf'
-      );
       if (!this.props.team) {
         return null;
       } else if (this.props.teamPlayers.length > 0) {

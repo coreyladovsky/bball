@@ -5,7 +5,7 @@ import TeamSelectContainer from './components/team_select_container';
 class App extends React.Component  {
   componentDidMount() {
     this.props.fetchAllTeams();
-    // this.props.fetchAllPlayers();
+    this.props.fetchAllPlayers();
   }
 
   render() {

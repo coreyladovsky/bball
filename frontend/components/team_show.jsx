@@ -9,19 +9,18 @@ class TeamShow extends React.Component {
   }
 
   componentDidMount(){
-    // this.props.fetchTeamRoster(this.props.match.params.urlName).then(
-    //   (res) => {
-    //     res.team.league.standard.players.forEach(player => {
-    //       this.props.fetchPlayerStats(player.personId);
-    //     });
-    //   }
-    // );
-    
+    this.props.fetchTeamRoster(this.props.match.params.urlName).then(
+      (res) => {
+        res.team.league.standard.players.forEach(player => {
+          this.props.fetchPlayerStats(player.personId);
+        });
+      }
+    );
+
 
   }
 
   render(){
-    return <div>asdf</div>
     if(!this.props.team) {
       return null;
     }  else if(this.props.teamPlayers.length > 0){
