@@ -3,13 +3,13 @@ import React from 'react';
 class TeamShow extends React.Component {
   constructor(props) {
     super(props);
+    this.lastUrl = this.props.location.pathname;
   }
 
   componentWillMount() {
   }
 
   componentDidMount(){
-    
       this.props.fetchTeamRoster(this.props.match.params.urlName).then(
       (res) => {
         res.team.league.standard.players.forEach(player => {
@@ -17,8 +17,19 @@ class TeamShow extends React.Component {
         });
       }
     );
+  }
 
-
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.location.pathname !== this.lastUrl){
+      this.lastUrl = nextProps.location.pathname;
+      nextProps.fetchTeamRoster(nextProps.match.params.urlName).then(
+      (res) => {
+        res.team.league.standard.players.forEach(player => {
+          this.props.fetchPlayerStats(player.personId);
+        });
+      }
+    );
+    }
   }
 
   render(){

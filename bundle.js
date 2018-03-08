@@ -26646,7 +26646,10 @@ var TeamShow = function (_React$Component) {
   function TeamShow(props) {
     _classCallCheck(this, TeamShow);
 
-    return _possibleConstructorReturn(this, (TeamShow.__proto__ || Object.getPrototypeOf(TeamShow)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (TeamShow.__proto__ || Object.getPrototypeOf(TeamShow)).call(this, props));
+
+    _this.lastUrl = _this.props.location.pathname;
+    return _this;
   }
 
   _createClass(TeamShow, [{
@@ -26662,6 +26665,20 @@ var TeamShow = function (_React$Component) {
           _this2.props.fetchPlayerStats(player.personId);
         });
       });
+    }
+  }, {
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(nextProps) {
+      var _this3 = this;
+
+      if (nextProps.location.pathname !== this.lastUrl) {
+        this.lastUrl = nextProps.location.pathname;
+        nextProps.fetchTeamRoster(nextProps.match.params.urlName).then(function (res) {
+          res.team.league.standard.players.forEach(function (player) {
+            _this3.props.fetchPlayerStats(player.personId);
+          });
+        });
+      }
     }
   }, {
     key: 'render',
@@ -26859,9 +26876,9 @@ Object.defineProperty(exports, "__esModule", {
 
 var _player_actions = __webpack_require__(12);
 
-var _merge2 = __webpack_require__(71);
+var _merge3 = __webpack_require__(71);
 
-var _merge3 = _interopRequireDefault(_merge2);
+var _merge4 = _interopRequireDefault(_merge3);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -26884,11 +26901,14 @@ var PlayerReducer = function PlayerReducer() {
   switch (action.type) {
     case _player_actions.RECEIVE_PLAYERS:
 
-      var newState = (0, _merge3.default)({}, oldState, cleanerData(action.players.league.standard));
+      var newState = (0, _merge4.default)({}, oldState, cleanerData(action.players.league.standard));
       return newState;
     case _player_actions.RECEIVE_PLAYER:
-      if (!action.player.league.standard.stats) {}
-      return (0, _merge3.default)({}, oldState, _defineProperty({}, action.playerID, action.player.league.standard.stats.latest));
+
+      if (action.player.league.orlando) {
+        return (0, _merge4.default)({}, oldState, _defineProperty({}, action.playerID, action.player.league.orlando.stats.latest));
+      }
+      return (0, _merge4.default)({}, oldState, _defineProperty({}, action.playerID, action.player.league.standard.stats.latest));
     default:
       return oldState;
   }
