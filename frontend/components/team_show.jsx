@@ -9,7 +9,7 @@ class TeamShow extends React.Component {
   }
 
   componentDidMount(){
-    this.props.fetchTeamRoster(this.props.match.params.urlName).then(
+      this.props.fetchTeamRoster(this.props.match.params.urlName).then(
       (res) => {
         res.team.league.standard.players.forEach(player => {
           this.props.fetchPlayerStats(player.personId);
@@ -24,6 +24,7 @@ class TeamShow extends React.Component {
     if(!this.props.team) {
       return null;
     }  else if(this.props.teamPlayers.length > 0){
+
           let ready = this.props.teamPlayers.every(player => player.ppg);
           if(ready) {
             return <div>All Set!</div>;

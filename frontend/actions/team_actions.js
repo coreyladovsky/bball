@@ -17,7 +17,9 @@ export const receiveTeam = team => ({
 
 export const fetchAllTeams  = () => dispatch =>
   APIUtil.fetchData("http://data.nba.net/data/10s/prod/v1/2017/teams.json").then(
-    teams => dispatch(receiveTeams(teams))
+    teams => {
+
+      dispatch(receiveTeams(JSON.parse(teams)));}
   );
 
   export const fetchTeamRoster = (urlName) => dispatch =>

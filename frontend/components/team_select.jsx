@@ -31,6 +31,7 @@ class TeamSelect extends React.Component {
     for (let i = 0; i < this.props.teams.length; i++) {
       if(this.props.teams[i].teamId === e.currentTarget.value) {
           this.props.history.push(`/teams/${this.props.teams[i].urlName}/${this.props.teams[i].teamId}`);
+          debugger
           this.props.location.pathname = this.props.history.location.pathname;
           this.setState({currentTeamId: e.currentTarget.value});
 

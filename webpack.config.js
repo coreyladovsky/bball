@@ -7,7 +7,8 @@ module.exports = {
   entry: "./frontend/entry.jsx",
   output: {
     path: __dirname,
-    filename: "bundle.js"
+    filename: "bundle.js",
+    publicPath: "/"
   },
   module: {
     loaders: [

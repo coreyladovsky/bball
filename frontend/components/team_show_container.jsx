@@ -13,6 +13,7 @@ const mapStateToProps = (state, ownProps) => {
       });
     }
   }
+  debugger
   return ({
     team: state.teams[ownProps.match.params.teamId],
     teamPlayers
