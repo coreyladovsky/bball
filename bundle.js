@@ -26632,6 +26632,10 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _dview = __webpack_require__(224);
+
+var _dview2 = _interopRequireDefault(_dview);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -26653,10 +26657,10 @@ var TeamShow = function (_React$Component) {
   }
 
   _createClass(TeamShow, [{
-    key: 'componentWillMount',
+    key: "componentWillMount",
     value: function componentWillMount() {}
   }, {
-    key: 'componentDidMount',
+    key: "componentDidMount",
     value: function componentDidMount() {
       var _this2 = this;
 
@@ -26667,7 +26671,7 @@ var TeamShow = function (_React$Component) {
       });
     }
   }, {
-    key: 'componentWillReceiveProps',
+    key: "componentWillReceiveProps",
     value: function componentWillReceiveProps(nextProps) {
       var _this3 = this;
 
@@ -26681,34 +26685,37 @@ var TeamShow = function (_React$Component) {
       }
     }
   }, {
-    key: 'render',
+    key: "render",
     value: function render() {
       if (!this.props.team) {
         return null;
       } else if (this.props.teamPlayers.length > 0) {
-
         var ready = this.props.teamPlayers.every(function (player) {
           return player.ppg;
         });
         if (ready) {
           return _react2.default.createElement(
-            'div',
+            "div",
             null,
-            'All Set!'
+            _react2.default.createElement(
+              "h1",
+              null,
+              this.props.team.fullName
+            ),
+            _react2.default.createElement(_dview2.default, { teamPlayers: this.props.teamPlayers })
           );
         } else {
           return _react2.default.createElement(
-            'div',
+            "div",
             null,
-            'hitting else statement'
+            "processing"
           );
         }
       } else {
-
         return _react2.default.createElement(
-          'div',
+          "div",
           null,
-          'working'
+          "working"
         );
       }
     }
@@ -26896,15 +26903,12 @@ var PlayerReducer = function PlayerReducer() {
   var oldState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments[1];
 
-
   Object.freeze(oldState);
   switch (action.type) {
     case _player_actions.RECEIVE_PLAYERS:
-
       var newState = (0, _merge4.default)({}, oldState, cleanerData(action.players.league.standard));
       return newState;
     case _player_actions.RECEIVE_PLAYER:
-
       if (action.player.league.orlando) {
         return (0, _merge4.default)({}, oldState, _defineProperty({}, action.playerID, action.player.league.orlando.stats.latest));
       }
@@ -29084,6 +29088,56 @@ var TeamReducer = function TeamReducer() {
 };
 
 exports.default = TeamReducer;
+
+/***/ }),
+/* 224 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var DView = function (_React$Component) {
+  _inherits(DView, _React$Component);
+
+  function DView() {
+    _classCallCheck(this, DView);
+
+    return _possibleConstructorReturn(this, (DView.__proto__ || Object.getPrototypeOf(DView)).apply(this, arguments));
+  }
+
+  _createClass(DView, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        'What up Noe'
+      );
+    }
+  }]);
+
+  return DView;
+}(_react2.default.Component);
+
+exports.default = DView;
 
 /***/ })
 /******/ ]);

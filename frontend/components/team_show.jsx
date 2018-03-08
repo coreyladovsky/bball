@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import DView from './dview';
 
 class TeamShow extends React.Component {
   constructor(props) {
@@ -6,50 +7,45 @@ class TeamShow extends React.Component {
     this.lastUrl = this.props.location.pathname;
   }
 
-  componentWillMount() {
-  }
+  componentWillMount() {}
 
-  componentDidMount(){
-      this.props.fetchTeamRoster(this.props.match.params.urlName).then(
-      (res) => {
-        res.team.league.standard.players.forEach(player => {
-          this.props.fetchPlayerStats(player.personId);
-        });
-      }
-    );
+  componentDidMount() {
+    this.props.fetchTeamRoster(this.props.match.params.urlName).then(res => {
+      res.team.league.standard.players.forEach(player => {
+        this.props.fetchPlayerStats(player.personId);
+      });
+    });
   }
 
   componentWillReceiveProps(nextProps) {
-    if(nextProps.location.pathname !== this.lastUrl){
+    if (nextProps.location.pathname !== this.lastUrl) {
       this.lastUrl = nextProps.location.pathname;
-      nextProps.fetchTeamRoster(nextProps.match.params.urlName).then(
-      (res) => {
+      nextProps.fetchTeamRoster(nextProps.match.params.urlName).then(res => {
         res.team.league.standard.players.forEach(player => {
           this.props.fetchPlayerStats(player.personId);
         });
-      }
-    );
+      });
     }
   }
 
-  render(){
-    if(!this.props.team) {
+  render() {
+    if (!this.props.team) {
       return null;
-    }  else if(this.props.teamPlayers.length > 0){
+    } else if (this.props.teamPlayers.length > 0) {
+      let ready = this.props.teamPlayers.every(player => player.ppg);
+      if (ready) {
+        return (
+          <div>
+            <h1>{this.props.team.fullName}</h1>
 
-          let ready = this.props.teamPlayers.every(player => player.ppg);
-          if(ready) {
-            return <div>All Set!</div>;
-          } else {
-            return <div>hitting else statement</div>;
-          }
+          <DView teamPlayers={this.props.teamPlayers} />
+          </div>
+        );
+      } else {
+        return <div>processing</div>;
+      }
     } else {
-
-      return(
-        <div>
-          working
-        </div>
-      );
+      return <div>working</div>;
     }
   }
 }
