@@ -9,19 +9,20 @@ export const receivePlayers = players => ({
 });
 
 
-export const receivePlayer = (player, playerID) => ({
+export const receivePlayer = (player, playerID) => {
+  return({
   type: RECEIVE_PLAYER,
   player,
-   playerID
-});
+  playerID
+});};
 
 
 export const fetchAllPlayers  = () => dispatch =>
   APIUtil.fetchData("http://data.nba.net/data/10s/prod/v1/2017/players.json").then(
-    players => dispatch(receivePlayers(players))
+    players => dispatch(receivePlayers(JSON.parse(players)))
   );
 
   export const fetchPlayerStats = (playerID) => dispatch =>
   APIUtil.fetchData(`http://data.nba.net/data/10s/prod/v1/2017/players/${playerID}_profile.json`).then(
-    player => dispatch(receivePlayer(player, playerID))
+    player => dispatch(receivePlayer(JSON.parse(player), playerID))
   );

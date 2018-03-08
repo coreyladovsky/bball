@@ -669,7 +669,7 @@ var fetchAllTeams = exports.fetchAllTeams = function fetchAllTeams() {
 var fetchTeamRoster = exports.fetchTeamRoster = function fetchTeamRoster(urlName) {
   return function (dispatch) {
     return APIUtil.fetchData("http://data.nba.net/data/10s/prod/v1/2017/teams/" + urlName + "/roster.json").then(function (teamRoster) {
-      return dispatch(receiveTeam(teamRoster));
+      return dispatch(receiveTeam(JSON.parse(teamRoster)));
     });
   };
 };
@@ -713,7 +713,7 @@ var receivePlayer = exports.receivePlayer = function receivePlayer(player, playe
 var fetchAllPlayers = exports.fetchAllPlayers = function fetchAllPlayers() {
   return function (dispatch) {
     return APIUtil.fetchData("http://data.nba.net/data/10s/prod/v1/2017/players.json").then(function (players) {
-      return dispatch(receivePlayers(players));
+      return dispatch(receivePlayers(JSON.parse(players)));
     });
   };
 };
@@ -721,7 +721,7 @@ var fetchAllPlayers = exports.fetchAllPlayers = function fetchAllPlayers() {
 var fetchPlayerStats = exports.fetchPlayerStats = function fetchPlayerStats(playerID) {
   return function (dispatch) {
     return APIUtil.fetchData("http://data.nba.net/data/10s/prod/v1/2017/players/" + playerID + "_profile.json").then(function (player) {
-      return dispatch(receivePlayer(player, playerID));
+      return dispatch(receivePlayer(JSON.parse(player), playerID));
     });
   };
 };
@@ -26379,7 +26379,7 @@ var App = function (_React$Component) {
     key: 'componentDidMount',
     value: function componentDidMount() {
       this.props.fetchAllTeams();
-      // this.props.fetchAllPlayers();
+      this.props.fetchAllPlayers();
     }
   }, {
     key: 'render',
@@ -26496,12 +26496,11 @@ var TeamSelect = function (_React$Component) {
   }, {
     key: "dropDownTeams",
     value: function dropDownTeams() {
-
       if (this.props.teams.length > 0) {
         return this.props.teams.map(function (team) {
           return _react2.default.createElement(
             "option",
-            { key: team.teamId, name: team.teamId, value: team.teamId },
+            { key: team.teamId, value: team.teamId },
             team.fullName
           );
         });
@@ -26516,19 +26515,10 @@ var TeamSelect = function (_React$Component) {
       for (var i = 0; i < this.props.teams.length; i++) {
         if (this.props.teams[i].teamId === e.currentTarget.value) {
           this.props.history.push("/teams/" + this.props.teams[i].urlName + "/" + this.props.teams[i].teamId);
-          debugger;
           this.props.location.pathname = this.props.history.location.pathname;
           this.setState({ currentTeamId: e.currentTarget.value });
         }
       }
-
-      // this.props.teams.forEach(team => {
-      //   if(team.teamId === e.currentTarget.value) {
-      //       this.props.history.push(`/teams/${team.urlName}/${team.teamId}`);
-      //
-      //   }
-      //
-      // });
     }
   }, {
     key: "render",
@@ -26600,7 +26590,6 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
       });
     }
   }
-  debugger;
   return {
     team: state.teams[ownProps.match.params.teamId],
     teamPlayers: teamPlayers
@@ -26694,7 +26683,7 @@ var TeamShow = function (_React$Component) {
           return _react2.default.createElement(
             'div',
             null,
-            'waiting'
+            'hitting else statement'
           );
         }
       } else {
@@ -26894,6 +26883,7 @@ var PlayerReducer = function PlayerReducer() {
   Object.freeze(oldState);
   switch (action.type) {
     case _player_actions.RECEIVE_PLAYERS:
+
       var newState = (0, _merge3.default)({}, oldState, cleanerData(action.players.league.standard));
       return newState;
     case _player_actions.RECEIVE_PLAYER:

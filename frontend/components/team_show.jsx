@@ -9,6 +9,7 @@ class TeamShow extends React.Component {
   }
 
   componentDidMount(){
+    
       this.props.fetchTeamRoster(this.props.match.params.urlName).then(
       (res) => {
         res.team.league.standard.players.forEach(player => {
@@ -29,7 +30,7 @@ class TeamShow extends React.Component {
           if(ready) {
             return <div>All Set!</div>;
           } else {
-            return <div>waiting</div>;
+            return <div>hitting else statement</div>;
           }
     } else {
 

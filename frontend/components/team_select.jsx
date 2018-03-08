@@ -15,10 +15,9 @@ class TeamSelect extends React.Component {
 
 
   dropDownTeams() {
-
     if(this.props.teams.length > 0) {
       return this.props.teams.map((team) => {
-        return <option key={team.teamId} name={team.teamId} value={team.teamId}>{team.fullName}</option>;
+        return <option key={team.teamId} value={team.teamId}>{team.fullName}</option>;
       });
 
     } else {
@@ -31,21 +30,11 @@ class TeamSelect extends React.Component {
     for (let i = 0; i < this.props.teams.length; i++) {
       if(this.props.teams[i].teamId === e.currentTarget.value) {
           this.props.history.push(`/teams/${this.props.teams[i].urlName}/${this.props.teams[i].teamId}`);
-          debugger
           this.props.location.pathname = this.props.history.location.pathname;
           this.setState({currentTeamId: e.currentTarget.value});
 
       }
     }
-
-
-    // this.props.teams.forEach(team => {
-    //   if(team.teamId === e.currentTarget.value) {
-    //       this.props.history.push(`/teams/${team.urlName}/${team.teamId}`);
-    //
-    //   }
-    //
-    // });
   }
 
   render(){

@@ -1,13 +1,3 @@
-// const express = require('express');
-// const app = express();
-// var path = require('path');
-//
-
-// app.get('/:url', (request, response) => {
-//   response.send("success" + request.params.url);
-//   // request.params.url
-// });
-// app.listen(3000, console.log("express running"));
 
 
 const express = require('express');
@@ -27,21 +17,14 @@ app.get("/", (request, response) => {
 });
 
 app.get('/*', (request, response) => {
-  console.log(request.params['0']);
   req(request.params['0'], (err, res, body) => {
     console.log(res);
 
     // res.pipe(response);
     response.send(res.body);
   });
-  // request.params.url
-});
 
-// app.post('/', (request, response) => {
-//   console.log(request.params);
-//
-//   response.send("success" + request.params);
-// });
+});
 
 
 app.listen(port, () => console.log(`Express server listening on port ${port}`));
