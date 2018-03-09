@@ -16,6 +16,7 @@
     "parse-address": "0.0.8",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
+    "react-faux-dom": "^4.1.0",
     "react-native-geocoder": "^0.5.0",
     "react-places-autocomplete": "^5.4.3",
     "react-redux": "^5.0.6",
@@ -48,5 +49,8 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "file-loader": "^1.1.11"
+  }
 }
