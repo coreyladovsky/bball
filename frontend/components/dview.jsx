@@ -7,6 +7,13 @@ class DView extends React.Component {
     super(props);
   }
 
+  componentWillMount() {
+    var faux = this.props.connectFauxDOM('svg', 'chart')
+    d3.select(faux)
+      .append('svg')
+      this.props.animateFauxDOM(2000)
+  }
+
 
  render () {
    var data = this.props.teamPlayers;
@@ -23,7 +30,7 @@ class DView extends React.Component {
 
   const arc = d3.arc()
     .outerRadius(radius - 10)
-    .innerRadius(0);
+    .innerRadius(radius  - 50);
 
   const labelArc = d3.arc()
     .outerRadius(radius - 50)
@@ -42,7 +49,7 @@ class DView extends React.Component {
 
       data.forEach(function (d) {
         d.ppg = +d.ppg ;
-        d.lastName = d.lastName;
+        d.name = d.firstName + " " + d.lastName;
 
       });
 
@@ -51,16 +58,24 @@ class DView extends React.Component {
              .enter().append("g")
              .attr("class", "arc");
 
-
+        function tweenPie(b) {
+         b.innerRadius = 0;
+         var i = d3.interpolate({startAngle: 0, endAngle: 0}, b);
+         return function(t) { return arc(i(t)); };
+       }
 
        g.append("path")
          .attr("d", arc)
-         .style("fill", function(d) { return color(d.data.lastName);});
+         .style("fill", function(d) { return color(d.data.name);})
+         .transition()
+         .ease(d3.easeLinear)
+         .duration(2000)
+         .attrTween("d", tweenPie);
 
        g.append("text")
          .attr("transform", function(d) { return "translate(" + labelArc.centroid(d) + ")"; })
          .attr("dy", ".35em")
-         .text(function(d) { return d.data.lastName; } );
+         .text(function(d) { return d.data.name; } );
 
 
    return node.toReact();

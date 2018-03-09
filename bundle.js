@@ -26813,6 +26813,13 @@ var DView = function (_React$Component) {
   }
 
   _createClass(DView, [{
+    key: "componentWillMount",
+    value: function componentWillMount() {
+      var faux = this.props.connectFauxDOM('svg', 'chart');
+      d3.select(faux).append('svg');
+      this.props.animateFauxDOM(2000);
+    }
+  }, {
     key: "render",
     value: function render() {
       var data = this.props.teamPlayers;
@@ -26823,7 +26830,7 @@ var DView = function (_React$Component) {
 
       var color = d3.scaleOrdinal().range(["#EADEDB", "#ECDB54", "#E94B3C", "#42A5F5", "#944743", "#DBB1CD", "#EC9787", "#00A591", "#6B5B95", "#6C4F3D", "#BC70A4", "#BFD641", "#2E4A62", "#B4B7BA", "#672E3B", "#DC4C46", "#223A5E"]);
 
-      var arc = d3.arc().outerRadius(radius - 10).innerRadius(0);
+      var arc = d3.arc().outerRadius(radius - 10).innerRadius(radius - 50);
 
       var labelArc = d3.arc().outerRadius(radius - 50).innerRadius(radius - 50);
 
@@ -26836,19 +26843,27 @@ var DView = function (_React$Component) {
 
       data.forEach(function (d) {
         d.ppg = +d.ppg;
-        d.lastName = d.lastName;
+        d.name = d.firstName + " " + d.lastName;
       });
 
       var g = svg.selectAll(".arc").data(pie(data)).enter().append("g").attr("class", "arc");
 
+      function tweenPie(b) {
+        b.innerRadius = 0;
+        var i = d3.interpolate({ startAngle: 0, endAngle: 0 }, b);
+        return function (t) {
+          return arc(i(t));
+        };
+      }
+
       g.append("path").attr("d", arc).style("fill", function (d) {
-        return color(d.data.lastName);
-      });
+        return color(d.data.name);
+      }).transition().ease(d3.easeLinear).duration(2000).attrTween("d", tweenPie);
 
       g.append("text").attr("transform", function (d) {
         return "translate(" + labelArc.centroid(d) + ")";
       }).attr("dy", ".35em").text(function (d) {
-        return d.data.lastName;
+        return d.data.name;
       });
 
       return node.toReact();
@@ -30885,7 +30900,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var configureStore = function configureStore() {
   var preloadedState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  return (0, _redux.createStore)(_root_reducer2.default, preloadedState, (0, _redux.applyMiddleware)(_reduxThunk2.default, _reduxLogger2.default));
+  return (0, _redux.createStore)(_root_reducer2.default, preloadedState, (0, _redux.applyMiddleware)(_reduxThunk2.default));
 };
 
 exports.default = configureStore;
