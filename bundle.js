@@ -26827,6 +26827,12 @@ var DView = function (_React$Component) {
 
       var arc2 = d3.arc().outerRadius(radius - 80).innerRadius(radius - 120);
 
+      var arc3 = d3.arc().outerRadius(radius - 150).innerRadius(radius - 190);
+
+      var arc4 = d3.arc().outerRadius(radius - 220).innerRadius(radius - 260);
+
+      var arc5 = d3.arc().outerRadius(radius - 290).innerRadius(0);
+
       var pie = d3.pie().sort(null).value(function (d) {
         return d.ppg / d.mpg;
       });
@@ -26835,7 +26841,19 @@ var DView = function (_React$Component) {
         return d.rpg / d.mpg;
       });
 
-      var node = _reactFauxDom2.default.createElement('svg');
+      var pie3 = d3.pie().sort(null).value(function (d) {
+        return d.apg / d.mpg;
+      });
+
+      var pie4 = d3.pie().sort(null).value(function (d) {
+        return d.spg / d.mpg;
+      });
+
+      var pie5 = d3.pie().sort(null).value(function (d) {
+        return d.fpg / d.mpg;
+      });
+
+      var node = _reactFauxDom2.default.createElement("svg");
 
       var svg = d3.select(node).attr("width", width).attr("height", height).append("g").attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
@@ -26849,6 +26867,8 @@ var DView = function (_React$Component) {
         d.name = d.firstName + " " + d.lastName;
       });
 
+      var a = svg.selectAll(".labels").data(data).enter().append("g").attr("class", "labels");
+
       var g = svg.selectAll(".arc").data(pie(data)).enter().append("g").attr("class", "arc");
 
       g.append("path").attr("d", arc).style("fill", function (d) {
@@ -26858,6 +26878,24 @@ var DView = function (_React$Component) {
       var h = svg.selectAll(".arc2").data(pie2(data)).enter().append("g").attr("class", "arc2");
 
       h.append("path").attr("d", arc2).style("fill", function (d) {
+        return color(d.data.name);
+      });
+
+      var j = svg.selectAll(".arc3").data(pie3(data)).enter().append("g").attr("class", "arc3");
+
+      j.append("path").attr("d", arc3).style("fill", function (d) {
+        return color(d.data.name);
+      });
+
+      var k = svg.selectAll(".arc4").data(pie4(data)).enter().append("g").attr("class", "arc4");
+
+      k.append("path").attr("d", arc4).style("fill", function (d) {
+        return color(d.data.name);
+      });
+
+      var l = svg.selectAll(".arc5").data(pie5(data)).enter().append("g").attr("class", "arc5");
+
+      h.append("path").attr("d", arc5).style("fill", function (d) {
         return color(d.data.name);
       });
 
