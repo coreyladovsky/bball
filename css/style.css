@@ -1,3 +1,38 @@
 html {
   background: pink;
 }
+
+
+
+.text {
+  color: white;
+}
+
+
+.d3 {
+  /* background: black;
+  display: grid;
+  grid-template-columns: repeat( 9, 1fr);
+  grid-template-rows: 300px 300px ;
+  grid-template-areas:
+    "h h h h h h h h h"
+    "h h k k k k k h h"
+    "h h h h h h h h h" */
+    background: black;
+    height: 1000px;
+}
+
+svg {
+  background: blue;
+  width: 100%: 
+  /* border-radius: 50%; */
+  /* grid-area: h; */
+}
+/* .next-circle {
+  height: 300px;
+  width: 300px;
+  border-radius: 50%;
+  background: yellow;
+  text-align: center;
+  /* grid-area: k; */
+} */

@@ -26812,63 +26812,60 @@ var DView = function (_React$Component) {
     return _possibleConstructorReturn(this, (DView.__proto__ || Object.getPrototypeOf(DView)).call(this, props));
   }
 
-  // componentWillMount() {
-  //   var faux = this.props.connectFauxDOM('svg', 'chart')
-  //   d3.select(faux)
-  //     .append('svg')
-  //     this.props.animateFauxDOM(2000)
-  // }
-
-
   _createClass(DView, [{
     key: "render",
     value: function render() {
+      var margin = { top: 0, right: 0, bottom: 0, left: 0 };
       var data = this.props.teamPlayers;
-      var margin = { top: 20, right: 20, bottom: 20, left: 20 };
-      var width = 500 - margin.right - margin.left;
-      var height = 500 - margin.top - margin.bottom;
+      var width = 800 - margin.right - margin.left;
+      var height = 800 - margin.top - margin.bottom;
       var radius = width / 2;
 
-      var color = d3.scaleOrdinal().range(["#EADEDB", "#ECDB54", "#E94B3C", "#42A5F5", "#944743", "#DBB1CD", "#EC9787", "#00A591", "#6B5B95", "#6C4F3D", "#BC70A4", "#BFD641", "#2E4A62", "#B4B7BA", "#672E3B", "#DC4C46", "#223A5E"]);
+      var color = d3.scaleOrdinal(d3.schemeCategory20);
 
       var arc = d3.arc().outerRadius(radius - 10).innerRadius(radius - 50);
 
-      var labelArc = d3.arc().outerRadius(radius - 10).innerRadius(radius - 50);
+      var arc2 = d3.arc().outerRadius(radius - 80).innerRadius(radius - 120);
 
       var pie = d3.pie().sort(null).value(function (d) {
         return d.ppg / d.mpg;
       });
 
+      var pie2 = d3.pie().sort(null).value(function (d) {
+        return d.rpg / d.mpg;
+      });
+
       var node = _reactFauxDom2.default.createElement('svg');
+
       var svg = d3.select(node).attr("width", width).attr("height", height).append("g").attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
       data.forEach(function (d) {
         d.ppg = +d.ppg;
         d.mpg = +d.mpg;
+        d.rpg = +d.rpg;
+        d.bpg = +d.bpg;
+        d.apg = +d.apg;
+        d.spg = +d.spg;
         d.name = d.firstName + " " + d.lastName;
       });
 
       var g = svg.selectAll(".arc").data(pie(data)).enter().append("g").attr("class", "arc");
 
-      function tweenPie(b) {
-        b.innerRadius = 0;
-        var i = d3.interpolate({ startAngle: 0, endAngle: 0 }, b);
-        return function (t) {
-          return arc(i(t));
-        };
-      }
-
       g.append("path").attr("d", arc).style("fill", function (d) {
         return color(d.data.name);
-      }).transition().ease(d3.easeLinear).duration(2000).attrTween("d", tweenPie);
-
-      g.append("text").attr("transform", function (d) {
-        return "translate(" + labelArc.centroid(d) + ")";
-      }).attr("dy", "0em").text(function (d) {
-        return (d.data.ppg / d.data.mpg).toFixed(2);
       });
 
-      return node.toReact();
+      var h = svg.selectAll(".arc2").data(pie2(data)).enter().append("g").attr("class", "arc2");
+
+      h.append("path").attr("d", arc2).style("fill", function (d) {
+        return color(d.data.name);
+      });
+
+      return _react2.default.createElement(
+        "div",
+        { className: "d3" },
+        node.toReact()
+      );
     }
   }]);
 
