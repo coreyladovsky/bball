@@ -7,12 +7,12 @@ class DView extends React.Component {
     super(props);
   }
 
-  componentWillMount() {
-    var faux = this.props.connectFauxDOM('svg', 'chart')
-    d3.select(faux)
-      .append('svg')
-      this.props.animateFauxDOM(2000)
-  }
+  // componentWillMount() {
+  //   var faux = this.props.connectFauxDOM('svg', 'chart')
+  //   d3.select(faux)
+  //     .append('svg')
+  //     this.props.animateFauxDOM(2000)
+  // }
 
 
  render () {
@@ -33,12 +33,12 @@ class DView extends React.Component {
     .innerRadius(radius  - 50);
 
   const labelArc = d3.arc()
-    .outerRadius(radius - 50)
+    .outerRadius(radius - 10)
     .innerRadius(radius - 50);
 
   const pie = d3.pie()
     .sort(null)
-    .value((d) => d.ppg);
+    .value((d) => d.ppg / d.mpg);
 
     var node = ReactFauxDOM.createElement('svg');
     var svg = d3.select(node)
@@ -49,6 +49,7 @@ class DView extends React.Component {
 
       data.forEach(function (d) {
         d.ppg = +d.ppg ;
+        d.mpg = +d.mpg ;
         d.name = d.firstName + " " + d.lastName;
 
       });
@@ -74,8 +75,8 @@ class DView extends React.Component {
 
        g.append("text")
          .attr("transform", function(d) { return "translate(" + labelArc.centroid(d) + ")"; })
-         .attr("dy", ".35em")
-         .text(function(d) { return d.data.name; } );
+         .attr("dy", "0em")
+         .text(function(d) { return (d.data.ppg / d.data.mpg).toFixed(2); } );
 
 
    return node.toReact();

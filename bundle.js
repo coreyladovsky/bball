@@ -26812,14 +26812,15 @@ var DView = function (_React$Component) {
     return _possibleConstructorReturn(this, (DView.__proto__ || Object.getPrototypeOf(DView)).call(this, props));
   }
 
+  // componentWillMount() {
+  //   var faux = this.props.connectFauxDOM('svg', 'chart')
+  //   d3.select(faux)
+  //     .append('svg')
+  //     this.props.animateFauxDOM(2000)
+  // }
+
+
   _createClass(DView, [{
-    key: "componentWillMount",
-    value: function componentWillMount() {
-      var faux = this.props.connectFauxDOM('svg', 'chart');
-      d3.select(faux).append('svg');
-      this.props.animateFauxDOM(2000);
-    }
-  }, {
     key: "render",
     value: function render() {
       var data = this.props.teamPlayers;
@@ -26832,10 +26833,10 @@ var DView = function (_React$Component) {
 
       var arc = d3.arc().outerRadius(radius - 10).innerRadius(radius - 50);
 
-      var labelArc = d3.arc().outerRadius(radius - 50).innerRadius(radius - 50);
+      var labelArc = d3.arc().outerRadius(radius - 10).innerRadius(radius - 50);
 
       var pie = d3.pie().sort(null).value(function (d) {
-        return d.ppg;
+        return d.ppg / d.mpg;
       });
 
       var node = _reactFauxDom2.default.createElement('svg');
@@ -26843,6 +26844,7 @@ var DView = function (_React$Component) {
 
       data.forEach(function (d) {
         d.ppg = +d.ppg;
+        d.mpg = +d.mpg;
         d.name = d.firstName + " " + d.lastName;
       });
 
@@ -26862,8 +26864,8 @@ var DView = function (_React$Component) {
 
       g.append("text").attr("transform", function (d) {
         return "translate(" + labelArc.centroid(d) + ")";
-      }).attr("dy", ".35em").text(function (d) {
-        return d.data.name;
+      }).attr("dy", "0em").text(function (d) {
+        return (d.data.ppg / d.data.mpg).toFixed(2);
       });
 
       return node.toReact();
