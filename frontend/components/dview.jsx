@@ -6,42 +6,7 @@ class DView extends React.Component {
   constructor(props) {
     super(props);
   }
-  componentWillMount () {
 
-
-
-   // const faux = this.props.connectFauxDOM('div', 'chart');
-   // var svg = d3.select(faux).append("svg")
-   //      .attr("width", width)
-   //      .attr("height", height)
-   //      .append("g")
-   //      .attr("transform", "translate(" + width/2 + "," + height/2 + ")");
-   //
-   //
-   //  let data = this.props.teamPlayers.map((d) => {
-   //    d.ppg = +d.ppg;
-   //    d.lastName = d.lastName;
-   //  });
-   //
-   //
-   //
-   //  var g = svg.selectAll(".arc")
-   //        .data(pie(data))
-   //        .enter().append("g")
-   //        .attr("class", "arc");
-   //
-   //
-   //
-   //  g.append("path")
-   //    .attr("d", arc)
-   //    .style("fill", "blue");
-   //
-   //  g.append("text")
-   //    .attr("transform", function(d) { return "translate(" + labelArc.centroid(d) + ")"; })
-   //    .attr("dy", ".35em")
-   //    .text(function(d) { return d.data.lastName; } );
-
- }
 
  render () {
    var data = this.props.teamPlayers;
@@ -49,6 +14,12 @@ class DView extends React.Component {
    const width = 500 - margin.right - margin.left ;
    const height = 500 - margin.top - margin.bottom;
    const radius = width / 2;
+
+   const color = d3.scaleOrdinal()
+              .range(["#EADEDB", "#ECDB54", "#E94B3C", "#42A5F5", "#944743", "#DBB1CD", "#EC9787",
+            "#00A591", "#6B5B95", "#6C4F3D", "#BC70A4", "#BFD641", "#2E4A62", "#B4B7BA", "#672E3B",
+            "#DC4C46", "#223A5E"]);
+
 
   const arc = d3.arc()
     .outerRadius(radius - 10)
@@ -70,8 +41,9 @@ class DView extends React.Component {
       .attr("transform", "translate(" + width/2 + "," + height/2 + ")");
 
       data.forEach(function (d) {
-        d.ppg = +d.ppg;
+        d.ppg = +d.ppg ;
         d.lastName = d.lastName;
+
       });
 
        var g = svg.selectAll(".arc")
@@ -83,7 +55,7 @@ class DView extends React.Component {
 
        g.append("path")
          .attr("d", arc)
-         .style("fill", "blue");
+         .style("fill", function(d) { return color(d.data.lastName);});
 
        g.append("text")
          .attr("transform", function(d) { return "translate(" + labelArc.centroid(d) + ")"; })
@@ -95,24 +67,6 @@ class DView extends React.Component {
 
  }
 
-  // render() {
-  //
-  //   const someDiv = new ReactFauxDOM.Element('div')
-  //
-  //   //
-  //
-  //   // const svg = d3.select()
-  //
-  //
-  //   const paragraph = new ReactFauxDOM.Element('p', someDiv)
-  //   paragraph.textContent = 'Hello, World!'
-  //   paragraph.style.color ="red"
-  //
-  //   return(
-  //     <div>
-  //       {paragraph.toReact()}
-  //     </div>
-  // );}
 }
 
 export default withFauxDOM(DView);
