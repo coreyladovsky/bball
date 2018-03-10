@@ -36202,11 +36202,22 @@ var DView = function (_React$Component) {
     value: function render() {
       var margin = { top: 0, right: 0, bottom: 0, left: 0 };
       var data = this.props.teamPlayers;
+
       var width = 700 - margin.right - margin.left;
       var height = 700 - margin.top - margin.bottom;
       var radius = width / 2;
 
       var color = d3.scaleOrdinal(d3.schemeCategory20);
+      var minutesText = ["MINUTES", "MINUTES", "MINUTES", "MINUTES", "MINUTES"];
+      var pointsText = ["POINTS", "POINTS", "POINTS", "POINTS", "POINTS"];
+      var reboundsText = ["REBOUNDS", "REBOUNDS", "REBOUNDS", "REBOUNDS", "REBOUNDS"];
+      var assistsText = ["ASSISTS", "ASSISTS", "ASSISTS", "ASSISTS", "ASSISTS"];
+      var stealsText = ["STEALS", "STEALS", "STEALS", "STEALS", "STEALS"];
+      var blocksText = ["BLOCKS", "BLOCKS", "BLOCKS", "BLOCKS", "BLOCKS"];
+
+      var arcMinusText = d3.arc().outerRadius(radius + 80).innerRadius(radius + 60).startAngle(0).endAngle(360);
+
+      var arcMinus = d3.arc().outerRadius(radius + 60).innerRadius(radius + 20);
 
       var arc = d3.arc().outerRadius(radius - 10).innerRadius(radius - 50);
 
@@ -36218,29 +36229,57 @@ var DView = function (_React$Component) {
 
       var arc5 = d3.arc().outerRadius(radius - 290).innerRadius(0);
 
+      var pieMinus = d3.pie().sort(null).value(function (d) {
+        return d.mpg;
+      });
+
+      var pieMinusText = d3.pie().value(function (d) {
+        return d;
+      });
+
       var pie = d3.pie().sort(null).value(function (d) {
-        return d.ppg / d.mpg;
+        if (d.ppg < 0) {
+          return 0;
+        } else {
+          return d.ppg / d.mpg;
+        }
       });
 
       var pie2 = d3.pie().sort(null).value(function (d) {
-        return d.rpg / d.mpg;
+        if (d.rpg < 0) {
+          return 0;
+        } else {
+          return d.rpg / d.mpg;
+        }
       });
 
       var pie3 = d3.pie().sort(null).value(function (d) {
-        return d.apg / d.mpg;
+        if (d.apg < 0) {
+          return 0;
+        } else {
+          return d.apg / d.mpg;
+        }
       });
 
       var pie4 = d3.pie().sort(null).value(function (d) {
-        return d.spg / d.mpg;
+        if (d.spg < 0) {
+          return 0;
+        } else {
+          return d.spg / d.mpg;
+        }
       });
 
       var pie5 = d3.pie().sort(null).value(function (d) {
-        return d.fpg / d.mpg;
+        if (d.bpg < 0) {
+          return 0;
+        } else {
+          return d.bpg / d.mpg;
+        }
       });
 
       var node = _reactFauxDom2.default.createElement("svg");
 
-      var svg = d3.select(node).attr("width", "100%").attr("height", height).append("g").attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+      var svg = d3.select(node).attr("width", "100%").attr("height", 1000).append("g").attr("transform", "translate(" + (width / 2 + 100) + "," + (height / 2 + 100) + ")");
 
       data.forEach(function (d) {
         d.ppg = +d.ppg;
@@ -36253,7 +36292,7 @@ var DView = function (_React$Component) {
       });
 
       var a = svg.selectAll(".labels").data(data).enter().append("g").attr("transform", function (d, i) {
-        return "translate(600," + (i - 10) * 30 + ")";
+        return "translate(600," + (i - 8) * 30 + ")";
       });
 
       a.append("rect").attr("width", 15).attr("height", 15).style("fill", function (d) {
@@ -36264,34 +36303,20 @@ var DView = function (_React$Component) {
         return d.name;
       });
 
-      //   .append("text")
-      //   .attr("transform", function(d, i) { return "translate(600," + i * 30 + ")"; })
-      //   .attr("dy", "-250")
-      //   .text(function(d) { return d.name; })
-      //
-      // var b = svg
-      //   .selectAll(".labels")
-      //   .data(data)
+      // svg.selectAll("text")
+      //   .data(pointsText)
       //   .enter()
-      //   .append("rect")
-      //   .attr("width", 15)
-      //   .attr("height", 15)
-      //   .attr("transform", function(d, i) { return "translate(550," + i * 30 + ")"; })
-      //   .style("fill", function(d) {
-      //         return color(d.name);
-      //       });
-
+      //   .append("text")
+      //   .attr("x", radius * .8)
+      //   .attr("y", "0.4em")
+      //   .text(function(d) { return d; })
+      //   .attr("transform", function(d, i) { return "rotate(" + (-90 + ((360 / pointsText.length) * i)) + ")"; })
 
       var g = svg.selectAll(".arc").data(pie(data)).enter().append("g").attr("class", "arc");
 
       g.append("path").attr("d", arc).style("fill", function (d) {
         return color(d.data.name);
       });
-      //
-      // g.append("text")
-      // .attr("transform", function(d, i) { return "translate(600," + i * 30 + ")"; })
-      // // .attr("dy", ".35em")
-      // .text(function(d) { return d.data.name; });
 
       var h = svg.selectAll(".arc2").data(pie2(data)).enter().append("g").attr("class", "arc2");
 
@@ -36313,9 +36338,39 @@ var DView = function (_React$Component) {
 
       var l = svg.selectAll(".arc5").data(pie5(data)).enter().append("g").attr("class", "arc5");
 
-      h.append("path").attr("d", arc5).style("fill", function (d) {
+      l.append("path").attr("d", arc5).style("fill", function (d) {
         return color(d.data.name);
       });
+
+      var m = svg.selectAll(".arcMinus").data(pieMinus(data)).enter().append("g").attr("class", "arcMinus");
+
+      m.append("path").attr("d", arcMinus).style("fill", function (d) {
+        return color(d.data.name);
+      });
+
+      svg.append('path').attr('d', arcMinusText).attr('id', 'minuteText');
+
+      var minute_text = svg.append('text').attr('x', 0)
+      // .attr("dy", 0)
+      .style('font-size', "20px").style('font-family', 'Times New Roman');
+
+      minute_text.append('textPath').attr('xlink:href', '#minuteText').text('MINUTES -------------------------------------- MINUTES  -------------------------------------- MINUTES  -------------------------------------- MINUTES   -------------------------------------- MINUTES   --------------------------------------MINUTES   --------------------------------------MINUTES      --------------------------------------MINUTES  ----------------------- ');
+
+      //
+      // var mText = svg
+      //   .selectAll(".arcMinusText")
+      //   .data(pieMinusText(minutesText))
+      //   .enter()
+      //   .append("g")
+      //   .attr("class", "arcMinusText");
+      //
+      // mText
+      //   .append("path")
+      //   .attr("d", arcMinusText)
+      //   .attr("dy", ".8em")
+      //   .attr("x", 25)
+      // .attr("transform", function(d, i) { return "rotate(" + (-90 + ((360 / minutesText.length) * i)) + ")"; });
+
 
       return _react2.default.createElement(
         "div",

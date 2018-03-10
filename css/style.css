@@ -23,9 +23,10 @@ html {
 }
 
 svg {
-  width: 100%:
+  width: 100%;
   /* border-radius: 50%; */
   /* grid-area: h; */
+  border: 1px solid red;
 }
 /* .next-circle {
   height: 300px;
