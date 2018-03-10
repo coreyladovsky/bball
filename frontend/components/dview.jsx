@@ -89,22 +89,38 @@ class DView extends React.Component {
       .selectAll(".labels")
       .data(data)
       .enter()
-      .append("text")
-      .attr("transform", function(d, i) { return "translate(600," + i * 30 + ")"; })
-      .attr("dy", "-250")
-      .text(function(d) { return d.name; })
+      .append("g")
+      .attr("transform", function(d, i) { return "translate(600," + (i - 10) * 30 + ")"; })
 
-    var b = svg
-      .selectAll(".labels")
-      .data(data)
-      .enter()
-      .append("rect")
-      .attr("width", 15)
-      .attr("height", 15)
-      .attr("transform", function(d, i) { return "translate(550," + i * 30 + ")"; })
-      .style("fill", function(d) {
-            return color(d.name);
-          });
+      a.append("rect")
+        .attr("width", 15)
+        .attr("height", 15)
+        .style("fill", function(d) {
+              return color(d.name);
+            });
+
+
+      a.append("text")
+      .attr("dy", ".8em")
+      .attr("x", 25)
+      .text(function(d) { return d.name; });
+
+    //   .append("text")
+    //   .attr("transform", function(d, i) { return "translate(600," + i * 30 + ")"; })
+    //   .attr("dy", "-250")
+    //   .text(function(d) { return d.name; })
+    //
+    // var b = svg
+    //   .selectAll(".labels")
+    //   .data(data)
+    //   .enter()
+    //   .append("rect")
+    //   .attr("width", 15)
+    //   .attr("height", 15)
+    //   .attr("transform", function(d, i) { return "translate(550," + i * 30 + ")"; })
+    //   .style("fill", function(d) {
+    //         return color(d.name);
+    //       });
 
 
 

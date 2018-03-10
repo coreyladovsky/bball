@@ -36252,17 +36252,35 @@ var DView = function (_React$Component) {
         d.name = d.firstName + " " + d.lastName;
       });
 
-      var a = svg.selectAll(".labels").data(data).enter().append("text").attr("transform", function (d, i) {
-        return "translate(600," + i * 30 + ")";
-      }).attr("dy", "-250").text(function (d) {
+      var a = svg.selectAll(".labels").data(data).enter().append("g").attr("transform", function (d, i) {
+        return "translate(600," + (i - 10) * 30 + ")";
+      });
+
+      a.append("rect").attr("width", 15).attr("height", 15).style("fill", function (d) {
+        return color(d.name);
+      });
+
+      a.append("text").attr("dy", ".8em").attr("x", 25).text(function (d) {
         return d.name;
       });
 
-      var b = svg.selectAll(".labels").data(data).enter().append("rect").attr("width", 15).attr("height", 15).attr("transform", function (d, i) {
-        return "translate(550," + i * 30 + ")";
-      }).style("fill", function (d) {
-        return color(d.name);
-      });
+      //   .append("text")
+      //   .attr("transform", function(d, i) { return "translate(600," + i * 30 + ")"; })
+      //   .attr("dy", "-250")
+      //   .text(function(d) { return d.name; })
+      //
+      // var b = svg
+      //   .selectAll(".labels")
+      //   .data(data)
+      //   .enter()
+      //   .append("rect")
+      //   .attr("width", 15)
+      //   .attr("height", 15)
+      //   .attr("transform", function(d, i) { return "translate(550," + i * 30 + ")"; })
+      //   .style("fill", function(d) {
+      //         return color(d.name);
+      //       });
+
 
       var g = svg.selectAll(".arc").data(pie(data)).enter().append("g").attr("class", "arc");
 
