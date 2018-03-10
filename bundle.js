@@ -26817,8 +26817,8 @@ var DView = function (_React$Component) {
     value: function render() {
       var margin = { top: 0, right: 0, bottom: 0, left: 0 };
       var data = this.props.teamPlayers;
-      var width = 800 - margin.right - margin.left;
-      var height = 800 - margin.top - margin.bottom;
+      var width = 700 - margin.right - margin.left;
+      var height = 700 - margin.top - margin.bottom;
       var radius = width / 2;
 
       var color = d3.scaleOrdinal(d3.schemeCategory20);
@@ -26855,7 +26855,7 @@ var DView = function (_React$Component) {
 
       var node = _reactFauxDom2.default.createElement("svg");
 
-      var svg = d3.select(node).attr("width", width).attr("height", height).append("g").attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+      var svg = d3.select(node).attr("width", "100%").attr("height", height).append("g").attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
       data.forEach(function (d) {
         d.ppg = +d.ppg;
@@ -26867,13 +26867,28 @@ var DView = function (_React$Component) {
         d.name = d.firstName + " " + d.lastName;
       });
 
-      var a = svg.selectAll(".labels").data(data).enter().append("g").attr("class", "labels");
+      var a = svg.selectAll(".labels").data(data).enter().append("text").attr("transform", function (d, i) {
+        return "translate(600," + i * 30 + ")";
+      }).attr("dy", "-250").text(function (d) {
+        return d.name;
+      });
+
+      var b = svg.selectAll(".labels").data(data).enter().append("rect").attr("width", 15).attr("height", 15).attr("transform", function (d, i) {
+        return "translate(550," + i * 30 + ")";
+      }).style("fill", function (d) {
+        return color(d.name);
+      });
 
       var g = svg.selectAll(".arc").data(pie(data)).enter().append("g").attr("class", "arc");
 
       g.append("path").attr("d", arc).style("fill", function (d) {
         return color(d.data.name);
       });
+      //
+      // g.append("text")
+      // .attr("transform", function(d, i) { return "translate(600," + i * 30 + ")"; })
+      // // .attr("dy", ".35em")
+      // .text(function(d) { return d.data.name; });
 
       var h = svg.selectAll(".arc2").data(pie2(data)).enter().append("g").attr("class", "arc2");
 

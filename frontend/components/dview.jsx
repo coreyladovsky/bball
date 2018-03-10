@@ -10,8 +10,8 @@ class DView extends React.Component {
   render() {
     const margin = { top: 0, right: 0, bottom: 0, left: 0 };
     var data = this.props.teamPlayers;
-    const width = 800 - margin.right - margin.left;
-    const height = 800 - margin.top - margin.bottom;
+    const width = 700 - margin.right - margin.left;
+    const height = 700 - margin.top - margin.bottom;
     const radius = width / 2;
 
     const color = d3.scaleOrdinal(d3.schemeCategory20);
@@ -70,7 +70,7 @@ class DView extends React.Component {
 
     var svg = d3
       .select(node)
-      .attr("width", width)
+      .attr("width", "100%")
       .attr("height", height)
       .append("g")
       .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
@@ -89,8 +89,24 @@ class DView extends React.Component {
       .selectAll(".labels")
       .data(data)
       .enter()
-      .append("g")
-      .attr("class", "labels");
+      .append("text")
+      .attr("transform", function(d, i) { return "translate(600," + i * 30 + ")"; })
+      .attr("dy", "-250")
+      .text(function(d) { return d.name; })
+
+    var b = svg
+      .selectAll(".labels")
+      .data(data)
+      .enter()
+      .append("rect")
+      .attr("width", 15)
+      .attr("height", 15)
+      .attr("transform", function(d, i) { return "translate(550," + i * 30 + ")"; })
+      .style("fill", function(d) {
+            return color(d.name);
+          });
+
+
 
     var g = svg
       .selectAll(".arc")
@@ -105,6 +121,11 @@ class DView extends React.Component {
       .style("fill", function(d) {
         return color(d.data.name);
       });
+      //
+      // g.append("text")
+      // .attr("transform", function(d, i) { return "translate(600," + i * 30 + ")"; })
+      // // .attr("dy", ".35em")
+      // .text(function(d) { return d.data.name; });
 
     var h = svg
       .selectAll(".arc2")
