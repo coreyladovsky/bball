@@ -36215,7 +36215,7 @@ var DView = function (_React$Component) {
       var stealsText = ["STEALS", "STEALS", "STEALS", "STEALS", "STEALS"];
       var blocksText = ["BLOCKS", "BLOCKS", "BLOCKS", "BLOCKS", "BLOCKS"];
 
-      var arcMinusText = d3.arc().outerRadius(radius + 80).innerRadius(radius + 60).startAngle(0).endAngle(360);
+      var arcMinusText = d3.arc().outerRadius(radius + 100).innerRadius(radius + 80).startAngle(0).endAngle(360);
 
       var arcMinus = d3.arc().outerRadius(radius + 60).innerRadius(radius + 20);
 
@@ -36348,13 +36348,9 @@ var DView = function (_React$Component) {
         return color(d.data.name);
       });
 
-      svg.append('path').attr('d', arcMinusText).attr('id', 'minuteText');
+      svg.append('path').attr('id', 'path').attr('d', arcMinusText);
 
-      var minute_text = svg.append('text').attr('x', 0)
-      // .attr("dy", 0)
-      .style('font-size', "20px").style('font-family', 'Times New Roman');
-
-      minute_text.append('textPath').attr('xlink:href', '#minuteText').text('MINUTES -------------------------------------- MINUTES  -------------------------------------- MINUTES  -------------------------------------- MINUTES   -------------------------------------- MINUTES   --------------------------------------MINUTES   --------------------------------------MINUTES      --------------------------------------MINUTES  ----------------------- ');
+      svg.append('text').attr('x', 8).attr("dy", 28).append("textPath").attr("class", "textpath").attr('xlink:href', '#path').text('MINUTES -------------------------------------- MINUTES-------------------------------------- MINUTES  -------------------------------------- MINUTES  -------------------------------------- MINUTES   -------------------------------------- MINUTES   --------------------------------------MINUTES   --------------------------------------MINUTES      --------------------------------------MINUTES  -----------------------------------MINUTES ----------------------------------------------- ');
 
       //
       // var mText = svg
