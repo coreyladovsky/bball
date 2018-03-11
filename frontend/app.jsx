@@ -12,10 +12,10 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <Route exact path="/" component={ProjectInformation} />
         <Switch>
           <Route path="/" component={TeamSelectContainer} />
         </Switch>
-        <Route exact path="/" component={ProjectInformation} />
       </div>
     );
   }

@@ -49,3 +49,100 @@ svg {
   width: 100%;
   background: black;
 }
+
+.welcome-line {
+  font-family: 'sans-serif';
+  font-size: 40px;
+  font-weight: bold;
+  text-align: center;
+  color: black;
+}
+
+.name {
+  font-family: 'sans-serif';
+  font-size: 35px;
+  font-weight: bold;
+  text-align: center;
+  color: black;
+}
+
+.overview {
+  border: 1px solid red;
+  width: 700px;
+    /* text-align: center; */
+    display: flex;
+    /* justify-content: center; */
+    /* margin: auto; */
+    flex-direction: column;
+    margin-left: 40px;
+    list-style: none;
+}
+
+.understanding {
+  border: 1px solid blue;
+  font-size: 20px;
+  font-family: sans-serif;
+  font-weight: 600;
+}
+
+.data-info {
+    border: 1px solid yellow;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-family: sans-serif;
+     line-height: 25px;
+     font-size: 18px;
+}
+
+.interpretation {
+  border: 1px solid green;
+  font-size: 20px;
+  font-family: sans-serif;
+  font-weight: 600;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//

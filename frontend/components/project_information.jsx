@@ -3,10 +3,12 @@ import React from "react";
 const ProjectInformation = () => {
   return (
     <div>
-      <h1 className="Welcome-line">Welcome To NBA By The Minute Stats</h1>
+      <h1 className="welcome-line"> NBA Stats By The Minute</h1>
       <h3 className="name">By Corey Ladovsky</h3>
 
       <div className="overview">
+        <li>
+
         <div className="understanding"> Understanding The Data: </div>
         <p className="data-info">
           {" "}
@@ -16,6 +18,9 @@ const ProjectInformation = () => {
           represent a players average stat in that categroy divied by their
           average number of minutes.{" "}
         </p>
+        </li>
+<li>
+
 
         <div className="interpretation">The Interpretation:</div>
         <p className="data-info">
@@ -24,6 +29,7 @@ const ProjectInformation = () => {
           whom should be getting more or less playing time based off of there
           minute by minute performance.
         </p>
+        </li>
       </div>
     </div>
   );

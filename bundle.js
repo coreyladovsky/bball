@@ -35818,12 +35818,12 @@ var App = function (_React$Component) {
       return _react2.default.createElement(
         "div",
         null,
+        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/", component: _project_information2.default }),
         _react2.default.createElement(
           _reactRouterDom.Switch,
           null,
           _react2.default.createElement(_reactRouterDom.Route, { path: "/", component: _team_select_container2.default })
-        ),
-        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/", component: _project_information2.default })
+        )
       );
     }
   }]);
@@ -56326,8 +56326,8 @@ var ProjectInformation = function ProjectInformation() {
     null,
     _react2.default.createElement(
       "h1",
-      { className: "Welcome-line" },
-      "Welcome To NBA By The Minute Stats"
+      { className: "welcome-line" },
+      " NBA Stats By The Minute"
     ),
     _react2.default.createElement(
       "h3",
@@ -56338,26 +56338,34 @@ var ProjectInformation = function ProjectInformation() {
       "div",
       { className: "overview" },
       _react2.default.createElement(
-        "div",
-        { className: "understanding" },
-        " Understanding The Data: "
+        "li",
+        null,
+        _react2.default.createElement(
+          "div",
+          { className: "understanding" },
+          " Understanding The Data: "
+        ),
+        _react2.default.createElement(
+          "p",
+          { className: "data-info" },
+          " ",
+          "Every graph is a visual representation of a team and the impact each player has on that team. The outside ring is the average number of minutes each player plays per game. The following inner-circles represent a players average stat in that categroy divied by their average number of minutes.",
+          " "
+        )
       ),
       _react2.default.createElement(
-        "p",
-        { className: "data-info" },
-        " ",
-        "Every graph is a visual representation of a team and the impact each player has on that team. The outside ring is the average number of minutes each player plays per game. The following inner-circles represent a players average stat in that categroy divied by their average number of minutes.",
-        " "
-      ),
-      _react2.default.createElement(
-        "div",
-        { className: "interpretation" },
-        "The Interpretation:"
-      ),
-      _react2.default.createElement(
-        "p",
-        { className: "data-info" },
-        "Using the charts, one can see the impact each player has per minute they play. Therefore the chart can be used as a tool to help decide whom should be getting more or less playing time based off of there minute by minute performance."
+        "li",
+        null,
+        _react2.default.createElement(
+          "div",
+          { className: "interpretation" },
+          "The Interpretation:"
+        ),
+        _react2.default.createElement(
+          "p",
+          { className: "data-info" },
+          "Using the charts, one can see the impact each player has per minute they play. Therefore the chart can be used as a tool to help decide whom should be getting more or less playing time based off of there minute by minute performance."
+        )
       )
     )
   );
