@@ -35732,6 +35732,8 @@ Object.defineProperty(exports, "__esModule", {
 
 var _reactRedux = __webpack_require__(49);
 
+var _reactRouter = __webpack_require__(634);
+
 var _app = __webpack_require__(320);
 
 var _app2 = _interopRequireDefault(_app);
@@ -35760,7 +35762,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
   };
 };
 
-exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_app2.default);
+exports.default = (0, _reactRouter.withRouter)((0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_app2.default));
 
 /***/ }),
 /* 320 */
@@ -35811,18 +35813,49 @@ var App = function (_React$Component) {
     value: function componentDidMount() {
       this.props.fetchAllTeams();
       this.props.fetchAllPlayers();
+      this.checkPage = this.checkPage.bind(this);
+    }
+  }, {
+    key: "checkPage",
+    value: function checkPage() {
+      if (this.props.location.pathname === "/") {
+        $(".app-pages").css({ "flex-direction": "row", "justify-content": "space-around" });
+        $(".intro-container").css("display", "block");
+      } else {
+        $(".app-pages").css("flex-direction", "column");
+        $(".intro-container").css("display", "none");
+      }
     }
   }, {
     key: "render",
     value: function render() {
+      this.checkPage();
       return _react2.default.createElement(
         "div",
         null,
-        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/", component: _project_information2.default }),
         _react2.default.createElement(
-          _reactRouterDom.Switch,
-          null,
-          _react2.default.createElement(_reactRouterDom.Route, { path: "/", component: _team_select_container2.default })
+          "div",
+          { className: "intro-container" },
+          _react2.default.createElement(
+            "h1",
+            { className: "welcome-line" },
+            " NBA Stats By The Minute"
+          ),
+          _react2.default.createElement(
+            "h3",
+            { className: "name" },
+            "By Corey Ladovsky"
+          )
+        ),
+        _react2.default.createElement(
+          "div",
+          { className: "app-pages" },
+          _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/", component: _project_information2.default }),
+          _react2.default.createElement(
+            _reactRouterDom.Switch,
+            null,
+            _react2.default.createElement(_reactRouterDom.Route, { path: "/", component: _team_select_container2.default })
+          )
         )
       );
     }
@@ -56324,16 +56357,6 @@ var ProjectInformation = function ProjectInformation() {
   return _react2.default.createElement(
     "div",
     null,
-    _react2.default.createElement(
-      "h1",
-      { className: "welcome-line" },
-      " NBA Stats By The Minute"
-    ),
-    _react2.default.createElement(
-      "h3",
-      { className: "name" },
-      "By Corey Ladovsky"
-    ),
     _react2.default.createElement(
       "div",
       { className: "overview" },

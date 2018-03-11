@@ -7,15 +7,34 @@ class App extends React.Component {
   componentDidMount() {
     this.props.fetchAllTeams();
     this.props.fetchAllPlayers();
+    this.checkPage = this.checkPage.bind(this);
+  }
+
+  checkPage() {
+    if(this.props.location.pathname === "/") {
+      $(".app-pages").css({"flex-direction": "row", "justify-content": "space-around"});
+      $(".intro-container").css("display", "block");
+    } else {
+      $(".app-pages").css("flex-direction", "column");
+      $(".intro-container").css("display", "none");
+
+    }
   }
 
   render() {
+    this.checkPage();
     return (
-      <div>
+      <div >
+        <div className="intro-container">
+        <h1 className="welcome-line"> NBA Stats By The Minute</h1>
+        <h3 className="name">By Corey Ladovsky</h3>
+      </div>
+        <div className="app-pages">
         <Route exact path="/" component={ProjectInformation} />
         <Switch>
           <Route path="/" component={TeamSelectContainer} />
         </Switch>
+      </div>
       </div>
     );
   }

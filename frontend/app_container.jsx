@@ -1,4 +1,6 @@
 import { connect } from "react-redux";
+import { withRouter } from "react-router";
+
 
 import App from "./app";
 import { fetchAllTeams } from "./actions/team_actions";
@@ -18,4 +20,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

@@ -74,7 +74,7 @@ svg {
     /* justify-content: center; */
     /* margin: auto; */
     flex-direction: column;
-    margin-left: 40px;
+    /* margin-left: 40px; */
     list-style: none;
 }
 
@@ -101,7 +101,9 @@ svg {
   font-weight: 600;
 }
 
-
+.app-pages {
+  display: flex;
+}
 
 
 

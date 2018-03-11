@@ -3,8 +3,6 @@ import React from "react";
 const ProjectInformation = () => {
   return (
     <div>
-      <h1 className="welcome-line"> NBA Stats By The Minute</h1>
-      <h3 className="name">By Corey Ladovsky</h3>
 
       <div className="overview">
         <li>
