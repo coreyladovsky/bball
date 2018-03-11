@@ -36208,24 +36208,40 @@ var DView = function (_React$Component) {
       var radius = width / 2;
 
       var color = d3.scaleOrdinal(d3.schemeCategory20);
-      var minutesText = ["MINUTES", "MINUTES", "MINUTES", "MINUTES", "MINUTES"];
-      var pointsText = ["POINTS", "POINTS", "POINTS", "POINTS", "POINTS"];
-      var reboundsText = ["REBOUNDS", "REBOUNDS", "REBOUNDS", "REBOUNDS", "REBOUNDS"];
-      var assistsText = ["ASSISTS", "ASSISTS", "ASSISTS", "ASSISTS", "ASSISTS"];
-      var stealsText = ["STEALS", "STEALS", "STEALS", "STEALS", "STEALS"];
-      var blocksText = ["BLOCKS", "BLOCKS", "BLOCKS", "BLOCKS", "BLOCKS"];
+      // const minutesText = ["MINUTES", "MINUTES", "MINUTES", "MINUTES", "MINUTES"];
+      // const pointsText = ["POINTS", "POINTS", "POINTS", "POINTS", "POINTS"];
+      // const reboundsText = [
+      //   "REBOUNDS",
+      //   "REBOUNDS",
+      //   "REBOUNDS",
+      //   "REBOUNDS",
+      //   "REBOUNDS"
+      // ];
+      // const assistsText = ["ASSISTS", "ASSISTS", "ASSISTS", "ASSISTS", "ASSISTS"];
+      // const stealsText = ["STEALS", "STEALS", "STEALS", "STEALS", "STEALS"];
+      // const blocksText = ["BLOCKS", "BLOCKS", "BLOCKS", "BLOCKS", "BLOCKS"];
 
       var arcMinusText = d3.arc().outerRadius(radius + 100).innerRadius(radius + 80).startAngle(0).endAngle(360);
 
       var arcMinus = d3.arc().outerRadius(radius + 60).innerRadius(radius + 20);
 
+      var arcText = d3.arc().outerRadius(radius).innerRadius(radius - 40).startAngle(0).endAngle(360);
+
       var arc = d3.arc().outerRadius(radius - 10).innerRadius(radius - 50);
+
+      var arc2Text = d3.arc().outerRadius(radius - 70).innerRadius(radius - 110).startAngle(0).endAngle(360);
 
       var arc2 = d3.arc().outerRadius(radius - 80).innerRadius(radius - 120);
 
+      var arc3Text = d3.arc().outerRadius(radius - 140).innerRadius(radius - 180).startAngle(0).endAngle(360);
+
       var arc3 = d3.arc().outerRadius(radius - 150).innerRadius(radius - 190);
 
+      var arc4Text = d3.arc().outerRadius(radius - 210).innerRadius(radius - 250).startAngle(0).endAngle(360);
+
       var arc4 = d3.arc().outerRadius(radius - 220).innerRadius(radius - 260);
+
+      var arc5Text = d3.arc().outerRadius(radius - 280).innerRadius(radius - 320).startAngle(0).endAngle(360);
 
       var arc5 = d3.arc().outerRadius(radius - 290).innerRadius(0);
 
@@ -36348,9 +36364,29 @@ var DView = function (_React$Component) {
         return color(d.data.name);
       });
 
-      svg.append('path').attr('id', 'path').attr('d', arcMinusText);
+      svg.append("path").attr("id", "path").attr("d", arcMinusText);
 
-      svg.append('text').attr('x', 8).attr("dy", 28).append("textPath").attr("class", "textpath").attr('xlink:href', '#path').text('MINUTES -------------------------------------- MINUTES-------------------------------------- MINUTES  -------------------------------------- MINUTES  -------------------------------------- MINUTES   -------------------------------------- MINUTES   --------------------------------------MINUTES   --------------------------------------MINUTES      --------------------------------------MINUTES  -----------------------------------MINUTES ----------------------------------------------- ');
+      svg.append("text").attr("x", 8).attr("dy", 28).append("textPath").attr("class", "textpath").attr("xlink:href", "#path").text("MINUTES --------------------------------------- MINUTES--------------------------------------- MINUTES  --------------------------------------- MINUTES  --------------------------------------- MINUTES   -------------------------------------- MINUTES   ---------------------------------------MINUTES   --------------------------------------MINUTES      --------------------------------------MINUTES  -----------------------------------MINUTES ---------------------------------------- ");
+
+      svg.append("path").attr("id", "reboundPath").attr("d", arc2Text);
+
+      svg.append("text").append("textPath").attr("class", "textpath").attr("xlink:href", "#reboundPath").text("REBOUNDS --------------------------------------- REBOUNDS--------------------------------------- REBOUNDS  -------------------------------------- REBOUNDS  -------------------------------------- REBOUNDS   -------------------------------------- REBOUNDS   --------------------------------");
+
+      svg.append("path").attr("id", "pointsPath").attr("d", arcText);
+
+      svg.append("text").append("textPath").attr("class", "textpath").attr("xlink:href", "#pointsPath").text("POINTS -------------------------------------- POINTS-------------------------------------- POINTS  ---------------------------------------- POINTS  --------------------------------------- POINTS   -------------------------------------- POINTS   ------------------------------- POINTS   ------------------------------- POINTS   ---------------------------------------------------------------");
+
+      svg.append("path").attr("id", "assistPath").attr("d", arc3Text);
+
+      svg.append("text").append("textPath").attr("class", "textpath").attr("xlink:href", "#assistPath").text("ASSISTS -------------------------------------- ASSISTS-------------------------------------- ASSISTS  -------------------------------------- ASSISTS  -------------------------------------- ASSISTS  ------------------------------- ");
+
+      svg.append("path").attr("id", "stealPath").attr("d", arc4Text);
+
+      svg.append("text").append("textPath").attr("class", "textpath").attr("xlink:href", "#stealPath").text("STEALS ---------------------------------------------- STEALS---------------------------------------------- STEALS  ------------------------------------- ");
+
+      svg.append("path").attr("id", "blockPath").attr("d", arc5Text);
+
+      svg.append("text").append("textPath").attr("class", "textpath").attr("xlink:href", "#blockPath").text("BLOCKS ----------------------------- BLOCKS---------------------------- ");
 
       //
       // var mText = svg
@@ -36366,7 +36402,6 @@ var DView = function (_React$Component) {
       //   .attr("dy", ".8em")
       //   .attr("x", 25)
       // .attr("transform", function(d, i) { return "rotate(" + (-90 + ((360 / minutesText.length) * i)) + ")"; });
-
 
       return _react2.default.createElement(
         "div",

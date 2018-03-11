@@ -16,46 +16,91 @@ class DView extends React.Component {
     const radius = width / 2;
 
     const color = d3.scaleOrdinal(d3.schemeCategory20);
-    const minutesText = ["MINUTES", "MINUTES", "MINUTES", "MINUTES", "MINUTES"]
-    const pointsText = ["POINTS", "POINTS", "POINTS", "POINTS", "POINTS"]
-    const reboundsText = ["REBOUNDS", "REBOUNDS", "REBOUNDS", "REBOUNDS", "REBOUNDS"]
-    const assistsText = ["ASSISTS", "ASSISTS", "ASSISTS", "ASSISTS", "ASSISTS"]
-    const stealsText = ["STEALS", "STEALS", "STEALS", "STEALS", "STEALS"]
-    const blocksText = ["BLOCKS", "BLOCKS", "BLOCKS", "BLOCKS", "BLOCKS"]
+    // const minutesText = ["MINUTES", "MINUTES", "MINUTES", "MINUTES", "MINUTES"];
+    // const pointsText = ["POINTS", "POINTS", "POINTS", "POINTS", "POINTS"];
+    // const reboundsText = [
+    //   "REBOUNDS",
+    //   "REBOUNDS",
+    //   "REBOUNDS",
+    //   "REBOUNDS",
+    //   "REBOUNDS"
+    // ];
+    // const assistsText = ["ASSISTS", "ASSISTS", "ASSISTS", "ASSISTS", "ASSISTS"];
+    // const stealsText = ["STEALS", "STEALS", "STEALS", "STEALS", "STEALS"];
+    // const blocksText = ["BLOCKS", "BLOCKS", "BLOCKS", "BLOCKS", "BLOCKS"];
 
     const arcMinusText = d3
-    .arc()
-    .outerRadius(radius + 100)
-    .innerRadius(radius + 80)
-    .startAngle(0)
-    .endAngle(360);
+      .arc()
+      .outerRadius(radius + 100)
+      .innerRadius(radius + 80)
+      .startAngle(0)
+      .endAngle(360);
 
     const arcMinus = d3
       .arc()
       .outerRadius(radius + 60)
       .innerRadius(radius + 20);
 
+    const arcText = d3
+      .arc()
+      .outerRadius(radius)
+      .innerRadius(radius - 40)
+      .startAngle(0)
+      .endAngle(360);
+
     const arc = d3
       .arc()
       .outerRadius(radius - 10)
       .innerRadius(radius - 50);
+
+    const arc2Text = d3
+      .arc()
+      .outerRadius(radius - 70)
+      .innerRadius(radius - 110)
+      .startAngle(0)
+      .endAngle(360);
 
     const arc2 = d3
       .arc()
       .outerRadius(radius - 80)
       .innerRadius(radius - 120);
 
+
+    const arc3Text = d3
+      .arc()
+      .outerRadius(radius - 140)
+      .innerRadius(radius - 180)
+      .startAngle(0)
+      .endAngle(360);
+
     const arc3 = d3
       .arc()
       .outerRadius(radius - 150)
       .innerRadius(radius - 190);
 
-    const arc4  = d3
+
+    const arc4Text = d3
+      .arc()
+      .outerRadius(radius - 210)
+      .innerRadius(radius - 250)
+      .startAngle(0)
+      .endAngle(360);
+
+
+    const arc4 = d3
       .arc()
       .outerRadius(radius - 220)
       .innerRadius(radius - 260);
 
-    const arc5  = d3
+
+    const arc5Text = d3
+      .arc()
+      .outerRadius(radius - 280)
+      .innerRadius(radius - 320)
+      .startAngle(0)
+      .endAngle(360);
+
+    const arc5 = d3
       .arc()
       .outerRadius(radius - 290)
       .innerRadius(0);
@@ -65,69 +110,62 @@ class DView extends React.Component {
       .sort(null)
       .value(d => d.mpg);
 
-    const pieMinusText = d3
-      .pie()
-      .value(d => d);
+    const pieMinusText = d3.pie().value(d => d);
 
     const pie = d3
       .pie()
       .sort(null)
       .value(d => {
-        if(d.ppg < 0) {
+        if (d.ppg < 0) {
           return 0;
         } else {
           return d.ppg / d.mpg;
         }
-        }
-      );
+      });
 
     const pie2 = d3
       .pie()
       .sort(null)
       .value(d => {
-        if(d.rpg < 0) {
+        if (d.rpg < 0) {
           return 0;
         } else {
           return d.rpg / d.mpg;
         }
-        }
-      );
+      });
 
     const pie3 = d3
       .pie()
       .sort(null)
       .value(d => {
-        if(d.apg < 0) {
+        if (d.apg < 0) {
           return 0;
         } else {
           return d.apg / d.mpg;
         }
-        }
-      );
+      });
 
     const pie4 = d3
       .pie()
       .sort(null)
       .value(d => {
-        if(d.spg < 0) {
+        if (d.spg < 0) {
           return 0;
         } else {
           return d.spg / d.mpg;
         }
-        }
-      );
+      });
 
     const pie5 = d3
       .pie()
       .sort(null)
       .value(d => {
-        if(d.bpg < 0) {
+        if (d.bpg < 0) {
           return 0;
         } else {
           return d.bpg / d.mpg;
         }
-        }
-      );
+      });
 
     var node = ReactFauxDOM.createElement("svg");
 
@@ -136,7 +174,10 @@ class DView extends React.Component {
       .attr("width", "100%")
       .attr("height", 1000)
       .append("g")
-      .attr("transform", "translate(" + ((width / 2 ) + 100)+ "," + ((height / 2) + 100 ) + ")");
+      .attr(
+        "transform",
+        "translate(" + (width / 2 + 100) + "," + (height / 2 + 100) + ")"
+      );
 
     data.forEach(function(d) {
       d.ppg = +d.ppg;
@@ -148,37 +189,39 @@ class DView extends React.Component {
       d.name = d.firstName + " " + d.lastName;
     });
 
-
     var a = svg
       .selectAll(".labels")
       .data(data)
       .enter()
       .append("g")
-      .attr("transform", function(d, i) { return "translate(600," + (i - 8) * 30 + ")"; })
+      .attr("transform", function(d, i) {
+        return "translate(600," + (i - 8) * 30 + ")";
+      });
 
-      a.append("rect")
-        .attr("width", 15)
-        .attr("height", 15)
-        .style("fill", function(d) {
-              return color(d.name);
-            });
+    a
+      .append("rect")
+      .attr("width", 15)
+      .attr("height", 15)
+      .style("fill", function(d) {
+        return color(d.name);
+      });
 
-
-      a.append("text")
+    a
+      .append("text")
       .attr("dy", ".8em")
       .attr("x", 25)
-      .text(function(d) { return d.name; });
+      .text(function(d) {
+        return d.name;
+      });
 
-
-
-      // svg.selectAll("text")
-      //   .data(pointsText)
-      //   .enter()
-      //   .append("text")
-      //   .attr("x", radius * .8)
-      //   .attr("y", "0.4em")
-      //   .text(function(d) { return d; })
-      //   .attr("transform", function(d, i) { return "rotate(" + (-90 + ((360 / pointsText.length) * i)) + ")"; })
+    // svg.selectAll("text")
+    //   .data(pointsText)
+    //   .enter()
+    //   .append("text")
+    //   .attr("x", radius * .8)
+    //   .attr("y", "0.4em")
+    //   .text(function(d) { return d; })
+    //   .attr("transform", function(d, i) { return "rotate(" + (-90 + ((360 / pointsText.length) * i)) + ")"; })
 
     var g = svg
       .selectAll(".arc")
@@ -264,17 +307,100 @@ class DView extends React.Component {
         return color(d.data.name);
       });
 
-      svg.append('path')
-      .attr('id', 'path')
-      .attr('d', arcMinusText);
+    svg
+      .append("path")
+      .attr("id", "path")
+      .attr("d", arcMinusText);
 
-      svg.append('text')
-        .attr('x', 8)
-        .attr("dy", 28)
-        .append("textPath")
-        .attr("class", "textpath")
-        .attr('xlink:href', '#path' )
-        .text('MINUTES -------------------------------------- MINUTES-------------------------------------- MINUTES  -------------------------------------- MINUTES  -------------------------------------- MINUTES   -------------------------------------- MINUTES   --------------------------------------MINUTES   --------------------------------------MINUTES      --------------------------------------MINUTES  -----------------------------------MINUTES ----------------------------------------------- ')
+    svg
+      .append("text")
+      .attr("x", 8)
+      .attr("dy", 28)
+      .append("textPath")
+      .attr("class", "textpath")
+      .attr("xlink:href", "#path")
+      .text(
+        "MINUTES --------------------------------------- MINUTES--------------------------------------- MINUTES  --------------------------------------- MINUTES  --------------------------------------- MINUTES   -------------------------------------- MINUTES   ---------------------------------------MINUTES   --------------------------------------MINUTES      --------------------------------------MINUTES  -----------------------------------MINUTES ---------------------------------------- "
+      );
+
+    svg
+      .append("path")
+      .attr("id", "reboundPath")
+      .attr("d", arc2Text);
+
+    svg
+      .append("text")
+      .append("textPath")
+      .attr("class", "textpath")
+      .attr("xlink:href", "#reboundPath")
+      .text(
+        "REBOUNDS --------------------------------------- REBOUNDS--------------------------------------- REBOUNDS  -------------------------------------- REBOUNDS  -------------------------------------- REBOUNDS   -------------------------------------- REBOUNDS   --------------------------------"
+      );
+
+    svg
+      .append("path")
+      .attr("id", "pointsPath")
+      .attr("d", arcText);
+
+    svg
+      .append("text")
+      .append("textPath")
+      .attr("class", "textpath")
+      .attr("xlink:href", "#pointsPath")
+      .text(
+        "POINTS -------------------------------------- POINTS-------------------------------------- POINTS  ---------------------------------------- POINTS  --------------------------------------- POINTS   -------------------------------------- POINTS   ------------------------------- POINTS   ------------------------------- POINTS   ---------------------------------------------------------------"
+      );
+
+
+
+
+
+    svg
+      .append("path")
+      .attr("id", "assistPath")
+      .attr("d", arc3Text);
+
+    svg
+      .append("text")
+      .append("textPath")
+      .attr("class", "textpath")
+      .attr("xlink:href", "#assistPath")
+      .text(
+        "ASSISTS -------------------------------------- ASSISTS-------------------------------------- ASSISTS  -------------------------------------- ASSISTS  -------------------------------------- ASSISTS  ------------------------------- "
+      );
+
+
+
+    svg
+      .append("path")
+      .attr("id", "stealPath")
+      .attr("d", arc4Text);
+
+    svg
+      .append("text")
+      .append("textPath")
+      .attr("class", "textpath")
+      .attr("xlink:href", "#stealPath")
+      .text(
+        "STEALS ---------------------------------------------- STEALS---------------------------------------------- STEALS  ------------------------------------- "
+      );
+
+
+
+    svg
+      .append("path")
+      .attr("id", "blockPath")
+      .attr("d", arc5Text);
+
+    svg
+      .append("text")
+      .append("textPath")
+      .attr("class", "textpath")
+      .attr("xlink:href", "#blockPath")
+      .text(
+        "BLOCKS ----------------------------- BLOCKS---------------------------- "
+      );
+
 
     //
     // var mText = svg
@@ -289,8 +415,7 @@ class DView extends React.Component {
     //   .attr("d", arcMinusText)
     //   .attr("dy", ".8em")
     //   .attr("x", 25)
-      // .attr("transform", function(d, i) { return "rotate(" + (-90 + ((360 / minutesText.length) * i)) + ")"; });
-
+    // .attr("transform", function(d, i) { return "rotate(" + (-90 + ((360 / minutesText.length) * i)) + ")"; });
 
     return <div className="d3">{node.toReact()}</div>;
   }

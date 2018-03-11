@@ -6,6 +6,25 @@ html {
   fill-opacity: 0;
 }
 
+#reboundPath {
+  fill-opacity: 0;
+}
+#pointsPath {
+  fill-opacity: 0;
+}
+
+#assistPath {
+  fill-opacity: 0;
+}
+
+#stealPath {
+  fill-opacity: 0;
+}
+
+#blockPath {
+  fill-opacity: 0;
+}
+
 .text {
   color: white;
 }
