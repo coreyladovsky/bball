@@ -35819,10 +35819,10 @@ var App = function (_React$Component) {
     key: "checkPage",
     value: function checkPage() {
       if (this.props.location.pathname === "/") {
-        $(".app-pages").css({ "flex-direction": "row", "justify-content": "space-around" });
+        $(".app-pages").css({ "display": "flex", "flex-direction": "row", "justify-content": "space-around" });
         $(".intro-container").css("display", "block");
       } else {
-        $(".app-pages").css("flex-direction", "column");
+        $(".app-pages").css("display", "block");
         $(".intro-container").css("display", "none");
       }
     }
@@ -35976,7 +35976,6 @@ var TeamSelect = function (_React$Component) {
   }, {
     key: "changeTeams",
     value: function changeTeams(e) {
-
       for (var i = 0; i < this.props.teams.length; i++) {
         if (this.props.teams[i].teamId === e.currentTarget.value) {
           this.props.history.push("/teams/" + this.props.teams[i].urlName + "/" + this.props.teams[i].teamId);
@@ -35993,9 +35992,9 @@ var TeamSelect = function (_React$Component) {
         "div",
         { className: "drop-down" },
         _react2.default.createElement(
-          "h1",
-          null,
-          "Please select the team you wish to learn about: "
+          "div",
+          { className: "please-select" },
+          "Select A Team: "
         ),
         _react2.default.createElement(
           "select",
@@ -36010,7 +36009,11 @@ var TeamSelect = function (_React$Component) {
         _react2.default.createElement(
           "div",
           null,
-          _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/teams/:urlName/:teamId", component: _team_show_container2.default })
+          _react2.default.createElement(_reactRouterDom.Route, {
+            exact: true,
+            path: "/teams/:urlName/:teamId",
+            component: _team_show_container2.default
+          })
         )
       );
     }

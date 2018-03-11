@@ -12,10 +12,10 @@ class App extends React.Component {
 
   checkPage() {
     if(this.props.location.pathname === "/") {
-      $(".app-pages").css({"flex-direction": "row", "justify-content": "space-around"});
+      $(".app-pages").css({"display": "flex", "flex-direction": "row", "justify-content": "space-around"});
       $(".intro-container").css("display", "block");
     } else {
-      $(".app-pages").css("flex-direction", "column");
+      $(".app-pages").css("display", "block");
       $(".intro-container").css("display", "none");
 
     }

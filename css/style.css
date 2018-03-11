@@ -67,26 +67,24 @@ svg {
 }
 
 .overview {
-  border: 1px solid red;
+  border: 1px solid black;
   width: 700px;
-    /* text-align: center; */
-    display: flex;
-    /* justify-content: center; */
-    /* margin: auto; */
-    flex-direction: column;
-    /* margin-left: 40px; */
-    list-style: none;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding-top: 20px;
+  padding-left: 20px;
 }
 
 .understanding {
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
   font-size: 20px;
   font-family: sans-serif;
   font-weight: 600;
 }
 
 .data-info {
-    border: 1px solid yellow;
+    /* border: 1px solid yellow; */
     padding-left: 30px;
     padding-right: 30px;
     font-family: sans-serif;
@@ -95,7 +93,7 @@ svg {
 }
 
 .interpretation {
-  border: 1px solid green;
+  /* border: 1px solid green; */
   font-size: 20px;
   font-family: sans-serif;
   font-weight: 600;
@@ -105,8 +103,16 @@ svg {
   display: flex;
 }
 
+.drop-down {
+  /* width: 500px; */
+ /* border: 1px solid red; */
+}
 
-
+.please-select {
+  font-family: sans-serif;
+  font-size: 40px;
+  margin-bottom: 20px;
+}
 
 
 
