@@ -55,7 +55,7 @@ svg {
   font-size: 40px;
   font-weight: bold;
   text-align: center;
-  color: black;
+  color: white;
 }
 
 .name {
@@ -63,11 +63,11 @@ svg {
   font-size: 35px;
   font-weight: bold;
   text-align: center;
-  color: black;
+  color: white;
 }
 
 .overview {
-  border: 1px solid black;
+  border: 1px solid white;
   width: 700px;
   display: flex;
   flex-direction: column;
@@ -104,7 +104,6 @@ svg {
 }
 
 .drop-down {
-  /* width: 500px; */
  /* border: 1px solid red; */
 }
 
@@ -114,7 +113,10 @@ svg {
   margin-bottom: 20px;
 }
 
-
+html {
+  background: black;
+  color: white;
+}
 
 
 
