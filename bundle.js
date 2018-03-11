@@ -36315,7 +36315,7 @@ var DView = function (_React$Component) {
         return color(d.name);
       });
 
-      a.append("text").attr("dy", ".8em").attr("x", 25).text(function (d) {
+      a.append("text").attr("dy", ".8em").attr("x", 25).attr("fill", "white").text(function (d) {
         return d.name;
       });
 
@@ -36366,27 +36366,27 @@ var DView = function (_React$Component) {
 
       svg.append("path").attr("id", "path").attr("d", arcMinusText);
 
-      svg.append("text").attr("x", 8).attr("dy", 28).append("textPath").attr("class", "textpath").attr("xlink:href", "#path").text("MINUTES --------------------------------------- MINUTES--------------------------------------- MINUTES  --------------------------------------- MINUTES  --------------------------------------- MINUTES   -------------------------------------- MINUTES   ---------------------------------------MINUTES   --------------------------------------MINUTES      --------------------------------------MINUTES  -----------------------------------MINUTES ---------------------------------------- ");
+      svg.append("text").attr("x", 8).attr("dy", 28).append("textPath").attr("class", "textpath").attr("fill", "white").attr("xlink:href", "#path").text("MINUTES --------------------------------------- MINUTES--------------------------------------- MINUTES  --------------------------------------- MINUTES  --------------------------------------- MINUTES   -------------------------------------- MINUTES   ---------------------------------------MINUTES   --------------------------------------MINUTES      --------------------------------------MINUTES  -----------------------------------MINUTES -------------------------------------- ");
 
       svg.append("path").attr("id", "reboundPath").attr("d", arc2Text);
 
-      svg.append("text").append("textPath").attr("class", "textpath").attr("xlink:href", "#reboundPath").text("REBOUNDS --------------------------------------- REBOUNDS--------------------------------------- REBOUNDS  -------------------------------------- REBOUNDS  -------------------------------------- REBOUNDS   -------------------------------------- REBOUNDS   --------------------------------");
+      svg.append("text").append("textPath").attr("class", "textpath").attr("fill", "white").attr("xlink:href", "#reboundPath").text("REBOUNDS --------------------------------------- REBOUNDS--------------------------------------- REBOUNDS  -------------------------------------- REBOUNDS  -------------------------------------- REBOUNDS   -------------------------------------- REBOUNDS   ---------------------------");
 
       svg.append("path").attr("id", "pointsPath").attr("d", arcText);
 
-      svg.append("text").append("textPath").attr("class", "textpath").attr("xlink:href", "#pointsPath").text("POINTS -------------------------------------- POINTS-------------------------------------- POINTS  ---------------------------------------- POINTS  --------------------------------------- POINTS   -------------------------------------- POINTS   ------------------------------- POINTS   ------------------------------- POINTS   ---------------------------------------------------------------");
+      svg.append("text").append("textPath").attr("class", "textpath").attr("fill", "white").attr("xlink:href", "#pointsPath").text("POINTS ------------------------------------- POINTS-------------------------------------- POINTS  ---------------------------------------- POINTS  --------------------------------------- POINTS   -------------------------------------- POINTS   ------------------------------- POINTS   ------------------------------- POINTS   ---------------------------------------------------------");
 
       svg.append("path").attr("id", "assistPath").attr("d", arc3Text);
 
-      svg.append("text").append("textPath").attr("class", "textpath").attr("xlink:href", "#assistPath").text("ASSISTS -------------------------------------- ASSISTS-------------------------------------- ASSISTS  -------------------------------------- ASSISTS  -------------------------------------- ASSISTS  ------------------------------- ");
+      svg.append("text").append("textPath").attr("class", "textpath").attr("fill", "white").attr("xlink:href", "#assistPath").text("ASSISTS ------------------------------------- ASSISTS------------------------------------- ASSISTS  ------------------------------------ ASSISTS  ------------------------------------- ASSISTS  ------------------------------ ");
 
       svg.append("path").attr("id", "stealPath").attr("d", arc4Text);
 
-      svg.append("text").append("textPath").attr("class", "textpath").attr("xlink:href", "#stealPath").text("STEALS ---------------------------------------------- STEALS---------------------------------------------- STEALS  ------------------------------------- ");
+      svg.append("text").append("textPath").attr("class", "textpath").attr("fill", "white").attr("xlink:href", "#stealPath").text("STEALS --------------------------------------------- STEALS--------------------------------------------- STEALS  ------------------------------------ ");
 
       svg.append("path").attr("id", "blockPath").attr("d", arc5Text);
 
-      svg.append("text").append("textPath").attr("class", "textpath").attr("xlink:href", "#blockPath").text("BLOCKS ----------------------------- BLOCKS---------------------------- ");
+      svg.append("text").append("textPath").attr("class", "textpath").attr("fill", "white").attr("xlink:href", "#blockPath").text("BLOCKS ---------------------------- BLOCKS --------------------------- ");
 
       //
       // var mText = svg

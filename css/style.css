@@ -4,29 +4,42 @@ html {
 
 #path {
   fill-opacity: 0;
+  color: white;
+
 }
 
 #reboundPath {
   fill-opacity: 0;
+  color: white;
+
 }
 #pointsPath {
   fill-opacity: 0;
+  color: white;
+
 }
 
 #assistPath {
   fill-opacity: 0;
+  color: white;
+
 }
 
 #stealPath {
   fill-opacity: 0;
+  color: white;
+
 }
 
 #blockPath {
   fill-opacity: 0;
+  color: white;
+
 }
 
-.text {
-  color: white;
+text {
+  font-family: sans-serif;
+  font-weight: bold;
 }
 
 
@@ -47,7 +60,8 @@ svg {
   width: 100%;
   /* border-radius: 50%; */
   /* grid-area: h; */
-  border: 1px solid red;
+  /* border: 1px solid red; */
+  background: black;
 }
 /* .next-circle {
   height: 300px;
