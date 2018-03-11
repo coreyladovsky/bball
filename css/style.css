@@ -1,40 +1,30 @@
-html {
-  /* background: pink; */
-}
-
 #path {
   fill-opacity: 0;
   color: white;
-
 }
 
 #reboundPath {
   fill-opacity: 0;
   color: white;
-
 }
 #pointsPath {
   fill-opacity: 0;
   color: white;
-
 }
 
 #assistPath {
   fill-opacity: 0;
   color: white;
-
 }
 
 #stealPath {
   fill-opacity: 0;
   color: white;
-
 }
 
 #blockPath {
   fill-opacity: 0;
   color: white;
-
 }
 
 text {
@@ -44,30 +34,18 @@ text {
 
 
 .d3 {
-  /* background: black;
-  display: grid;
-  grid-template-columns: repeat( 9, 1fr);
-  grid-template-rows: 300px 300px ;
-  grid-template-areas:
-    "h h h h h h h h h"
-    "h h k k k k k h h"
-    "h h h h h h h h h" */
-    /* background: black; */
-    height: 1000px;
+  height: 1000px;
+}
+
+.teamName {
+  background: black;
+  color: white;
+  font-weight: 400;
+  margin: 0;
+  text-align: center;
 }
 
 svg {
   width: 100%;
-  /* border-radius: 50%; */
-  /* grid-area: h; */
-  /* border: 1px solid red; */
   background: black;
 }
-/* .next-circle {
-  height: 300px;
-  width: 300px;
-  border-radius: 50%;
-  background: yellow;
-  text-align: center;
-  /* grid-area: k; */
-} */

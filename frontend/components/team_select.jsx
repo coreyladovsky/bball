@@ -40,7 +40,7 @@ class TeamSelect extends React.Component {
   render(){
     let team = this.props.team;
     return(
-      <div>
+      <div className="drop-down">
         <h1>Please select the team you wish to learn about: </h1>
         <select onChange={this.changeTeams}>
           <option defaultValue>TEAMS</option>

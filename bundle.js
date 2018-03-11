@@ -35785,6 +35785,10 @@ var _team_select_container = __webpack_require__(321);
 
 var _team_select_container2 = _interopRequireDefault(_team_select_container);
 
+var _project_information = __webpack_require__(707);
+
+var _project_information2 = _interopRequireDefault(_project_information);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -35803,22 +35807,23 @@ var App = function (_React$Component) {
   }
 
   _createClass(App, [{
-    key: 'componentDidMount',
+    key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchAllTeams();
       this.props.fetchAllPlayers();
     }
   }, {
-    key: 'render',
+    key: "render",
     value: function render() {
       return _react2.default.createElement(
-        'div',
+        "div",
         null,
         _react2.default.createElement(
           _reactRouterDom.Switch,
           null,
-          _react2.default.createElement(_reactRouterDom.Route, { path: '/', component: _team_select_container2.default })
-        )
+          _react2.default.createElement(_reactRouterDom.Route, { path: "/", component: _team_select_container2.default })
+        ),
+        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/", component: _project_information2.default })
       );
     }
   }]);
@@ -35953,7 +35958,7 @@ var TeamSelect = function (_React$Component) {
       var team = this.props.team;
       return _react2.default.createElement(
         "div",
-        null,
+        { className: "drop-down" },
         _react2.default.createElement(
           "h1",
           null,
@@ -36126,7 +36131,7 @@ var TeamShow = function (_React$Component) {
             null,
             _react2.default.createElement(
               "h1",
-              null,
+              { className: "teamName" },
               this.props.team.fullName
             ),
             _react2.default.createElement(_dview2.default, { teamPlayers: this.props.teamPlayers })
@@ -56297,6 +56302,68 @@ var TeamReducer = function TeamReducer() {
 };
 
 exports.default = TeamReducer;
+
+/***/ }),
+/* 707 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var ProjectInformation = function ProjectInformation() {
+  return _react2.default.createElement(
+    "div",
+    null,
+    _react2.default.createElement(
+      "h1",
+      { className: "Welcome-line" },
+      "Welcome To NBA By The Minute Stats"
+    ),
+    _react2.default.createElement(
+      "h3",
+      { className: "name" },
+      "By Corey Ladovsky"
+    ),
+    _react2.default.createElement(
+      "div",
+      { className: "overview" },
+      _react2.default.createElement(
+        "div",
+        { className: "understanding" },
+        " Understanding The Data: "
+      ),
+      _react2.default.createElement(
+        "p",
+        { className: "data-info" },
+        " ",
+        "Every graph is a visual representation of a team and the impact each player has on that team. The outside ring is the average number of minutes each player plays per game. The following inner-circles represent a players average stat in that categroy divied by their average number of minutes.",
+        " "
+      ),
+      _react2.default.createElement(
+        "div",
+        { className: "interpretation" },
+        "The Interpretation:"
+      ),
+      _react2.default.createElement(
+        "p",
+        { className: "data-info" },
+        "Using the charts, one can see the impact each player has per minute they play. Therefore the chart can be used as a tool to help decide whom should be getting more or less playing time based off of there minute by minute performance."
+      )
+    )
+  );
+};
+
+exports.default = ProjectInformation;
 
 /***/ })
 /******/ ]);

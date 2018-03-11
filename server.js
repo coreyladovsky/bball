@@ -12,7 +12,7 @@ app.use(express.static(`${__dirname}`));
 
 app.get('/*', (request, response) => {
   req(request.params['0'], (err, res, body) => {
-    console.log(res.body);
+    // console.log(res.body);
 
 
     response.send(res.body);

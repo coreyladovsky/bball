@@ -36,7 +36,7 @@ class TeamShow extends React.Component {
       if (ready) {
         return (
           <div>
-            <h1>{this.props.team.fullName}</h1>
+            <h1 className="teamName">{this.props.team.fullName}</h1>
 
           <DView teamPlayers={this.props.teamPlayers} />
           </div>

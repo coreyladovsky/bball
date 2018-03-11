@@ -1,0 +1,32 @@
+import React from "react";
+
+const ProjectInformation = () => {
+  return (
+    <div>
+      <h1 className="Welcome-line">Welcome To NBA By The Minute Stats</h1>
+      <h3 className="name">By Corey Ladovsky</h3>
+
+      <div className="overview">
+        <div className="understanding"> Understanding The Data: </div>
+        <p className="data-info">
+          {" "}
+          Every graph is a visual representation of a team and the impact each
+          player has on that team. The outside ring is the average number of
+          minutes each player plays per game. The following inner-circles
+          represent a players average stat in that categroy divied by their
+          average number of minutes.{" "}
+        </p>
+
+        <div className="interpretation">The Interpretation:</div>
+        <p className="data-info">
+          Using the charts, one can see the impact each player has per minute
+          they play. Therefore the chart can be used as a tool to help decide
+          whom should be getting more or less playing time based off of there
+          minute by minute performance.
+        </p>
+      </div>
+    </div>
+  );
+};
+
+export default ProjectInformation;
