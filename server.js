@@ -20,4 +20,4 @@ app.get('/*', (request, response) => {
 });
 
 
-app.listen(process.env.PORT || 3001);
+app.listen(process.env.PORT || 3001, "0.0.0.0");
