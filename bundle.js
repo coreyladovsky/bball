@@ -35995,18 +35995,22 @@ var TeamSelect = function (_React$Component) {
         { className: "drop-down" },
         _react2.default.createElement(
           "div",
-          { className: "please-select" },
-          "Select A Team: "
-        ),
-        _react2.default.createElement(
-          "select",
-          { onChange: this.changeTeams },
+          { className: "drop-container" },
           _react2.default.createElement(
-            "option",
-            { defaultValue: true },
-            "TEAMS"
+            "div",
+            { className: "please-select" },
+            "Select A Team: "
           ),
-          this.dropDownTeams()
+          _react2.default.createElement(
+            "select",
+            { className: "selector", onChange: this.changeTeams },
+            _react2.default.createElement(
+              "option",
+              { defaultValue: true },
+              "TEAMS"
+            ),
+            this.dropDownTeams()
+          )
         ),
         _react2.default.createElement(
           "div",

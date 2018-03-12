@@ -41,11 +41,13 @@ class TeamSelect extends React.Component {
     let team = this.props.team;
     return (
       <div className="drop-down">
+        <div className="drop-container">
         <div className="please-select">Select A Team: </div>
-        <select onChange={this.changeTeams}>
+        <select className="selector" onChange={this.changeTeams}>
           <option defaultValue>TEAMS</option>
           {this.dropDownTeams()}
         </select>
+      </div>
 
         <div>
           <Route
