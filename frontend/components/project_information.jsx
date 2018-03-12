@@ -13,7 +13,7 @@ const ProjectInformation = () => {
           Every graph is a visual representation of a team and the impact each
           player has on that team. The outside ring is the average number of
           minutes each player plays per game. The following inner-circles
-          represent a players average stat in that categroy divied by their
+          represent a players average stat in that categroy divided by their
           average number of minutes.{" "}
         </p>
         </li>

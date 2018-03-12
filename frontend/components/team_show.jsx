@@ -42,7 +42,17 @@ class TeamShow extends React.Component {
     if (!this.props.team) {
       return null;
     } else if (this.props.teamPlayers.length > 0) {
-      let ready = this.props.teamPlayers.every(player => player.ppg);
+      let ready = this.props.teamPlayers.every(player => {
+        if (player) {
+          if (player.ppg) {
+            return true;
+          } else {
+            return false;
+          }
+        } else {
+          return false;
+        }
+      });
       if (ready) {
         return (
           <div>

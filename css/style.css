@@ -120,6 +120,10 @@ html {
 
 .selector {
   margin-right: 55px;
+  width: 200px;
+  height: 26px;
+  font-size: 15px;
+
 }
 
 .teamName {
@@ -188,8 +192,6 @@ html {
   color: white;
   font-size: 30px;
 }
-
-
 
 
 

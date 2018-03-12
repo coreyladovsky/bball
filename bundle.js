@@ -36185,7 +36185,15 @@ var TeamShow = function (_React$Component) {
         return null;
       } else if (this.props.teamPlayers.length > 0) {
         var ready = this.props.teamPlayers.every(function (player) {
-          return player.ppg;
+          if (player) {
+            if (player.ppg) {
+              return true;
+            } else {
+              return false;
+            }
+          } else {
+            return false;
+          }
         });
         if (ready) {
           return _react2.default.createElement(
@@ -56393,7 +56401,7 @@ var ProjectInformation = function ProjectInformation() {
           "p",
           { className: "data-info" },
           " ",
-          "Every graph is a visual representation of a team and the impact each player has on that team. The outside ring is the average number of minutes each player plays per game. The following inner-circles represent a players average stat in that categroy divied by their average number of minutes.",
+          "Every graph is a visual representation of a team and the impact each player has on that team. The outside ring is the average number of minutes each player plays per game. The following inner-circles represent a players average stat in that categroy divided by their average number of minutes.",
           " "
         )
       ),
@@ -56444,7 +56452,7 @@ var Footer = function Footer() {
       " ",
       _react2.default.createElement(
         "a",
-        { "class": "contact-info", href: "https://github.com/coreyladovsky", target: "_blank" },
+        { className: "contact-info", href: "https://github.com/coreyladovsky", target: "_blank" },
         _react2.default.createElement("i", { "class": "fab fa-github" })
       ),
       " "
@@ -56454,7 +56462,7 @@ var Footer = function Footer() {
       null,
       _react2.default.createElement(
         "a",
-        { "class": "contact-info", href: "https://www.linkedin.com/in/corey-ladovsky/", target: "_blank" },
+        { className: "contact-info", href: "https://www.linkedin.com/in/corey-ladovsky/", target: "_blank" },
         _react2.default.createElement("i", { "class": "fab fa-linkedin", "aria-hidden": "true" })
       )
     ),
@@ -56464,7 +56472,7 @@ var Footer = function Footer() {
       " ",
       _react2.default.createElement(
         "a",
-        { "class": "contact-info", href: "https://angel.co/corey-ladovsky", target: "_blank" },
+        { className: "contact-info", href: "https://angel.co/corey-ladovsky", target: "_blank" },
         " ",
         _react2.default.createElement("i", { "class": "fab fa-angellist" })
       )
@@ -56475,7 +56483,7 @@ var Footer = function Footer() {
       " ",
       _react2.default.createElement(
         "a",
-        { "class": "contact-info", href: "https://coreyladovsky.com", target: "_blank" },
+        { className: "contact-info", href: "https://coreyladovsky.com", target: "_blank" },
         " Corey Ladovsky"
       )
     )
