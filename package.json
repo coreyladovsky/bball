@@ -42,7 +42,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack --watch",
     "postinstall": "webpack",
-    "nodemon": "nodemon server.js"
+    "heroku-postbuild": "cd react-ui/ && npm install && npm install --only=dev --no-shrinkwrap && npm run build",
+    "nodemon": "node server"
   },
   "keywords": [],
   "author": "",
