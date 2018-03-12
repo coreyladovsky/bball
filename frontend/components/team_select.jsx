@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Link } from "react-router-dom";
 import TeamShowContainer from "./team_show_container";
+import Footer from "./footer";
 
 class TeamSelect extends React.Component {
   constructor(props) {
@@ -56,6 +57,10 @@ class TeamSelect extends React.Component {
             component={TeamShowContainer}
           />
         </div>
+
+
+        <Footer/>
+
       </div>
     );
   }

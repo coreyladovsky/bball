@@ -35822,10 +35822,12 @@ var App = function (_React$Component) {
         $(".app-pages").css({ "display": "flex", "flex-direction": "row", "justify-content": "space-around" });
         $(".intro-container").css("display", "block");
         $(".drop-down").css("width", "500px");
+        $(".footer-container").css("bottom", "0");
       } else {
         $(".app-pages").css("display", "block");
         $(".intro-container").css("display", "none");
         $(".drop-down").css("width", "inherit");
+        $(".footer-container").css("bottom", "inherit");
       }
     }
   }, {
@@ -35936,6 +35938,10 @@ var _team_show_container = __webpack_require__(323);
 
 var _team_show_container2 = _interopRequireDefault(_team_show_container);
 
+var _footer = __webpack_require__(708);
+
+var _footer2 = _interopRequireDefault(_footer);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -36020,7 +36026,8 @@ var TeamSelect = function (_React$Component) {
             path: "/teams/:urlName/:teamId",
             component: _team_show_container2.default
           })
-        )
+        ),
+        _react2.default.createElement(_footer2.default, null)
       );
     }
   }]);
@@ -56409,6 +56416,73 @@ var ProjectInformation = function ProjectInformation() {
 };
 
 exports.default = ProjectInformation;
+
+/***/ }),
+/* 708 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Footer = function Footer() {
+  return _react2.default.createElement(
+    "div",
+    { "class": "footer-container" },
+    _react2.default.createElement(
+      "div",
+      null,
+      " ",
+      _react2.default.createElement(
+        "a",
+        { "class": "contact-info", href: "https://github.com/coreyladovsky", target: "_blank" },
+        _react2.default.createElement("i", { "class": "fab fa-github" })
+      ),
+      " "
+    ),
+    _react2.default.createElement(
+      "div",
+      null,
+      _react2.default.createElement(
+        "a",
+        { "class": "contact-info", href: "https://www.linkedin.com/in/corey-ladovsky/", target: "_blank" },
+        _react2.default.createElement("i", { "class": "fab fa-linkedin", "aria-hidden": "true" })
+      )
+    ),
+    _react2.default.createElement(
+      "div",
+      null,
+      " ",
+      _react2.default.createElement(
+        "a",
+        { "class": "contact-info", href: "https://angel.co/corey-ladovsky", target: "_blank" },
+        " ",
+        _react2.default.createElement("i", { "class": "fab fa-angellist" })
+      )
+    ),
+    _react2.default.createElement(
+      "div",
+      null,
+      " ",
+      _react2.default.createElement(
+        "a",
+        { "class": "contact-info", href: "https://coreyladovsky.com", target: "_blank" },
+        " Corey Ladovsky"
+      )
+    )
+  );
+};
+
+exports.default = Footer;
 
 /***/ })
 /******/ ]);

@@ -172,11 +172,22 @@ html {
 
 
 
+/* FOOTER */
 
+.footer-container {
+  display: flex;
+  right: 0;
+  position: absolute;
+}
 
+.footer-container div {
+  margin-right: 20px;
+}
 
-
-
+.contact-info {
+  color: white;
+  font-size: 30px;
+}
 
 
 

@@ -15,10 +15,13 @@ class App extends React.Component {
       $(".app-pages").css({"display": "flex", "flex-direction": "row", "justify-content": "space-around"});
       $(".intro-container").css("display", "block");
       $(".drop-down").css("width", "500px");
+      $(".footer-container").css("bottom", "0");
     } else {
       $(".app-pages").css("display", "block");
       $(".intro-container").css("display", "none");
       $(".drop-down").css("width", "inherit");
+      $(".footer-container").css("bottom", "inherit");
+
 
     }
   }
