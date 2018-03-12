@@ -38,12 +38,18 @@
     "lib": "lib",
     "test": "test"
   },
+  "engines": {
+   "node": "v6.10.1"
+ },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack --watch",
     "postinstall": "webpack",
     "heroku-postbuild": "cd react-ui/ && npm install && npm install --only=dev --no-shrinkwrap && npm run build",
     "nodemon": "node server"
+  },
+  "dependencies": {
+  "express": "^4.14.1"
   },
   "keywords": [],
   "author": "",
