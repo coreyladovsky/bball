@@ -56418,7 +56418,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var Footer = function Footer() {
   return _react2.default.createElement(
     "div",
-    { "class": "footer-container" },
+    { className: "footer-container" },
     _react2.default.createElement(
       "div",
       null,
