@@ -36275,18 +36275,6 @@ var DView = function (_React$Component) {
       var radius = width / 2;
 
       var color = d3.scaleOrdinal(d3.schemeCategory20);
-      // const minutesText = ["MINUTES", "MINUTES", "MINUTES", "MINUTES", "MINUTES"];
-      // const pointsText = ["POINTS", "POINTS", "POINTS", "POINTS", "POINTS"];
-      // const reboundsText = [
-      //   "REBOUNDS",
-      //   "REBOUNDS",
-      //   "REBOUNDS",
-      //   "REBOUNDS",
-      //   "REBOUNDS"
-      // ];
-      // const assistsText = ["ASSISTS", "ASSISTS", "ASSISTS", "ASSISTS", "ASSISTS"];
-      // const stealsText = ["STEALS", "STEALS", "STEALS", "STEALS", "STEALS"];
-      // const blocksText = ["BLOCKS", "BLOCKS", "BLOCKS", "BLOCKS", "BLOCKS"];
 
       var arcMinusText = d3.arc().outerRadius(radius + 100).innerRadius(radius + 80).startAngle(0).endAngle(360);
 
@@ -36454,21 +36442,6 @@ var DView = function (_React$Component) {
       svg.append("path").attr("id", "blockPath").attr("d", arc5Text);
 
       svg.append("text").append("textPath").attr("class", "textpath").attr("fill", "white").attr("xlink:href", "#blockPath").text("BLOCKS ---------------------------- BLOCKS --------------------------- ");
-
-      //
-      // var mText = svg
-      //   .selectAll(".arcMinusText")
-      //   .data(pieMinusText(minutesText))
-      //   .enter()
-      //   .append("g")
-      //   .attr("class", "arcMinusText");
-      //
-      // mText
-      //   .append("path")
-      //   .attr("d", arcMinusText)
-      //   .attr("dy", ".8em")
-      //   .attr("x", 25)
-      // .attr("transform", function(d, i) { return "rotate(" + (-90 + ((360 / minutesText.length) * i)) + ")"; });
 
       return _react2.default.createElement(
         "div",

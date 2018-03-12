@@ -3,7 +3,6 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const port = process.env.PORT || 3001;
 const req = require('request');
 
 
@@ -21,4 +20,4 @@ app.get('/*', (request, response) => {
 });
 
 
-app.listen(port, () => console.log(`working!`));
+app.listen(process.env.PORT || 3001);
