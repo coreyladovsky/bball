@@ -36159,6 +36159,19 @@ var TeamShow = function (_React$Component) {
       }
     }
   }, {
+    key: "spinner",
+    value: function spinner() {
+      return _react2.default.createElement(
+        "div",
+        { className: "spin-container" },
+        _react2.default.createElement(
+          "div",
+          { className: "small-spin" },
+          _react2.default.createElement("i", { id: "spin", className: "fa fa-spinner fa-pulse fa-3x fa-fw" })
+        )
+      );
+    }
+  }, {
     key: "render",
     value: function render() {
       if (!this.props.team) {
@@ -36179,18 +36192,10 @@ var TeamShow = function (_React$Component) {
             _react2.default.createElement(_dview2.default, { teamPlayers: this.props.teamPlayers })
           );
         } else {
-          return _react2.default.createElement(
-            "div",
-            null,
-            "processing"
-          );
+          return this.spinner();
         }
       } else {
-        return _react2.default.createElement(
-          "div",
-          null,
-          "working"
-        );
+        return this.spinner();
       }
     }
   }]);

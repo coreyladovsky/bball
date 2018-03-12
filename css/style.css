@@ -141,11 +141,34 @@ html {
 }
 
 
+.spin-container {
+  min-width: 100%;
+  min-height: 100%;
+  position: absolute;
+  z-index: 1;
+  text-align: center;
+  background: black;
+  top: 0;
+  display: table;
+}
+
+.fa-pulse {
+  font-size: 60px;
+}
 
 
+.small-spin {
+  height: 200px;
+  width: 200px;
+  font-size: 133px;
+  margin: auto;
+  display: table-cell;
+  vertical-align: middle;
+}
 
-
-
+#spin {
+  font-size: 150px;
+}
 
 
 

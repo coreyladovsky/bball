@@ -1,5 +1,5 @@
 import React from "react";
-import DView from './dview';
+import DView from "./dview";
 
 class TeamShow extends React.Component {
   constructor(props) {
@@ -28,6 +28,16 @@ class TeamShow extends React.Component {
     }
   }
 
+  spinner() {
+    return (
+      <div className="spin-container">
+        <div className="small-spin">
+          <i id="spin" className="fa fa-spinner fa-pulse fa-3x fa-fw" />
+        </div>
+      </div>
+    );
+  }
+
   render() {
     if (!this.props.team) {
       return null;
@@ -38,14 +48,14 @@ class TeamShow extends React.Component {
           <div>
             <h1 className="teamName">{this.props.team.fullName}</h1>
 
-          <DView teamPlayers={this.props.teamPlayers} />
+            <DView teamPlayers={this.props.teamPlayers} />
           </div>
         );
       } else {
-        return <div>processing</div>;
+        return this.spinner();
       }
     } else {
-      return <div>working</div>;
+      return this.spinner();
     }
   }
 }
