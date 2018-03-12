@@ -30,6 +30,9 @@
     "url-loader": "^0.6.2",
     "webpack": "^3.8.1"
   },
+  "engines": {
+   "node": "v6.10.1"
+ },
 
   "description": "This README would normally document whatever steps are necessary to get the application up and running.",
   "version": "1.0.0",
@@ -38,18 +41,11 @@
     "lib": "lib",
     "test": "test"
   },
-  "engines": {
-   "node": "v6.10.1"
- },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack --watch",
     "postinstall": "webpack",
-    "heroku-postbuild": "cd react-ui/ && npm install && npm install --only=dev --no-shrinkwrap && npm run build",
     "nodemon": "node server"
-  },
-  "dependencies": {
-  "express": "^4.14.1"
   },
   "keywords": [],
   "author": "",
