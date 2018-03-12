@@ -4,7 +4,10 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const req = require('request');
-
+var port = process.env.PORT || 3001;
+app.listen(port, "0.0.0.0", function() {
+console.log("Listening on Port 3001");
+});
 
 app.use(express.static(`${__dirname}`));
 
@@ -18,6 +21,3 @@ app.get('/*', (request, response) => {
   });
 
 });
-
-
-app.listen(process.env.PORT || 3001, "0.0.0.0");
