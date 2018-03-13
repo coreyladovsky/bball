@@ -8,12 +8,16 @@ class DView extends React.Component {
     super(props);
     this.state = {image: null};
     this.imageHover = this.imageHover.bind(this);
+    this.removeImage = this.removeImage.bind(this);
   }
 
   imageHover(e) {
    let headshot =   `https://nba-players.herokuapp.com/players/${e.lastName.toLowerCase()}/${e.firstName.toLowerCase()}`;
    this.setState({image: headshot});
+  }
 
+  removeImage(e) {
+    this.setState({image: null});
   }
 
   render() {
@@ -187,14 +191,7 @@ class DView extends React.Component {
       d.firstName = d.firstName;
       d.lastName = d.lastName;
     });
-    //
-    // var div = d3
-    //         .select(node)
-    //         .append("div")
-    //         .attr("class", "tooltip")
-    //         .style("opacity", 1)
-    //         .append("text")
-    //         .text("HELLO")
+
 
     var a = svg
       .selectAll(".labels")
@@ -221,22 +218,8 @@ class DView extends React.Component {
       .text(function(d) {
         return d.name;
       })
-      .on("mouseover", this.imageHover);
-
-        // svg.selectAll("img")
-        // .data(data)
-        // .enter()
-        //   .append("svg:image")
-        //   .attr("xlink:href", `https://nba-players.herokuapp.com/players/${d.lastName}/${d.firstName}`)
-      //   div.transition()
-      //     .duration(200)
-      //     .style("opacity", .9);
-      //   div.html("<img src=`https://nba-players.herokuapp.com/players/${d.lastName}/${d.firstName}`/>")
-      // }).on("mouseout", function(d) {
-      //   div.transition()
-      //   .duration(500)
-      //   .style("opacity", 0)
-      // });
+      .on("mouseover", this.imageHover)
+      .on("mouseout", this.removeImage);
 
 
     var g = svg

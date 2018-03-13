@@ -36272,6 +36272,7 @@ var DView = function (_React$Component) {
 
     _this.state = { image: null };
     _this.imageHover = _this.imageHover.bind(_this);
+    _this.removeImage = _this.removeImage.bind(_this);
     return _this;
   }
 
@@ -36280,6 +36281,11 @@ var DView = function (_React$Component) {
     value: function imageHover(e) {
       var headshot = "https://nba-players.herokuapp.com/players/" + e.lastName.toLowerCase() + "/" + e.firstName.toLowerCase();
       this.setState({ image: headshot });
+    }
+  }, {
+    key: "removeImage",
+    value: function removeImage(e) {
+      this.setState({ image: null });
     }
   }, {
     key: "render",
@@ -36380,14 +36386,6 @@ var DView = function (_React$Component) {
         d.firstName = d.firstName;
         d.lastName = d.lastName;
       });
-      //
-      // var div = d3
-      //         .select(node)
-      //         .append("div")
-      //         .attr("class", "tooltip")
-      //         .style("opacity", 1)
-      //         .append("text")
-      //         .text("HELLO")
 
       var a = svg.selectAll(".labels").data(data).enter().append("g").attr("transform", function (d, i) {
         return "translate(600," + (i - 8) * 30 + ")";
@@ -36399,23 +36397,7 @@ var DView = function (_React$Component) {
 
       a.append("text").attr("dy", ".8em").attr("x", 25).attr("fill", "white").text(function (d) {
         return d.name;
-      }).on("mouseover", this.imageHover);
-
-      // svg.selectAll("img")
-      // .data(data)
-      // .enter()
-      //   .append("svg:image")
-      //   .attr("xlink:href", `https://nba-players.herokuapp.com/players/${d.lastName}/${d.firstName}`)
-      //   div.transition()
-      //     .duration(200)
-      //     .style("opacity", .9);
-      //   div.html("<img src=`https://nba-players.herokuapp.com/players/${d.lastName}/${d.firstName}`/>")
-      // }).on("mouseout", function(d) {
-      //   div.transition()
-      //   .duration(500)
-      //   .style("opacity", 0)
-      // });
-
+      }).on("mouseover", this.imageHover).on("mouseout", this.removeImage);
 
       var g = svg.selectAll(".arc").data(pie(data)).enter().append("g").attr("class", "arc");
 
@@ -56465,7 +56447,7 @@ var Footer = function Footer() {
       _react2.default.createElement(
         "a",
         { className: "contact-info", href: "https://github.com/coreyladovsky", target: "_blank" },
-        _react2.default.createElement("i", { "class": "fab fa-github" })
+        _react2.default.createElement("i", { className: "fab fa-github" })
       ),
       " "
     ),
@@ -56475,7 +56457,7 @@ var Footer = function Footer() {
       _react2.default.createElement(
         "a",
         { className: "contact-info", href: "https://www.linkedin.com/in/corey-ladovsky/", target: "_blank" },
-        _react2.default.createElement("i", { "class": "fab fa-linkedin", "aria-hidden": "true" })
+        _react2.default.createElement("i", { className: "fab fa-linkedin", "aria-hidden": "true" })
       )
     ),
     _react2.default.createElement(
@@ -56486,7 +56468,7 @@ var Footer = function Footer() {
         "a",
         { className: "contact-info", href: "https://angel.co/corey-ladovsky", target: "_blank" },
         " ",
-        _react2.default.createElement("i", { "class": "fab fa-angellist" })
+        _react2.default.createElement("i", { className: "fab fa-angellist" })
       )
     ),
     _react2.default.createElement(
@@ -56523,15 +56505,15 @@ var _react2 = _interopRequireDefault(_react);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var ImageShow = function ImageShow(props) {
-  if (props.img) {
-    return _react2.default.createElement(
-      "div",
-      { className: "headshot-container" },
-      _react2.default.createElement("img", { className: "headshot", src: props.img })
-    );
-  } else {
-    return null;
-  }
+  // if(props.img) {
+  return _react2.default.createElement(
+    "div",
+    { className: "headshot-container" },
+    _react2.default.createElement("img", { className: "headshot", src: props.img })
+  );
+  // } else {
+  //   return <div className="headshot-container-empty">Hello</div>;
+  // }
 };
 
 exports.default = ImageShow;
