@@ -1,23 +1,31 @@
 import React from "react";
 import ReactFauxDOM, { withFauxDOM } from "react-faux-dom";
 import * as d3 from "d3";
-import ImageShow from './image_show';
+import ImageShow from "./image_show";
 
 class DView extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {image: null};
+    this.state = { image: null };
     this.imageHover = this.imageHover.bind(this);
     this.removeImage = this.removeImage.bind(this);
   }
 
   imageHover(e) {
-   let headshot =   `https://nba-players.herokuapp.com/players/${e.lastName.toLowerCase()}/${e.firstName.toLowerCase()}`;
-   this.setState({image: headshot});
+    let headshot = `https://nba-players.herokuapp.com/players/${e.lastName.toLowerCase()}/${e.firstName.toLowerCase()}`;
+    this.setState({ image: headshot });
+    let id = "." + e.personId;
+    $(id)
+      .removeClass("muted")
+      .addClass("not-muted");
   }
 
   removeImage(e) {
-    this.setState({image: null});
+    this.setState({ image: null });
+    let id = "." + e.personId;
+    $(id)
+      .removeClass("not-muted")
+      .addClass("muted");
   }
 
   render() {
@@ -66,7 +74,6 @@ class DView extends React.Component {
       .outerRadius(radius - 80)
       .innerRadius(radius - 120);
 
-
     const arc3Text = d3
       .arc()
       .outerRadius(radius - 140)
@@ -79,7 +86,6 @@ class DView extends React.Component {
       .outerRadius(radius - 150)
       .innerRadius(radius - 190);
 
-
     const arc4Text = d3
       .arc()
       .outerRadius(radius - 210)
@@ -87,12 +93,10 @@ class DView extends React.Component {
       .startAngle(0)
       .endAngle(360);
 
-
     const arc4 = d3
       .arc()
       .outerRadius(radius - 220)
       .innerRadius(radius - 260);
-
 
     const arc5Text = d3
       .arc()
@@ -190,8 +194,8 @@ class DView extends React.Component {
       d.name = d.firstName + " " + d.lastName;
       d.firstName = d.firstName;
       d.lastName = d.lastName;
+      d.personId = d.personId;
     });
-
 
     var a = svg
       .selectAll(".labels")
@@ -221,7 +225,6 @@ class DView extends React.Component {
       .on("mouseover", this.imageHover)
       .on("mouseout", this.removeImage);
 
-
     var g = svg
       .selectAll(".arc")
       .data(pie(data))
@@ -232,6 +235,9 @@ class DView extends React.Component {
     g
       .append("path")
       .attr("d", arc)
+      .attr("class", function(d) {
+        return d.data.personId + " muted";
+      })
       .style("fill", function(d) {
         return color(d.data.name);
       });
@@ -246,6 +252,10 @@ class DView extends React.Component {
     h
       .append("path")
       .attr("d", arc2)
+      .attr("class", function(d) {
+        return d.data.personId + " muted";
+      })
+
       .style("fill", function(d) {
         return color(d.data.name);
       });
@@ -260,6 +270,10 @@ class DView extends React.Component {
     j
       .append("path")
       .attr("d", arc3)
+      .attr("class", function(d) {
+        return d.data.personId + " muted";
+      })
+
       .style("fill", function(d) {
         return color(d.data.name);
       });
@@ -274,6 +288,9 @@ class DView extends React.Component {
     k
       .append("path")
       .attr("d", arc4)
+      .attr("class", function(d) {
+        return d.data.personId + " muted";
+      })
       .style("fill", function(d) {
         return color(d.data.name);
       });
@@ -288,6 +305,10 @@ class DView extends React.Component {
     l
       .append("path")
       .attr("d", arc5)
+      .attr("class", function(d) {
+        return d.data.personId + " muted";
+      })
+
       .style("fill", function(d) {
         return color(d.data.name);
       });
@@ -302,6 +323,10 @@ class DView extends React.Component {
     m
       .append("path")
       .attr("d", arcMinus)
+      .attr("class", function(d) {
+        return d.data.personId + " muted";
+      })
+
       .style("fill", function(d) {
         return color(d.data.name);
       });
@@ -353,10 +378,6 @@ class DView extends React.Component {
         "POINTS ------------------------------------- POINTS-------------------------------------- POINTS  ---------------------------------------- POINTS  --------------------------------------- POINTS   -------------------------------------- POINTS   ------------------------------- POINTS   ------------------------------- POINTS   ---------------------------------------------------------"
       );
 
-
-
-
-
     svg
       .append("path")
       .attr("id", "assistPath")
@@ -372,8 +393,6 @@ class DView extends React.Component {
         "ASSISTS ------------------------------------- ASSISTS------------------------------------- ASSISTS  ------------------------------------ ASSISTS  ------------------------------------- ASSISTS  ------------------------------ "
       );
 
-
-
     svg
       .append("path")
       .attr("id", "stealPath")
@@ -388,8 +407,6 @@ class DView extends React.Component {
       .text(
         "STEALS --------------------------------------------- STEALS--------------------------------------------- STEALS  ------------------------------------ "
       );
-
-
 
     svg
       .append("path")
@@ -408,12 +425,10 @@ class DView extends React.Component {
 
     return (
       <div>
-        <ImageShow img={this.state.image}/>
+        <ImageShow img={this.state.image} />
         <div className="d3">{node.toReact()}</div>
       </div>
-
-
-  );
+    );
   }
 }
 

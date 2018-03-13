@@ -1,5 +1,4 @@
 #path {
-  fill-opacity: 0;
   color: white;
 }
 
@@ -222,10 +221,43 @@ html {
   font-size: 30px;
 }
 
+.arc {
+  opacity: 1
+}
+.arc2 {
+  opacity: 1
+}
+.arc3 {
+  opacity: 1
+}
+.arc4 {
+  opacity: 1
+}
+.arc5 {
+  opacity: 1
+}
+.arcMinus {
+  opacity: 1
+}
 
+.muted {
+  opacity: .7;
+}
 
+.not-muted {
+  opacity: 1;
+}
 
-
+/*
+.arc:hover {
+  opacity: 1
+}
+.arc2:hover {
+  opacity: 1
+}
+.arcMinus:hover {
+  opacity: 1
+} */
 
 
 

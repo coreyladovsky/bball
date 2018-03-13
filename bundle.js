@@ -36281,11 +36281,15 @@ var DView = function (_React$Component) {
     value: function imageHover(e) {
       var headshot = "https://nba-players.herokuapp.com/players/" + e.lastName.toLowerCase() + "/" + e.firstName.toLowerCase();
       this.setState({ image: headshot });
+      var id = "." + e.personId;
+      $(id).removeClass("muted").addClass("not-muted");
     }
   }, {
     key: "removeImage",
     value: function removeImage(e) {
       this.setState({ image: null });
+      var id = "." + e.personId;
+      $(id).removeClass("not-muted").addClass("muted");
     }
   }, {
     key: "render",
@@ -36385,6 +36389,7 @@ var DView = function (_React$Component) {
         d.name = d.firstName + " " + d.lastName;
         d.firstName = d.firstName;
         d.lastName = d.lastName;
+        d.personId = d.personId;
       });
 
       var a = svg.selectAll(".labels").data(data).enter().append("g").attr("transform", function (d, i) {
@@ -36401,37 +36406,49 @@ var DView = function (_React$Component) {
 
       var g = svg.selectAll(".arc").data(pie(data)).enter().append("g").attr("class", "arc");
 
-      g.append("path").attr("d", arc).style("fill", function (d) {
+      g.append("path").attr("d", arc).attr("class", function (d) {
+        return d.data.personId + " muted";
+      }).style("fill", function (d) {
         return color(d.data.name);
       });
 
       var h = svg.selectAll(".arc2").data(pie2(data)).enter().append("g").attr("class", "arc2");
 
-      h.append("path").attr("d", arc2).style("fill", function (d) {
+      h.append("path").attr("d", arc2).attr("class", function (d) {
+        return d.data.personId + " muted";
+      }).style("fill", function (d) {
         return color(d.data.name);
       });
 
       var j = svg.selectAll(".arc3").data(pie3(data)).enter().append("g").attr("class", "arc3");
 
-      j.append("path").attr("d", arc3).style("fill", function (d) {
+      j.append("path").attr("d", arc3).attr("class", function (d) {
+        return d.data.personId + " muted";
+      }).style("fill", function (d) {
         return color(d.data.name);
       });
 
       var k = svg.selectAll(".arc4").data(pie4(data)).enter().append("g").attr("class", "arc4");
 
-      k.append("path").attr("d", arc4).style("fill", function (d) {
+      k.append("path").attr("d", arc4).attr("class", function (d) {
+        return d.data.personId + " muted";
+      }).style("fill", function (d) {
         return color(d.data.name);
       });
 
       var l = svg.selectAll(".arc5").data(pie5(data)).enter().append("g").attr("class", "arc5");
 
-      l.append("path").attr("d", arc5).style("fill", function (d) {
+      l.append("path").attr("d", arc5).attr("class", function (d) {
+        return d.data.personId + " muted";
+      }).style("fill", function (d) {
         return color(d.data.name);
       });
 
       var m = svg.selectAll(".arcMinus").data(pieMinus(data)).enter().append("g").attr("class", "arcMinus");
 
-      m.append("path").attr("d", arcMinus).style("fill", function (d) {
+      m.append("path").attr("d", arcMinus).attr("class", function (d) {
+        return d.data.personId + " muted";
+      }).style("fill", function (d) {
         return color(d.data.name);
       });
 
