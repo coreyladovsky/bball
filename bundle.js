@@ -36125,6 +36125,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+// import NoReact from "./noreact";
+
 var TeamShow = function (_React$Component) {
   _inherits(TeamShow, _React$Component);
 
@@ -36196,6 +36198,7 @@ var TeamShow = function (_React$Component) {
           }
         });
         if (ready) {
+          // <NoReact teamPlayers={this.props.teamPlayers} />
           return _react2.default.createElement(
             "div",
             null,
@@ -36245,6 +36248,10 @@ var _d = __webpack_require__(342);
 
 var d3 = _interopRequireWildcard(_d);
 
+var _image_show = __webpack_require__(710);
+
+var _image_show2 = _interopRequireDefault(_image_show);
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -36261,10 +36268,21 @@ var DView = function (_React$Component) {
   function DView(props) {
     _classCallCheck(this, DView);
 
-    return _possibleConstructorReturn(this, (DView.__proto__ || Object.getPrototypeOf(DView)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (DView.__proto__ || Object.getPrototypeOf(DView)).call(this, props));
+
+    _this.state = { image: null };
+    _this.imageHover = _this.imageHover.bind(_this);
+    return _this;
   }
 
   _createClass(DView, [{
+    key: "imageHover",
+    value: function imageHover(e) {
+      var headshot = "https://nba-players.herokuapp.com/players/" + e.lastName.toLowerCase() + "/" + e.firstName.toLowerCase();
+      //  let imagesvg = d3.select('svg')
+      this.setState({ image: headshot });
+    }
+  }, {
     key: "render",
     value: function render() {
       var margin = { top: 0, right: 0, bottom: 0, left: 0 };
@@ -36363,6 +36381,14 @@ var DView = function (_React$Component) {
         d.firstName = d.firstName;
         d.lastName = d.lastName;
       });
+      //
+      // var div = d3
+      //         .select(node)
+      //         .append("div")
+      //         .attr("class", "tooltip")
+      //         .style("opacity", 1)
+      //         .append("text")
+      //         .text("HELLO")
 
       var a = svg.selectAll(".labels").data(data).enter().append("g").attr("transform", function (d, i) {
         return "translate(600," + (i - 8) * 30 + ")";
@@ -36374,7 +36400,23 @@ var DView = function (_React$Component) {
 
       a.append("text").attr("dy", ".8em").attr("x", 25).attr("fill", "white").text(function (d) {
         return d.name;
-      });
+      }).on("mouseover", this.imageHover);
+
+      // svg.selectAll("img")
+      // .data(data)
+      // .enter()
+      //   .append("svg:image")
+      //   .attr("xlink:href", `https://nba-players.herokuapp.com/players/${d.lastName}/${d.firstName}`)
+      //   div.transition()
+      //     .duration(200)
+      //     .style("opacity", .9);
+      //   div.html("<img src=`https://nba-players.herokuapp.com/players/${d.lastName}/${d.firstName}`/>")
+      // }).on("mouseout", function(d) {
+      //   div.transition()
+      //   .duration(500)
+      //   .style("opacity", 0)
+      // });
+
 
       var g = svg.selectAll(".arc").data(pie(data)).enter().append("g").attr("class", "arc");
 
@@ -36438,8 +36480,13 @@ var DView = function (_React$Component) {
 
       return _react2.default.createElement(
         "div",
-        { className: "d3" },
-        node.toReact()
+        null,
+        _react2.default.createElement(
+          "div",
+          { className: "d3" },
+          node.toReact()
+        ),
+        _react2.default.createElement(_image_show2.default, { img: this.state.image })
       );
     }
   }]);
@@ -56457,6 +56504,30 @@ var Footer = function Footer() {
 };
 
 exports.default = Footer;
+
+/***/ }),
+/* 709 */,
+/* 710 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var ImageShow = function ImageShow(props) {
+    return props.img && _react2.default.createElement("img", { className: "headshot", src: props.img });
+};
+
+exports.default = ImageShow;
 
 /***/ })
 /******/ ]);

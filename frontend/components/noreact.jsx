@@ -1,20 +1,14 @@
 import React from "react";
 import ReactFauxDOM, { withFauxDOM } from "react-faux-dom";
 import * as d3 from "d3";
-import ImageShow from './image_show';
 
-class DView extends React.Component {
+class NoReact extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {image: null};
-    this.imageHover = this.imageHover.bind(this);
   }
 
-  imageHover(e) {
-   let headshot =   `https://nba-players.herokuapp.com/players/${e.lastName.toLowerCase()}/${e.firstName.toLowerCase()}`;
-  //  let imagesvg = d3.select('svg')
-  this.setState({image: headshot})
-
+  shouldComponentUpdate() {
+    return false;
   }
 
   render() {
@@ -165,10 +159,8 @@ class DView extends React.Component {
         }
       });
 
-    var node = ReactFauxDOM.createElement("svg");
 
-    var svg = d3
-      .select(node)
+    let svg = d3.select("#testd3").append("svg")
       .attr("width", "100%")
       .attr("height", 1000)
       .append("g")
@@ -222,22 +214,22 @@ class DView extends React.Component {
       .text(function(d) {
         return d.name;
       })
-      .on("mouseover", this.imageHover);
-
-        // svg.selectAll("img")
-        // .data(data)
-        // .enter()
-        //   .append("svg:image")
-        //   .attr("xlink:href", `https://nba-players.herokuapp.com/players/${d.lastName}/${d.firstName}`)
-      //   div.transition()
-      //     .duration(200)
-      //     .style("opacity", .9);
+      .on("mouseover", function(d) {
+        d3.selectAll(".labels").attr("font-size", "2em")
+        svg.selectAll("img")
+        .data(data)
+        .enter()
+          .append("svg:image")
+          .attr("xlink:href", `https://nba-players.herokuapp.com/players/${d.lastName}/${d.firstName}`)
+        .transition()
+          .duration(200)
+          .style("opacity", .9);
       //   div.html("<img src=`https://nba-players.herokuapp.com/players/${d.lastName}/${d.firstName}`/>")
       // }).on("mouseout", function(d) {
       //   div.transition()
       //   .duration(500)
       //   .style("opacity", 0)
-      // });
+      });
 
 
     var g = svg
@@ -424,15 +416,10 @@ class DView extends React.Component {
         "BLOCKS ---------------------------- BLOCKS --------------------------- "
       );
 
-    return (
-      <div>
-        <div className="d3">{node.toReact()}</div>
-        <ImageShow img={this.state.image}/>
-      </div>
 
 
-  );
+    return <div className="d3">{svg}</div>;
   }
 }
 
-export default withFauxDOM(DView);
+export default NoReact;

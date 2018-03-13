@@ -30,7 +30,13 @@
 text {
   font-family: sans-serif;
   font-weight: bold;
+
 }
+
+/* text:hover {
+  cursor: pointer;
+
+} */
 
 
 .d3 {

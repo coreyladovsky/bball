@@ -1,5 +1,6 @@
 import React from "react";
 import DView from "./dview";
+// import NoReact from "./noreact";
 
 class TeamShow extends React.Component {
   constructor(props) {
@@ -54,6 +55,7 @@ class TeamShow extends React.Component {
         }
       });
       if (ready) {
+        // <NoReact teamPlayers={this.props.teamPlayers} />
         return (
           <div>
             <h1 className="teamName">{this.props.team.fullName}</h1>
