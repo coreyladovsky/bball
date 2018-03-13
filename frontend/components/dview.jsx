@@ -17,7 +17,6 @@ class DView extends React.Component {
 
     const color = d3.scaleOrdinal(d3.schemeCategory20);
 
-
     const arcMinusText = d3
       .arc()
       .outerRadius(radius + 100)
@@ -176,6 +175,8 @@ class DView extends React.Component {
       d.apg = +d.apg;
       d.spg = +d.spg;
       d.name = d.firstName + " " + d.lastName;
+      d.firstName = d.firstName;
+      d.lastName = d.lastName;
     });
 
     var a = svg
@@ -204,14 +205,6 @@ class DView extends React.Component {
         return d.name;
       });
 
-    // svg.selectAll("text")
-    //   .data(pointsText)
-    //   .enter()
-    //   .append("text")
-    //   .attr("x", radius * .8)
-    //   .attr("y", "0.4em")
-    //   .text(function(d) { return d; })
-    //   .attr("transform", function(d, i) { return "rotate(" + (-90 + ((360 / pointsText.length) * i)) + ")"; })
 
     var g = svg
       .selectAll(".arc")

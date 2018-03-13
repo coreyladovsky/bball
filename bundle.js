@@ -36360,6 +36360,8 @@ var DView = function (_React$Component) {
         d.apg = +d.apg;
         d.spg = +d.spg;
         d.name = d.firstName + " " + d.lastName;
+        d.firstName = d.firstName;
+        d.lastName = d.lastName;
       });
 
       var a = svg.selectAll(".labels").data(data).enter().append("g").attr("transform", function (d, i) {
@@ -36373,15 +36375,6 @@ var DView = function (_React$Component) {
       a.append("text").attr("dy", ".8em").attr("x", 25).attr("fill", "white").text(function (d) {
         return d.name;
       });
-
-      // svg.selectAll("text")
-      //   .data(pointsText)
-      //   .enter()
-      //   .append("text")
-      //   .attr("x", radius * .8)
-      //   .attr("y", "0.4em")
-      //   .text(function(d) { return d; })
-      //   .attr("transform", function(d, i) { return "rotate(" + (-90 + ((360 / pointsText.length) * i)) + ")"; })
 
       var g = svg.selectAll(".arc").data(pie(data)).enter().append("g").attr("class", "arc");
 
@@ -56374,7 +56367,7 @@ var ProjectInformation = function ProjectInformation() {
           "p",
           { className: "data-info" },
           " ",
-          "Every graph is a visual representation of a team and the impact each player has on that team. The outside ring is the average number of minutes each player plays per game. The following inner-circles represent a players average stat in that categroy divided by their average number of minutes.",
+          "Every graph is a visual representation of a team and the impact each player has on that team. The outside ring is the average number of minutes each player plays per game. The following inner-circles represent a player's average stat in that categroy divided by their average number of minutes.",
           " "
         )
       ),
@@ -56389,7 +56382,7 @@ var ProjectInformation = function ProjectInformation() {
         _react2.default.createElement(
           "p",
           { className: "data-info" },
-          "Using the charts, one can see the impact each player has per minute they play. Therefore the chart can be used as a tool to help decide whom should be getting more or less playing time based off of there minute by minute performance."
+          "Using the charts, one can see the impact each player has per minute they play. Therefore the chart can be used as a tool to help decide whom should be getting more or less playing time based off of their minute by minute performance."
         )
       )
     )

@@ -13,7 +13,7 @@ const ProjectInformation = () => {
           Every graph is a visual representation of a team and the impact each
           player has on that team. The outside ring is the average number of
           minutes each player plays per game. The following inner-circles
-          represent a players average stat in that categroy divided by their
+          represent a player's average stat in that categroy divided by their
           average number of minutes.{" "}
         </p>
         </li>
@@ -24,7 +24,7 @@ const ProjectInformation = () => {
         <p className="data-info">
           Using the charts, one can see the impact each player has per minute
           they play. Therefore the chart can be used as a tool to help decide
-          whom should be getting more or less playing time based off of there
+          whom should be getting more or less playing time based off of their
           minute by minute performance.
         </p>
         </li>
