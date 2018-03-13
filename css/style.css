@@ -33,11 +33,20 @@ text {
 
 }
 
-/* text:hover {
+text:hover {
   cursor: pointer;
+  text-decoration: underline;
+}
 
-} */
+.headshot-container {
+  margin-left: 890px;
+  position: sticky;
+  top: 250px;
+}
 
+.headshot {
+  height: 100px;
+}
 
 .d3 {
   height: 1000px;

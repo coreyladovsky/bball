@@ -36279,7 +36279,6 @@ var DView = function (_React$Component) {
     key: "imageHover",
     value: function imageHover(e) {
       var headshot = "https://nba-players.herokuapp.com/players/" + e.lastName.toLowerCase() + "/" + e.firstName.toLowerCase();
-      //  let imagesvg = d3.select('svg')
       this.setState({ image: headshot });
     }
   }, {
@@ -36481,12 +36480,12 @@ var DView = function (_React$Component) {
       return _react2.default.createElement(
         "div",
         null,
+        _react2.default.createElement(_image_show2.default, { img: this.state.image }),
         _react2.default.createElement(
           "div",
           { className: "d3" },
           node.toReact()
-        ),
-        _react2.default.createElement(_image_show2.default, { img: this.state.image })
+        )
       );
     }
   }]);
@@ -56514,7 +56513,7 @@ exports.default = Footer;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _react = __webpack_require__(1);
@@ -56524,7 +56523,15 @@ var _react2 = _interopRequireDefault(_react);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var ImageShow = function ImageShow(props) {
-    return props.img && _react2.default.createElement("img", { className: "headshot", src: props.img });
+  if (props.img) {
+    return _react2.default.createElement(
+      "div",
+      { className: "headshot-container" },
+      _react2.default.createElement("img", { className: "headshot", src: props.img })
+    );
+  } else {
+    return null;
+  }
 };
 
 exports.default = ImageShow;

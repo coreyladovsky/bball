@@ -12,8 +12,7 @@ class DView extends React.Component {
 
   imageHover(e) {
    let headshot =   `https://nba-players.herokuapp.com/players/${e.lastName.toLowerCase()}/${e.firstName.toLowerCase()}`;
-  //  let imagesvg = d3.select('svg')
-  this.setState({image: headshot})
+   this.setState({image: headshot});
 
   }
 
@@ -426,8 +425,8 @@ class DView extends React.Component {
 
     return (
       <div>
-        <div className="d3">{node.toReact()}</div>
         <ImageShow img={this.state.image}/>
+        <div className="d3">{node.toReact()}</div>
       </div>
 
 
