@@ -36252,6 +36252,10 @@ var _image_show = __webpack_require__(710);
 
 var _image_show2 = _interopRequireDefault(_image_show);
 
+var _player_page = __webpack_require__(711);
+
+var _player_page2 = _interopRequireDefault(_player_page);
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -36270,13 +36274,32 @@ var DView = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (DView.__proto__ || Object.getPrototypeOf(DView)).call(this, props));
 
-    _this.state = { image: null };
+    _this.state = { image: null, player: null };
     _this.imageHover = _this.imageHover.bind(_this);
     _this.removeImage = _this.removeImage.bind(_this);
+    _this.playerInfo = _this.playerInfo.bind(_this);
+    _this.toggelModal = _this.toggelModal.bind(_this);
     return _this;
   }
 
+  // componentDidMount() {
+  //   $(".player-modal").css("display, none")
+  // }
+
   _createClass(DView, [{
+    key: "toggelModal",
+    value: function toggelModal(e) {
+      $(".player-modal").css("display", "none");
+      $("body").css("overflow", "scroll");
+    }
+  }, {
+    key: "playerInfo",
+    value: function playerInfo(e) {
+      this.setState({ player: e });
+      $(".player-modal").css("display", "block");
+      $("body").css("overflow", "hidden");
+    }
+  }, {
     key: "imageHover",
     value: function imageHover(e) {
       var headshot = void 0;
@@ -36419,10 +36442,10 @@ var DView = function (_React$Component) {
       }).on("mouseover", this.imageHover).on("mouseout", this.removeImage);
 
       a.append("text").attr("dy", ".8em").attr("x", 25).attr("fill", "white").attr("class", function (d) {
-        return d.personId + " normal";
+        return d.personId + " normal ";
       }).text(function (d) {
         return d.name;
-      }).on("mouseover", this.imageHover).on("mouseout", this.removeImage);
+      }).on("mouseover", this.imageHover).on("mouseout", this.removeImage).on("click", this.playerInfo);
 
       var g = svg.selectAll(".arc").data(pie(data)).enter().append("g").attr("class", "arc");
 
@@ -36504,6 +36527,11 @@ var DView = function (_React$Component) {
           "div",
           { className: "d3" },
           node.toReact()
+        ),
+        _react2.default.createElement(
+          "div",
+          { className: "player-modal", onClick: this.toggelModal },
+          _react2.default.createElement(_player_page2.default, { player: this.state.player })
         )
       );
     }
@@ -56554,6 +56582,69 @@ var ImageShow = function ImageShow(props) {
 };
 
 exports.default = ImageShow;
+
+/***/ }),
+/* 711 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactFauxDom = __webpack_require__(326);
+
+var _reactFauxDom2 = _interopRequireDefault(_reactFauxDom);
+
+var _d = __webpack_require__(342);
+
+var d3 = _interopRequireWildcard(_d);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var PlayerPage = function (_React$Component) {
+  _inherits(PlayerPage, _React$Component);
+
+  function PlayerPage(props) {
+    _classCallCheck(this, PlayerPage);
+
+    return _possibleConstructorReturn(this, (PlayerPage.__proto__ || Object.getPrototypeOf(PlayerPage)).call(this, props));
+  }
+
+  _createClass(PlayerPage, [{
+    key: "render",
+    value: function render() {
+      if (!this.props.player) {
+        return null;
+      }
+      return _react2.default.createElement(
+        "div",
+        null,
+        "PLAYER INFO"
+      );
+    }
+  }]);
+
+  return PlayerPage;
+}(_react2.default.Component);
+
+exports.default = PlayerPage;
 
 /***/ })
 /******/ ]);

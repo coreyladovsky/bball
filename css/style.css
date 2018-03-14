@@ -253,17 +253,18 @@ html {
   fill: yellow !important;
 }
 
-/*
-.arc:hover {
-  opacity: 1
-}
-.arc2:hover {
-  opacity: 1
-}
-.arcMinus:hover {
-  opacity: 1
-} */
+/* PLAYER_MODAL */
 
+.player-modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-image: url("../../images/transpOrange50.png");
+  overflow: hidden;
+  display: none;
+}
 
 
 
