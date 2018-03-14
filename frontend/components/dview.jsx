@@ -14,6 +14,9 @@ class DView extends React.Component {
   imageHover(e) {
     let headshot = `https://nba-players.herokuapp.com/players/${e.lastName.toLowerCase()}/${e.firstName.toLowerCase()}`;
     this.setState({ image: headshot });
+
+    $(".normal").addClass("muted")
+    $(".muted").removeClass("normal");
     let id = "." + e.personId;
     $(id)
       .removeClass("muted")
@@ -22,10 +25,11 @@ class DView extends React.Component {
 
   removeImage(e) {
     this.setState({ image: null });
+    $(".muted").addClass("normal").removeClass("muted")
     let id = "." + e.personId;
     $(id)
       .removeClass("not-muted")
-      .addClass("muted");
+      .addClass("normal");
   }
 
   render() {
@@ -210,6 +214,9 @@ class DView extends React.Component {
       .append("rect")
       .attr("width", 15)
       .attr("height", 15)
+      .attr("class", function(d) {
+        return d.personId + " normal";
+      })
       .style("fill", function(d) {
         return color(d.name);
       });
@@ -236,7 +243,7 @@ class DView extends React.Component {
       .append("path")
       .attr("d", arc)
       .attr("class", function(d) {
-        return d.data.personId + " muted";
+        return d.data.personId + " normal";
       })
       .style("fill", function(d) {
         return color(d.data.name);
@@ -253,7 +260,7 @@ class DView extends React.Component {
       .append("path")
       .attr("d", arc2)
       .attr("class", function(d) {
-        return d.data.personId + " muted";
+        return d.data.personId + " normal";
       })
 
       .style("fill", function(d) {
@@ -271,7 +278,7 @@ class DView extends React.Component {
       .append("path")
       .attr("d", arc3)
       .attr("class", function(d) {
-        return d.data.personId + " muted";
+        return d.data.personId + " normal";
       })
 
       .style("fill", function(d) {
@@ -289,7 +296,7 @@ class DView extends React.Component {
       .append("path")
       .attr("d", arc4)
       .attr("class", function(d) {
-        return d.data.personId + " muted";
+        return d.data.personId + " normal";
       })
       .style("fill", function(d) {
         return color(d.data.name);
@@ -306,7 +313,7 @@ class DView extends React.Component {
       .append("path")
       .attr("d", arc5)
       .attr("class", function(d) {
-        return d.data.personId + " muted";
+        return d.data.personId + " normal";
       })
 
       .style("fill", function(d) {
@@ -324,7 +331,7 @@ class DView extends React.Component {
       .append("path")
       .attr("d", arcMinus)
       .attr("class", function(d) {
-        return d.data.personId + " muted";
+        return d.data.personId + " normal";
       })
 
       .style("fill", function(d) {

@@ -36281,6 +36281,9 @@ var DView = function (_React$Component) {
     value: function imageHover(e) {
       var headshot = "https://nba-players.herokuapp.com/players/" + e.lastName.toLowerCase() + "/" + e.firstName.toLowerCase();
       this.setState({ image: headshot });
+
+      $(".normal").addClass("muted");
+      $(".muted").removeClass("normal");
       var id = "." + e.personId;
       $(id).removeClass("muted").addClass("not-muted");
     }
@@ -36288,8 +36291,9 @@ var DView = function (_React$Component) {
     key: "removeImage",
     value: function removeImage(e) {
       this.setState({ image: null });
+      $(".muted").addClass("normal").removeClass("muted");
       var id = "." + e.personId;
-      $(id).removeClass("not-muted").addClass("muted");
+      $(id).removeClass("not-muted").addClass("normal");
     }
   }, {
     key: "render",
@@ -36396,7 +36400,9 @@ var DView = function (_React$Component) {
         return "translate(600," + (i - 8) * 30 + ")";
       });
 
-      a.append("rect").attr("width", 15).attr("height", 15).style("fill", function (d) {
+      a.append("rect").attr("width", 15).attr("height", 15).attr("class", function (d) {
+        return d.personId + " normal";
+      }).style("fill", function (d) {
         return color(d.name);
       });
 
@@ -36407,7 +36413,7 @@ var DView = function (_React$Component) {
       var g = svg.selectAll(".arc").data(pie(data)).enter().append("g").attr("class", "arc");
 
       g.append("path").attr("d", arc).attr("class", function (d) {
-        return d.data.personId + " muted";
+        return d.data.personId + " normal";
       }).style("fill", function (d) {
         return color(d.data.name);
       });
@@ -36415,7 +36421,7 @@ var DView = function (_React$Component) {
       var h = svg.selectAll(".arc2").data(pie2(data)).enter().append("g").attr("class", "arc2");
 
       h.append("path").attr("d", arc2).attr("class", function (d) {
-        return d.data.personId + " muted";
+        return d.data.personId + " normal";
       }).style("fill", function (d) {
         return color(d.data.name);
       });
@@ -36423,7 +36429,7 @@ var DView = function (_React$Component) {
       var j = svg.selectAll(".arc3").data(pie3(data)).enter().append("g").attr("class", "arc3");
 
       j.append("path").attr("d", arc3).attr("class", function (d) {
-        return d.data.personId + " muted";
+        return d.data.personId + " normal";
       }).style("fill", function (d) {
         return color(d.data.name);
       });
@@ -36431,7 +36437,7 @@ var DView = function (_React$Component) {
       var k = svg.selectAll(".arc4").data(pie4(data)).enter().append("g").attr("class", "arc4");
 
       k.append("path").attr("d", arc4).attr("class", function (d) {
-        return d.data.personId + " muted";
+        return d.data.personId + " normal";
       }).style("fill", function (d) {
         return color(d.data.name);
       });
@@ -36439,7 +36445,7 @@ var DView = function (_React$Component) {
       var l = svg.selectAll(".arc5").data(pie5(data)).enter().append("g").attr("class", "arc5");
 
       l.append("path").attr("d", arc5).attr("class", function (d) {
-        return d.data.personId + " muted";
+        return d.data.personId + " normal";
       }).style("fill", function (d) {
         return color(d.data.name);
       });
@@ -36447,7 +36453,7 @@ var DView = function (_React$Component) {
       var m = svg.selectAll(".arcMinus").data(pieMinus(data)).enter().append("g").attr("class", "arcMinus");
 
       m.append("path").attr("d", arcMinus).attr("class", function (d) {
-        return d.data.personId + " muted";
+        return d.data.personId + " normal";
       }).style("fill", function (d) {
         return color(d.data.name);
       });

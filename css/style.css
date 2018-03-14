@@ -241,11 +241,16 @@ html {
 }
 
 .muted {
-  opacity: .7;
+  opacity: .5;
+}
+
+.normal {
+  opacity: 1;
 }
 
 .not-muted {
   opacity: 1;
+  fill: yellow !important;
 }
 
 /*
