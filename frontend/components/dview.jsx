@@ -243,7 +243,7 @@ class DView extends React.Component {
       .attr("x", 25)
       .attr("fill", "white")
       .attr("class", function(d) {
-        return d.personId;
+        return d.personId + " normal";
       })
       .text(function(d) {
         return d.name;

@@ -36419,7 +36419,7 @@ var DView = function (_React$Component) {
       }).on("mouseover", this.imageHover).on("mouseout", this.removeImage);
 
       a.append("text").attr("dy", ".8em").attr("x", 25).attr("fill", "white").attr("class", function (d) {
-        return d.personId;
+        return d.personId + " normal";
       }).text(function (d) {
         return d.name;
       }).on("mouseover", this.imageHover).on("mouseout", this.removeImage);
