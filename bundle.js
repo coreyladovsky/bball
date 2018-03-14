@@ -36290,14 +36290,14 @@ var DView = function (_React$Component) {
     key: "toggelModal",
     value: function toggelModal(e) {
       $(".player-modal").css("display", "none");
-      $("body").css("overflow", "scroll");
+      $("body").css("overflow-y", "scroll");
     }
   }, {
     key: "playerInfo",
     value: function playerInfo(e) {
       this.setState({ player: e });
       $(".player-modal").css("display", "block");
-      $("body").css("overflow", "hidden");
+      $("body").css("overflow-y", "hidden");
     }
   }, {
     key: "imageHover",
@@ -56560,7 +56560,7 @@ exports.default = Footer;
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
 var _react = __webpack_require__(1);
@@ -56570,15 +56570,11 @@ var _react2 = _interopRequireDefault(_react);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var ImageShow = function ImageShow(props) {
-  // if(props.img) {
-  return _react2.default.createElement(
-    "div",
-    { className: "headshot-container" },
-    _react2.default.createElement("img", { className: "headshot", src: props.img })
-  );
-  // } else {
-  //   return <div className="headshot-container-empty">Hello</div>;
-  // }
+    return _react2.default.createElement(
+        "div",
+        { className: "headshot-container" },
+        _react2.default.createElement("img", { className: "headshot", src: props.img })
+    );
 };
 
 exports.default = ImageShow;
@@ -56608,6 +56604,10 @@ var _d = __webpack_require__(342);
 
 var d3 = _interopRequireWildcard(_d);
 
+var _image_show = __webpack_require__(710);
+
+var _image_show2 = _interopRequireDefault(_image_show);
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -56633,10 +56633,69 @@ var PlayerPage = function (_React$Component) {
       if (!this.props.player) {
         return null;
       }
+
+      var margin = { top: 20, right: 10, botttom: 100, left: 40 };
+      var width = 700 - margin.right - margin.left;
+      var height = 500 - margin.top - margin.bottom;
+
+      var node = _reactFauxDom2.default.createElement("svg");
+
+      var svg = d3.select(node).append('svg').attr('width', width + margin.right + margin.left).attr('height', height + margin.top + margin.bottom);
+
       return _react2.default.createElement(
         "div",
         null,
-        "PLAYER INFO"
+        _react2.default.createElement(
+          "div",
+          { className: "player-graph" },
+          _react2.default.createElement(
+            "div",
+            { className: "playerName" },
+            this.props.player.name
+          ),
+          _react2.default.createElement(
+            "div",
+            { className: "profile-container" },
+            _react2.default.createElement("img", {
+              clasName: "profile",
+              src: "https://nba-players.herokuapp.com/players/" + this.props.player.lastName.toLowerCase() + "/" + this.props.player.firstName.toLowerCase()
+            })
+          ),
+          _react2.default.createElement(
+            "ul",
+            { className: "player-bio" },
+            _react2.default.createElement(
+              "li",
+              null,
+              "Height:",
+              " ",
+              this.props.player.heightFeet + "'" + this.props.player.heightInches + '"'
+            ),
+            _react2.default.createElement(
+              "li",
+              null,
+              "Weight: ",
+              this.props.player.weightPounds
+            ),
+            _react2.default.createElement(
+              "li",
+              null,
+              "College Name: ",
+              this.props.player.collegeName
+            ),
+            _react2.default.createElement(
+              "li",
+              null,
+              "Years Pro: ",
+              this.props.player.yearsPro
+            )
+          ),
+          _react2.default.createElement(
+            "div",
+            null,
+            node.toReact()
+          )
+        )
       );
     }
   }]);

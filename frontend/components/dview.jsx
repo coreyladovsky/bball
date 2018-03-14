@@ -20,13 +20,13 @@ class DView extends React.Component {
 
   toggelModal(e) {
     $(".player-modal").css("display", "none");
-    $("body").css("overflow", "scroll");
+    $("body").css("overflow-y", "scroll");
   }
 
   playerInfo(e) {
     this.setState({player : e });
     $(".player-modal").css("display", "block");
-    $("body").css("overflow", "hidden");
+    $("body").css("overflow-y", "hidden");
   }
 
   imageHover(e) {
