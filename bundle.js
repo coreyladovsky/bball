@@ -56635,7 +56635,6 @@ var PlayerPage = function (_React$Component) {
       }
       var stats = this.props.player;
       var data = [{ number: stats.ppg / stats.mpg * 48, word: "POINTS" }, { number: stats.apg / stats.mpg * 48, word: "ASSISTS" }, { number: stats.bpg / stats.mpg * 48, word: "BLOCKS" }, { number: stats.spg / stats.mpg * 48, word: "STEALS" }, { number: stats.rpg / stats.mpg * 48, word: "REBOUNDS" }];
-
       var margin = { top: 20, right: 10, bottom: 100, left: 40 };
       var width = 700 - margin.right - margin.left;
       var height = 600 - margin.top - margin.bottom;
@@ -56647,7 +56646,9 @@ var PlayerPage = function (_React$Component) {
         d.word = d.word;
       });
 
-      var svg = d3.select(node).attr("width", width + margin.right + margin.left).attr("height", height + margin.top + margin.bottom).attr("class", "svg-player").append("g").attr("transform", "translate(" + margin.left + "," + margin.right + ")");
+      var svg = d3.select(node).attr("width", width + margin.right + margin.left).attr("height", height + margin.top + margin.bottom).attr("class", "svg-player");
+      var g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.right + ")");
+
       //
       var x = d3.scaleBand().rangeRound([0, width]).padding(0.1).domain(data.map(function (d) {
         return d.word;
@@ -56660,39 +56661,12 @@ var PlayerPage = function (_React$Component) {
       svg.selectAll("rect").data(data).enter().append("rect").attr("class", "bar").attr("x", function (d) {
         return x(d.word);
       }).attr("y", function (d) {
-        return y(d.number);
+        return 500 - y(d.number);
       }).attr("width", x.bandwidth()).attr("height", function (d) {
-        return height - y(d.number);
+        return y(d.number);
+      }).append("text").attr("dy", ".8em").attr("x", 25).attr("fill", "yellow").text(function (d) {
+        return d.word;
       });
-      // svg.selectAll('rect')
-      //   .data(data)
-      //   .enter()
-      //   .append('rect')
-      //   .attr("x", 0)
-      //   .attr("y", function(d, i) {
-      //     return y(d.word);
-      //   })
-      //   .attr("height", function(d, i){
-      //     return y.bandwidth()-1;
-      //   })
-      //   .attr("width", function(d) {
-      //     return x(d.number);
-      //   })
-      //   // .attr("height", 0)
-      //
-      //   // .attr("y", height)
-      //   // .attr({
-      //   //   "x": function(d) {return xScale(d.word); },
-      //   //   "y": function(d) {return yScale(d.number); },
-      //   //   "width": xScale.rangeBand(),
-      //   //   "height": function(d) {return height - yScale(d.number); }
-      //   // })
-      //   .style("fill", "black");
-      //
-      //   // .attr("x", function(d) { return xScale(d.ppg); })
-      //   // .attr("y", function(d) { return yScale(d.ppg); })
-      //   // .attr('width', xScale.rangeBand())
-      //   // .attr("heigth", function(d) { return height - yScale(d.ppg) ;});
 
       return _react2.default.createElement(
         "div",

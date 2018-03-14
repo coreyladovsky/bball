@@ -19,7 +19,6 @@ class PlayerPage extends React.Component {
                   {number: ((stats.spg / stats.mpg) * 48), word: "STEALS"},
                   {number: ((stats.rpg / stats.mpg) * 48), word: "REBOUNDS"},
                 ];
-
     const margin = { top: 20, right: 10, bottom: 100, left: 40 };
     const width = 700 - margin.right - margin.left;
     const height = 600 - margin.top - margin.bottom;
@@ -36,8 +35,9 @@ class PlayerPage extends React.Component {
       .attr("width", width + margin.right + margin.left)
       .attr("height", height + margin.top + margin.bottom)
       .attr("class", "svg-player")
-      .append("g")
-      .attr("transform", "translate(" + margin.left + "," + margin.right + ")");
+    var g = svg.append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.right + ")")
+
       //
       var x = d3.scaleBand()
               .rangeRound([0, width])
@@ -48,44 +48,24 @@ class PlayerPage extends React.Component {
               .rangeRound([0, height])
               .domain([0, d3.max(data, function(d) {return d.number;})]);
 
+
           svg.selectAll("rect")
               .data(data)
               .enter()
               .append("rect")
               .attr("class", "bar")
               .attr("x", function(d) { return x(d.word) ;})
-              .attr("y", function(d) {return y(d.number); })
+              .attr("y",function(d) { return 500 - y(d.number) ;} )
               .attr("width", x.bandwidth())
-              .attr("height", function(d) {return height -  y(d.number) ;})
-      // svg.selectAll('rect')
-      //   .data(data)
-      //   .enter()
-      //   .append('rect')
-      //   .attr("x", 0)
-      //   .attr("y", function(d, i) {
-      //     return y(d.word);
-      //   })
-      //   .attr("height", function(d, i){
-      //     return y.bandwidth()-1;
-      //   })
-      //   .attr("width", function(d) {
-      //     return x(d.number);
-      //   })
-      //   // .attr("height", 0)
-      //
-      //   // .attr("y", height)
-      //   // .attr({
-      //   //   "x": function(d) {return xScale(d.word); },
-      //   //   "y": function(d) {return yScale(d.number); },
-      //   //   "width": xScale.rangeBand(),
-      //   //   "height": function(d) {return height - yScale(d.number); }
-      //   // })
-      //   .style("fill", "black");
-      //
-      //   // .attr("x", function(d) { return xScale(d.ppg); })
-      //   // .attr("y", function(d) { return yScale(d.ppg); })
-      //   // .attr('width', xScale.rangeBand())
-      //   // .attr("heigth", function(d) { return height - yScale(d.ppg) ;});
+              .attr("height", function(d) {return y(d.number) ;})
+              .append("text")
+              .attr("dy", ".8em")
+              .attr("x", 25)
+              .attr("fill", "yellow")
+
+              .text(function(d) {
+                return d.word;
+              })
 
     return (
       <div>
