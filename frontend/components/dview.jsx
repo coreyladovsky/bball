@@ -12,21 +12,35 @@ class DView extends React.Component {
   }
 
   imageHover(e) {
-    let headshot = `https://nba-players.herokuapp.com/players/${e.lastName.toLowerCase()}/${e.firstName.toLowerCase()}`;
+    let headshot;
+    let id;
+    if (e.data) {
+      headshot = `https://nba-players.herokuapp.com/players/${e.data.lastName.toLowerCase()}/${e.data.firstName.toLowerCase()}`;
+      id = "." + e.data.personId;
+    } else {
+      headshot = `https://nba-players.herokuapp.com/players/${e.lastName.toLowerCase()}/${e.firstName.toLowerCase()}`;
+      id = "." + e.personId;
+    }
     this.setState({ image: headshot });
 
-    $(".normal").addClass("muted")
+    $(".normal").addClass("muted");
     $(".muted").removeClass("normal");
-    let id = "." + e.personId;
     $(id)
       .removeClass("muted")
       .addClass("not-muted");
   }
 
   removeImage(e) {
+    let id;
     this.setState({ image: null });
-    $(".muted").addClass("normal").removeClass("muted")
-    let id = "." + e.personId;
+    $(".muted")
+      .addClass("normal")
+      .removeClass("muted");
+    if (e.data) {
+      id = "." + e.data.personId;
+    } else {
+      id = "." + e.personId;
+    }
     $(id)
       .removeClass("not-muted")
       .addClass("normal");
@@ -247,7 +261,9 @@ class DView extends React.Component {
       })
       .style("fill", function(d) {
         return color(d.data.name);
-      });
+      })
+      .on("mouseover", this.imageHover)
+      .on("mouseout", this.removeImage);
 
     var h = svg
       .selectAll(".arc2")
@@ -265,7 +281,9 @@ class DView extends React.Component {
 
       .style("fill", function(d) {
         return color(d.data.name);
-      });
+      })
+      .on("mouseover", this.imageHover)
+      .on("mouseout", this.removeImage);
 
     var j = svg
       .selectAll(".arc3")
@@ -283,7 +301,9 @@ class DView extends React.Component {
 
       .style("fill", function(d) {
         return color(d.data.name);
-      });
+      })
+      .on("mouseover", this.imageHover)
+      .on("mouseout", this.removeImage);
 
     var k = svg
       .selectAll(".arc4")
@@ -300,7 +320,9 @@ class DView extends React.Component {
       })
       .style("fill", function(d) {
         return color(d.data.name);
-      });
+      })
+      .on("mouseover", this.imageHover)
+      .on("mouseout", this.removeImage);
 
     var l = svg
       .selectAll(".arc5")
@@ -318,7 +340,9 @@ class DView extends React.Component {
 
       .style("fill", function(d) {
         return color(d.data.name);
-      });
+      })
+      .on("mouseover", this.imageHover)
+      .on("mouseout", this.removeImage);
 
     var m = svg
       .selectAll(".arcMinus")
@@ -336,7 +360,9 @@ class DView extends React.Component {
 
       .style("fill", function(d) {
         return color(d.data.name);
-      });
+      })
+      .on("mouseover", this.imageHover)
+      .on("mouseout", this.removeImage);
 
     svg
       .append("path")

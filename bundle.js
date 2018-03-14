@@ -36279,20 +36279,32 @@ var DView = function (_React$Component) {
   _createClass(DView, [{
     key: "imageHover",
     value: function imageHover(e) {
-      var headshot = "https://nba-players.herokuapp.com/players/" + e.lastName.toLowerCase() + "/" + e.firstName.toLowerCase();
+      var headshot = void 0;
+      var id = void 0;
+      if (e.data) {
+        headshot = "https://nba-players.herokuapp.com/players/" + e.data.lastName.toLowerCase() + "/" + e.data.firstName.toLowerCase();
+        id = "." + e.data.personId;
+      } else {
+        headshot = "https://nba-players.herokuapp.com/players/" + e.lastName.toLowerCase() + "/" + e.firstName.toLowerCase();
+        id = "." + e.personId;
+      }
       this.setState({ image: headshot });
 
       $(".normal").addClass("muted");
       $(".muted").removeClass("normal");
-      var id = "." + e.personId;
       $(id).removeClass("muted").addClass("not-muted");
     }
   }, {
     key: "removeImage",
     value: function removeImage(e) {
+      var id = void 0;
       this.setState({ image: null });
       $(".muted").addClass("normal").removeClass("muted");
-      var id = "." + e.personId;
+      if (e.data) {
+        id = "." + e.data.personId;
+      } else {
+        id = "." + e.personId;
+      }
       $(id).removeClass("not-muted").addClass("normal");
     }
   }, {
@@ -36416,7 +36428,7 @@ var DView = function (_React$Component) {
         return d.data.personId + " normal";
       }).style("fill", function (d) {
         return color(d.data.name);
-      });
+      }).on("mouseover", this.imageHover).on("mouseout", this.removeImage);
 
       var h = svg.selectAll(".arc2").data(pie2(data)).enter().append("g").attr("class", "arc2");
 
@@ -36424,7 +36436,7 @@ var DView = function (_React$Component) {
         return d.data.personId + " normal";
       }).style("fill", function (d) {
         return color(d.data.name);
-      });
+      }).on("mouseover", this.imageHover).on("mouseout", this.removeImage);
 
       var j = svg.selectAll(".arc3").data(pie3(data)).enter().append("g").attr("class", "arc3");
 
@@ -36432,7 +36444,7 @@ var DView = function (_React$Component) {
         return d.data.personId + " normal";
       }).style("fill", function (d) {
         return color(d.data.name);
-      });
+      }).on("mouseover", this.imageHover).on("mouseout", this.removeImage);
 
       var k = svg.selectAll(".arc4").data(pie4(data)).enter().append("g").attr("class", "arc4");
 
@@ -36440,7 +36452,7 @@ var DView = function (_React$Component) {
         return d.data.personId + " normal";
       }).style("fill", function (d) {
         return color(d.data.name);
-      });
+      }).on("mouseover", this.imageHover).on("mouseout", this.removeImage);
 
       var l = svg.selectAll(".arc5").data(pie5(data)).enter().append("g").attr("class", "arc5");
 
@@ -36448,7 +36460,7 @@ var DView = function (_React$Component) {
         return d.data.personId + " normal";
       }).style("fill", function (d) {
         return color(d.data.name);
-      });
+      }).on("mouseover", this.imageHover).on("mouseout", this.removeImage);
 
       var m = svg.selectAll(".arcMinus").data(pieMinus(data)).enter().append("g").attr("class", "arcMinus");
 
@@ -36456,7 +36468,7 @@ var DView = function (_React$Component) {
         return d.data.personId + " normal";
       }).style("fill", function (d) {
         return color(d.data.name);
-      });
+      }).on("mouseover", this.imageHover).on("mouseout", this.removeImage);
 
       svg.append("path").attr("id", "path").attr("d", arcMinusText);
 
