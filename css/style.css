@@ -73,10 +73,12 @@ text:hover {
   text-align: center;
 }
 
-svg {
+
+
+/* svg {
   width: 100%;
   background: black;
-}
+} */
 
 .welcome-line {
   font-family: 'Open Sans Condensed', sans-serif;
@@ -290,7 +292,14 @@ html {
   font-family: sans-serif;
 }
 
-
+.svg-player {
+  border: 1px solid red;
+  border: 1px solid red;
+    /* float: right; */
+    top: 149px;
+    right: 157px;
+    position: absolute;
+}
 
 
 
