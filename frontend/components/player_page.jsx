@@ -79,19 +79,25 @@ class PlayerPage extends React.Component {
       .attr("height", function(d) {
         return y(d.number);
       })
-  var a = svg
-      .selectAll(".lables")
-      .data(data)
-      .enter()
-      .append("text")
-      .attr("transform", "translate(0," + height + ")")
-      .attr("dy", ".8em")
-      .attr("x", x.bandwidth())
-      .attr("fill", "yellow")
 
-      .text(function(d) {
-        return d.word;
-      });
+
+    g.append("g")
+    .attr("class", "axis axis-x")
+    .attr("transform", "translate(0," + ( height +  margin.top) + ")")
+    .call(d3.axisBottom(x));
+  // var a = svg
+  //     .selectAll(".lables")
+  //     .data(data)
+  //     .enter()
+  //     .append("text")
+  //     .attr("transform", "translate(0," + height + ")")
+  //     .attr("dy", ".8em")
+  //     .attr("x", x.bandwidth())
+  //     .attr("fill", "yellow")
+  //
+  //     .text(function(d) {
+  //       return d.word;
+  //     });
 
 
 
