@@ -56634,7 +56634,8 @@ var PlayerPage = function (_React$Component) {
         return null;
       }
       var stats = this.props.player;
-      var data = [{ number: stats.ppg / stats.mpg * 48, word: "POINTS" }, { number: stats.apg / stats.mpg * 48, word: "ASSISTS" }, { number: stats.bpg / stats.mpg * 48, word: "BLOCKS" }, { number: stats.spg / stats.mpg * 48, word: "STEALS" }, { number: stats.rpg / stats.mpg * 48, word: "REBOUNDS" }];
+      var data = [{ number: stats.ppg <= 0 ? 0 : stats.ppg / stats.mpg * 48, word: "POINTS" }, { number: stats.apg <= 0 ? 0 : stats.apg / stats.mpg * 48, word: "ASSISTS" }, { number: stats.bpg <= 0 ? 0 : stats.bpg / stats.mpg * 48, word: "BLOCKS" }, { number: stats.spg <= 0 ? 0 : stats.spg / stats.mpg * 48, word: "STEALS" }, { number: stats.rpg <= 0 ? 0 : stats.rpg / stats.mpg * 48, word: "REBOUNDS" }];
+
       var margin = { top: 20, right: 10, bottom: 100, left: 40 };
       var width = 700 - margin.right - margin.left;
       var height = 600 - margin.top - margin.bottom;
@@ -56647,7 +56648,7 @@ var PlayerPage = function (_React$Component) {
       });
 
       var svg = d3.select(node).attr("width", width + margin.right + margin.left).attr("height", height + margin.top + margin.bottom).attr("class", "svg-player");
-      var g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.right + ")");
+      var g = svg.append("g").attr("transform", "translate(" + 50 + "," + 10 + ")");
 
       //
       var x = d3.scaleBand().rangeRound([0, width]).padding(0.1).domain(data.map(function (d) {
@@ -56658,13 +56659,14 @@ var PlayerPage = function (_React$Component) {
         return d.number;
       })]);
 
-      svg.selectAll("rect").data(data).enter().append("rect").attr("class", "bar").attr("x", function (d) {
+      g.selectAll("rect").data(data).enter().append("rect").attr("class", "bar").attr("x", function (d) {
         return x(d.word);
       }).attr("y", function (d) {
         return 500 - y(d.number);
       }).attr("width", x.bandwidth()).attr("height", function (d) {
         return y(d.number);
-      }).append("text").attr("dy", ".8em").attr("x", 25).attr("fill", "yellow").text(function (d) {
+      });
+      var a = svg.selectAll(".lables").data(data).enter().append("text").attr("transform", "translate(0," + height + ")").attr("dy", ".8em").attr("x", x.bandwidth()).attr("fill", "yellow").text(function (d) {
         return d.word;
       });
 
