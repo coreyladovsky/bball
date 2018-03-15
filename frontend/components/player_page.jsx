@@ -63,6 +63,19 @@ class PlayerPage extends React.Component {
         })
       ]);
 
+
+
+
+
+    var y2 =  d3
+      .scaleLinear()
+      .rangeRound([0, height])
+      .domain([
+        d3.max(data, function(d) {
+          return d.number;
+        }), 0
+      ]);
+
     g
       .selectAll("rect")
       .data(data)
@@ -82,9 +95,14 @@ class PlayerPage extends React.Component {
 
 
     g.append("g")
-    .attr("class", "axis axis-x")
+    .attr("class", "x-axis")
     .attr("transform", "translate(0," + ( height +  margin.top) + ")")
     .call(d3.axisBottom(x));
+
+    g.append("g")
+    .attr("class", "y-axis")
+    .attr("transform", "translate(0," + margin.top + ")")
+    .call(d3.axisLeft(y2))
   // var a = svg
   //     .selectAll(".lables")
   //     .data(data)
