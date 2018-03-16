@@ -7,8 +7,6 @@ class TeamShow extends React.Component {
     this.lastUrl = this.props.location.pathname;
   }
 
-  componentWillMount() {}
-
   componentDidMount() {
     this.props.fetchTeamRoster(this.props.match.params.urlName).then(res => {
       res.team.league.standard.players.forEach(player => {
@@ -56,7 +54,11 @@ class TeamShow extends React.Component {
       if (ready) {
         return (
           <div>
-            <h1 className="teamName">{this.props.team.fullName}</h1>
+            <section className="team-name-container">
+              <div className="div-for-center">
+              <div className="teamName">{this.props.team.fullName}</div>
+            </div>
+            </section>
 
             <DView teamPlayers={this.props.teamPlayers} />
           </div>

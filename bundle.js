@@ -36706,9 +36706,6 @@ var TeamShow = function (_React$Component) {
   }
 
   _createClass(TeamShow, [{
-    key: "componentWillMount",
-    value: function componentWillMount() {}
-  }, {
     key: "componentDidMount",
     value: function componentDidMount() {
       var _this2 = this;
@@ -36768,9 +36765,17 @@ var TeamShow = function (_React$Component) {
             "div",
             null,
             _react2.default.createElement(
-              "h1",
-              { className: "teamName" },
-              this.props.team.fullName
+              "section",
+              { className: "team-name-container" },
+              _react2.default.createElement(
+                "div",
+                { className: "div-for-center" },
+                _react2.default.createElement(
+                  "div",
+                  { className: "teamName" },
+                  this.props.team.fullName
+                )
+              )
             ),
             _react2.default.createElement(_dview2.default, { teamPlayers: this.props.teamPlayers })
           );
