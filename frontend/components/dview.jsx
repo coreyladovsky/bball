@@ -212,7 +212,7 @@ class DView extends React.Component {
 
     var svg = d3
       .select(node)
-      .attr("width", "100%")
+      .attr("width", "1300")
       .attr("height", 1000)
       .attr("class", "svg-circles")
       .append("g")

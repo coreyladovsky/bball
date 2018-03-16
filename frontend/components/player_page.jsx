@@ -14,16 +14,32 @@ class PlayerPage extends React.Component {
     }
     let stats = this.props.player;
     const data = [
-      { number: stats.ppg <= 0 ? 0 : stats.ppg / stats.mpg * 48, word: "POINTS" },
-      { number: stats.apg <= 0 ? 0: stats.apg / stats.mpg * 48, word: "ASSISTS" },
-      { number: stats.bpg <= 0 ? 0: stats.bpg / stats.mpg * 48, word: "BLOCKS" },
-      { number: stats.spg <= 0 ? 0: stats.spg / stats.mpg * 48, word: "STEALS" },
-      { number: stats.rpg <= 0 ? 0: stats.rpg / stats.mpg * 48, word: "REBOUNDS" }
+      {
+        number: stats.ppg <= 0 ? 0 : stats.ppg / stats.mpg * 48,
+        word: "POINTS"
+      },
+      {
+        number: stats.apg <= 0 ? 0 : stats.apg / stats.mpg * 48,
+        word: "ASSISTS"
+      },
+      {
+        number: stats.bpg <= 0 ? 0 : stats.bpg / stats.mpg * 48,
+        word: "BLOCKS"
+      },
+      {
+        number: stats.spg <= 0 ? 0 : stats.spg / stats.mpg * 48,
+        word: "STEALS"
+      },
+      {
+        number: stats.rpg <= 0 ? 0 : stats.rpg / stats.mpg * 48,
+        word: "REBOUNDS"
+      }
     ];
 
     const margin = { top: 20, right: 10, bottom: 100, left: 40 };
     const width = 700 - margin.right - margin.left;
     const height = 600 - margin.top - margin.bottom;
+    const color = d3.scaleOrdinal(d3.schemeCategory20);
 
     const node = ReactFauxDOM.createElement("svg");
 
@@ -40,7 +56,6 @@ class PlayerPage extends React.Component {
     var g = svg
       .append("g")
       .attr("transform", "translate(" + 50 + "," + 10 + ")");
-
 
     //
     var x = d3
@@ -63,17 +78,14 @@ class PlayerPage extends React.Component {
         })
       ]);
 
-
-
-
-
-    var y2 =  d3
+    var y2 = d3
       .scaleLinear()
       .rangeRound([0, height])
       .domain([
         d3.max(data, function(d) {
           return d.number;
-        }), 0
+        }),
+        0
       ]);
 
     g
@@ -92,56 +104,49 @@ class PlayerPage extends React.Component {
       .attr("height", function(d) {
         return y(d.number);
       })
+      .attr("fill", function(d) {
+        return color(d.word);
+      });
 
+    g
+      .append("g")
+      .attr("class", "x-axis")
+      .attr("transform", "translate(0," + (height + margin.top) + ")")
+      .call(d3.axisBottom(x));
 
-    g.append("g")
-    .attr("class", "x-axis")
-    .attr("transform", "translate(0," + ( height +  margin.top) + ")")
-    .call(d3.axisBottom(x));
-
-    g.append("g")
-    .attr("class", "y-axis")
-    .attr("transform", "translate(0," + margin.top + ")")
-    .call(d3.axisLeft(y2))
-  // var a = svg
-  //     .selectAll(".lables")
-  //     .data(data)
-  //     .enter()
-  //     .append("text")
-  //     .attr("transform", "translate(0," + height + ")")
-  //     .attr("dy", ".8em")
-  //     .attr("x", x.bandwidth())
-  //     .attr("fill", "yellow")
-  //
-  //     .text(function(d) {
-  //       return d.word;
-  //     });
-
-
+    g
+      .append("g")
+      .attr("class", "y-axis")
+      .attr("transform", "translate(0," + margin.top + ")")
+      .call(d3.axisLeft(y2));
 
     return (
-      <div>
+      <div className="player-modal-container">
         <div className="player-graph">
           <div className="playerName">{this.props.player.name}</div>
           <div className="profile-container">
-            <img
-              clasName="profile"
-              src={`https://nba-players.herokuapp.com/players/${this.props.player.lastName.toLowerCase()}/${this.props.player.firstName.toLowerCase()}`}
-            />
+            <div className="all-player-info-container">
+              <ul className="player-bio">
+                <li>
+                  <img
+                    clasName="profile"
+                    src={`https://nba-players.herokuapp.com/players/${this.props.player.lastName.toLowerCase()}/${this.props.player.firstName.toLowerCase()}`}
+                  />
+                </li>
+                <li>College Name: {this.props.player.collegeName}</li>
+                <li>
+                  Height:{" "}
+                  {this.props.player.heightFeet +
+                    "'" +
+                    this.props.player.heightInches +
+                    '"'}
+                </li>
+                <li>Weight: {this.props.player.weightPounds}</li>
+                <li>Years Pro: {this.props.player.yearsPro}</li>
+              </ul>
+              {node.toReact()}
+            </div>
           </div>
-          <ul className="player-bio">
-            <li>
-              Height:{" "}
-              {this.props.player.heightFeet +
-                "'" +
-                this.props.player.heightInches +
-                '"'}
-            </li>
-            <li>Weight: {this.props.player.weightPounds}</li>
-            <li>College Name: {this.props.player.collegeName}</li>
-            <li>Years Pro: {this.props.player.yearsPro}</li>
-          </ul>
-          <div>{node.toReact()}</div>
         </div>
       </div>
     );
