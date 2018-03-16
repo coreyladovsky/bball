@@ -5,26 +5,7 @@
   color: white;
 }
 
-#reboundPath {
-  fill-opacity: 0;
-  color: white;
-}
-#pointsPath {
-  fill-opacity: 0;
-  color: white;
-}
-
-#assistPath {
-  fill-opacity: 0;
-  color: white;
-}
-
-#stealPath {
-  fill-opacity: 0;
-  color: white;
-}
-
-#blockPath {
+#reboundPath, #pointsPath, #assistPath, #stealPath, #blockPath   {
   fill-opacity: 0;
   color: white;
 }
@@ -142,6 +123,7 @@ html {
   color: white;
 }
 
+
 .selector {
   margin-right: 20px;
   width: 200px;
@@ -149,6 +131,7 @@ html {
   font-size: 15px;
   outline: 0;
   cursor: pointer;
+
 }
 
 .teamName {
@@ -250,6 +233,7 @@ html {
 }
 
 .not-muted {
+  cursor: pointer;
   opacity: 1;
   fill: yellow !important;
 }
@@ -354,6 +338,17 @@ html {
 }
 
 
+.safari-bubble {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
 
+.safari-text {
+  font-size: 20px;
+  border: 1px solid white;
+  border-radius: 5px;
+  padding: 10px;
+}
 
 //

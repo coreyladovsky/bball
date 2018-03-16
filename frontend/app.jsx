@@ -8,6 +8,7 @@ class App extends React.Component {
     this.props.fetchAllTeams();
     this.props.fetchAllPlayers();
     this.checkPage = this.checkPage.bind(this);
+    this.browserCheck = this.browserCheck.bind(this);
   }
 
   checkPage() {
@@ -28,12 +29,23 @@ class App extends React.Component {
     }
   }
 
+  browserCheck() {
+    var isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification));
+    if(isSafari) {
+      return(
+        <div className="safari-bubble"><div className="safari-text">Please Use Google Chrome </div></div>
+      );
+    }
+  }
+
   render() {
     this.checkPage();
+
     return (
       <div>
+        {this.browserCheck()}
         <div className="intro-container">
-          <h1 className="welcome-line"> NBA Stats By The Minute</h1>
+          <h1 className="welcome-line"> NBA Stats By The Minute in 2017</h1>
           <h3 className="name">By Corey Ladovsky</h3>
         </div>
         <div className="app-pages">

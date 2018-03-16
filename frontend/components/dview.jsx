@@ -14,9 +14,6 @@ class DView extends React.Component {
     this.toggelModal = this.toggelModal.bind(this);
   }
 
-  // componentDidMount() {
-  //   $(".player-modal").css("display, none")
-  // }
 
   toggelModal(e) {
     $(".player-modal").css("display", "none");
@@ -24,7 +21,13 @@ class DView extends React.Component {
   }
 
   playerInfo(e) {
-    this.setState({ player: e });
+    if(e.data) {
+      this.setState({ player: e.data });
+
+    } else {
+      this.setState({ player: e });
+      
+    }
     $(".player-modal").css("display", "block");
     $("body").css("overflow-y", "hidden");
   }
@@ -254,7 +257,9 @@ class DView extends React.Component {
         return color(d.name);
       })
       .on("mouseover", this.imageHover)
-      .on("mouseout", this.removeImage);
+      .on("mouseout", this.removeImage)
+      .on("click", this.playerInfo);
+
 
     a
       .append("text")
@@ -288,7 +293,9 @@ class DView extends React.Component {
         return color(d.data.name);
       })
       .on("mouseover", this.imageHover)
-      .on("mouseout", this.removeImage);
+      .on("mouseout", this.removeImage)
+      .on("click", this.playerInfo);
+;
 
     var h = svg
       .selectAll(".arc2")
@@ -308,7 +315,9 @@ class DView extends React.Component {
         return color(d.data.name);
       })
       .on("mouseover", this.imageHover)
-      .on("mouseout", this.removeImage);
+      .on("mouseout", this.removeImage)
+      .on("click", this.playerInfo);
+;
 
     var j = svg
       .selectAll(".arc3")
@@ -328,7 +337,9 @@ class DView extends React.Component {
         return color(d.data.name);
       })
       .on("mouseover", this.imageHover)
-      .on("mouseout", this.removeImage);
+      .on("mouseout", this.removeImage)
+      .on("click", this.playerInfo);
+;
 
     var k = svg
       .selectAll(".arc4")
@@ -347,7 +358,9 @@ class DView extends React.Component {
         return color(d.data.name);
       })
       .on("mouseover", this.imageHover)
-      .on("mouseout", this.removeImage);
+      .on("mouseout", this.removeImage)
+      .on("click", this.playerInfo);
+;
 
     var l = svg
       .selectAll(".arc5")
@@ -367,7 +380,9 @@ class DView extends React.Component {
         return color(d.data.name);
       })
       .on("mouseover", this.imageHover)
-      .on("mouseout", this.removeImage);
+      .on("mouseout", this.removeImage)
+      .on("click", this.playerInfo);
+;
 
     var m = svg
       .selectAll(".arcMinus")
@@ -387,7 +402,9 @@ class DView extends React.Component {
         return color(d.data.name);
       })
       .on("mouseover", this.imageHover)
-      .on("mouseout", this.removeImage);
+      .on("mouseout", this.removeImage)
+      .on("click", this.playerInfo);
+;
 
     svg
       .append("path")

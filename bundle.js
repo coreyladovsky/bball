@@ -32114,6 +32114,10 @@ var _reactRedux = __webpack_require__(49);
 
 var _reactRouterDom = __webpack_require__(51);
 
+var _app = __webpack_require__(324);
+
+var _app2 = _interopRequireDefault(_app);
+
 var _app_container = __webpack_require__(323);
 
 var _app_container2 = _interopRequireDefault(_app_container);
@@ -32132,7 +32136,7 @@ var Root = function Root(_ref) {
     )
   );
 };
-// import App from "./app";
+
 exports.default = Root;
 
 /***/ }),
@@ -36353,6 +36357,7 @@ var App = function (_React$Component) {
       this.props.fetchAllTeams();
       this.props.fetchAllPlayers();
       this.checkPage = this.checkPage.bind(this);
+      this.browserCheck = this.browserCheck.bind(this);
     }
   }, {
     key: "checkPage",
@@ -36374,19 +36379,39 @@ var App = function (_React$Component) {
       }
     }
   }, {
+    key: "browserCheck",
+    value: function browserCheck() {
+      var isSafari = /constructor/i.test(window.HTMLElement) || function (p) {
+        return p.toString() === "[object SafariRemoteNotification]";
+      }(!window['safari'] || typeof safari !== 'undefined' && safari.pushNotification);
+      if (isSafari) {
+        return _react2.default.createElement(
+          "div",
+          { className: "safari-bubble" },
+          _react2.default.createElement(
+            "div",
+            { className: "safari-text" },
+            "Please Use Google Chrome "
+          )
+        );
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       this.checkPage();
+
       return _react2.default.createElement(
         "div",
         null,
+        this.browserCheck(),
         _react2.default.createElement(
           "div",
           { className: "intro-container" },
           _react2.default.createElement(
             "h1",
             { className: "welcome-line" },
-            " NBA Stats By The Minute"
+            " NBA Stats By The Minute in 2017"
           ),
           _react2.default.createElement(
             "h3",
@@ -36822,10 +36847,6 @@ var DView = function (_React$Component) {
     return _this;
   }
 
-  // componentDidMount() {
-  //   $(".player-modal").css("display, none")
-  // }
-
   _createClass(DView, [{
     key: "toggelModal",
     value: function toggelModal(e) {
@@ -36835,7 +36856,11 @@ var DView = function (_React$Component) {
   }, {
     key: "playerInfo",
     value: function playerInfo(e) {
-      this.setState({ player: e });
+      if (e.data) {
+        this.setState({ player: e.data });
+      } else {
+        this.setState({ player: e });
+      }
       $(".player-modal").css("display", "block");
       $("body").css("overflow-y", "hidden");
     }
@@ -36979,7 +37004,7 @@ var DView = function (_React$Component) {
         return d.personId + " normal";
       }).style("fill", function (d) {
         return color(d.name);
-      }).on("mouseover", this.imageHover).on("mouseout", this.removeImage);
+      }).on("mouseover", this.imageHover).on("mouseout", this.removeImage).on("click", this.playerInfo);
 
       a.append("text").attr("dy", ".8em").attr("x", 25).attr("fill", "white").attr("class", function (d) {
         return d.personId + " normal ";
@@ -36993,7 +37018,8 @@ var DView = function (_React$Component) {
         return d.data.personId + " normal";
       }).style("fill", function (d) {
         return color(d.data.name);
-      }).on("mouseover", this.imageHover).on("mouseout", this.removeImage);
+      }).on("mouseover", this.imageHover).on("mouseout", this.removeImage).on("click", this.playerInfo);
+      ;
 
       var h = svg.selectAll(".arc2").data(pie2(data)).enter().append("g").attr("class", "arc2");
 
@@ -37001,7 +37027,8 @@ var DView = function (_React$Component) {
         return d.data.personId + " normal";
       }).style("fill", function (d) {
         return color(d.data.name);
-      }).on("mouseover", this.imageHover).on("mouseout", this.removeImage);
+      }).on("mouseover", this.imageHover).on("mouseout", this.removeImage).on("click", this.playerInfo);
+      ;
 
       var j = svg.selectAll(".arc3").data(pie3(data)).enter().append("g").attr("class", "arc3");
 
@@ -37009,7 +37036,8 @@ var DView = function (_React$Component) {
         return d.data.personId + " normal";
       }).style("fill", function (d) {
         return color(d.data.name);
-      }).on("mouseover", this.imageHover).on("mouseout", this.removeImage);
+      }).on("mouseover", this.imageHover).on("mouseout", this.removeImage).on("click", this.playerInfo);
+      ;
 
       var k = svg.selectAll(".arc4").data(pie4(data)).enter().append("g").attr("class", "arc4");
 
@@ -37017,7 +37045,8 @@ var DView = function (_React$Component) {
         return d.data.personId + " normal";
       }).style("fill", function (d) {
         return color(d.data.name);
-      }).on("mouseover", this.imageHover).on("mouseout", this.removeImage);
+      }).on("mouseover", this.imageHover).on("mouseout", this.removeImage).on("click", this.playerInfo);
+      ;
 
       var l = svg.selectAll(".arc5").data(pie5(data)).enter().append("g").attr("class", "arc5");
 
@@ -37025,7 +37054,8 @@ var DView = function (_React$Component) {
         return d.data.personId + " normal";
       }).style("fill", function (d) {
         return color(d.data.name);
-      }).on("mouseover", this.imageHover).on("mouseout", this.removeImage);
+      }).on("mouseover", this.imageHover).on("mouseout", this.removeImage).on("click", this.playerInfo);
+      ;
 
       var m = svg.selectAll(".arcMinus").data(pieMinus(data)).enter().append("g").attr("class", "arcMinus");
 
@@ -37033,7 +37063,8 @@ var DView = function (_React$Component) {
         return d.data.personId + " normal";
       }).style("fill", function (d) {
         return color(d.data.name);
-      }).on("mouseover", this.imageHover).on("mouseout", this.removeImage);
+      }).on("mouseover", this.imageHover).on("mouseout", this.removeImage).on("click", this.playerInfo);
+      ;
 
       svg.append("path").attr("id", "path").attr("d", arcMinusText);
 
