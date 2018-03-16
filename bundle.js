@@ -54250,6 +54250,15 @@ var PlayerPage = function (_React$Component) {
         { className: "player-modal-container" },
         _react2.default.createElement(
           "div",
+          { className: "close-button" },
+          _react2.default.createElement(
+            "div",
+            { className: "close-text" },
+            "Close X"
+          )
+        ),
+        _react2.default.createElement(
+          "div",
           { className: "player-graph" },
           _react2.default.createElement(
             "div",

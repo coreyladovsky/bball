@@ -122,6 +122,7 @@ class PlayerPage extends React.Component {
 
     return (
       <div className="player-modal-container">
+        <div className="close-button"><div className="close-text">Close X</div></div>
         <div className="player-graph">
           <div className="playerName">{this.props.player.name}</div>
           <div className="profile-container">
