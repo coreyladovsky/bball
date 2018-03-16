@@ -1,3 +1,6 @@
+
+
+
 #path {
   color: white;
 }
@@ -38,11 +41,13 @@ text:hover {
 }
 
 .headshot-container {
-  margin-left: 890px;
   position: sticky;
   top: 250px;
   height: 100px;
-  width: 100px;
+  width: 1300px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
 }
 
 .headshot-container-empty {
@@ -59,6 +64,7 @@ text:hover {
 
 .headshot {
   height: 100px;
+  margin-left: 615px;
 }
 
 .d3 {
@@ -73,10 +79,12 @@ text:hover {
   text-align: center;
 }
 
-svg {
+
+
+/* svg {
   width: 100%;
   background: black;
-}
+} */
 
 .welcome-line {
   font-family: 'Open Sans Condensed', sans-serif;
@@ -162,7 +170,7 @@ html {
   text-align: center;
   font-family: 'Open Sans Condensed', sans-serif;
   font-size: 60px;
-  margin-right: 450px
+  margin-right: 345px
 }
 
 .drop-container {
@@ -172,7 +180,10 @@ html {
   position: relative;
 }
 
-
+.d3 {
+  display: flex;
+  justify-content: center;
+}
 .spin-container {
   min-width: 100%;
   min-height: 100%;
@@ -253,21 +264,105 @@ html {
   fill: yellow !important;
 }
 
-/*
-.arc:hover {
-  opacity: 1
+/* PLAYER_MODAL */
+
+.close-button {
+  width: 1200px;
+  margin: auto;
+  margin-top: 26px;
+  display: flex;
+  flex-direction: row-reverse;
+  cursor: pointer;
 }
-.arc2:hover {
-  opacity: 1
+
+.close-text {
+  font-family: sans-serif;
 }
-.arcMinus:hover {
-  opacity: 1
-} */
+
+.close-text:hover {
+  text-decoration: underline;
+}
+
+.player-modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-image: url("../../images/transpOrange50.png");
+  overflow: hidden;
+  display: none;
+}
+
+.player-graph {
+  width: 1200px;
+  height: 700px;
+  margin: auto;
+  z-index: 2;
+  background: white;
+  border-radius: 5px;
+  color: black;
+  }
+
+.playerName {
+  text-align: center;
+  padding-top: 25px;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-weight: bold;
+  font-size: 45px;
+}
+
+.svg-title {
+    font-size: 20px;
+    font-family: sans-serif;
+    font-weight: bold;
+    text-align: right;
+    padding-right: 255px;
+    text-decoration: underline;
+    margin-top: 10px;
+}
 
 
+.profile {
+  width: 300px;
+}
+
+.player-bio {
+  list-style: none;
+  font-family: 'Open Sans Condensed', sans-serif;
+  -webkit-padding-start: 0px;
+  margin-left: 40px;
+}
+
+.player-bio li {
+  font-size: 25px;
+  margin-top: 10px;
+  text-align: center;
+}
 
 
+.svg-player {
+  /* border: 1px solid red; */
+  margin-right: 35px;
+}
 
+.x-axis {
+  font-size: 13px;
+}
+
+.y-axis {
+  font-size: 13px;
+}
+
+.player-modal-container {
+  width: 1200;
+  margin: auto;
+}
+
+.all-player-info-container {
+  display: flex;  justify-content: space-between;
+  margin-top: 20px;
+}
 
 
 

@@ -2,13 +2,31 @@ import React from "react";
 import ReactFauxDOM, { withFauxDOM } from "react-faux-dom";
 import * as d3 from "d3";
 import ImageShow from "./image_show";
+import PlayerPage from "./player_page";
 
 class DView extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { image: null };
+    this.state = { image: null, player: null };
     this.imageHover = this.imageHover.bind(this);
     this.removeImage = this.removeImage.bind(this);
+    this.playerInfo = this.playerInfo.bind(this);
+    this.toggelModal = this.toggelModal.bind(this);
+  }
+
+  // componentDidMount() {
+  //   $(".player-modal").css("display, none")
+  // }
+
+  toggelModal(e) {
+    $(".player-modal").css("display", "none");
+    $("body").css("overflow-y", "scroll");
+  }
+
+  playerInfo(e) {
+    this.setState({player : e });
+    $(".player-modal").css("display", "block");
+    $("body").css("overflow-y", "hidden");
   }
 
   imageHover(e) {
@@ -194,8 +212,9 @@ class DView extends React.Component {
 
     var svg = d3
       .select(node)
-      .attr("width", "100%")
+      .attr("width", "1300")
       .attr("height", 1000)
+      .attr("class", "svg-circles")
       .append("g")
       .attr(
         "transform",
@@ -243,13 +262,14 @@ class DView extends React.Component {
       .attr("x", 25)
       .attr("fill", "white")
       .attr("class", function(d) {
-        return d.personId + " normal";
+        return d.personId + " normal ";
       })
       .text(function(d) {
         return d.name;
       })
       .on("mouseover", this.imageHover)
-      .on("mouseout", this.removeImage);
+      .on("mouseout", this.removeImage)
+      .on("click", this.playerInfo);
 
     var g = svg
       .selectAll(".arc")
@@ -465,6 +485,8 @@ class DView extends React.Component {
       <div>
         <ImageShow img={this.state.image} />
         <div className="d3">{node.toReact()}</div>
+
+          <div className="player-modal" onClick={this.toggelModal}><PlayerPage player={this.state.player} /></div>
       </div>
     );
   }

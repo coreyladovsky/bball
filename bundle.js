@@ -14273,7 +14273,7 @@ function transform(node) {
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
 var _react = __webpack_require__(1);
@@ -14283,15 +14283,11 @@ var _react2 = _interopRequireDefault(_react);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var ImageShow = function ImageShow(props) {
-  // if(props.img) {
-  return _react2.default.createElement(
-    "div",
-    { className: "headshot-container" },
-    _react2.default.createElement("img", { className: "headshot", src: props.img })
-  );
-  // } else {
-  //   return <div className="headshot-container-empty">Hello</div>;
-  // }
+    return _react2.default.createElement(
+        "div",
+        { className: "headshot-container" },
+        _react2.default.createElement("img", { className: "headshot", src: props.img })
+    );
 };
 
 exports.default = ImageShow;
@@ -36807,6 +36803,10 @@ var _image_show = __webpack_require__(247);
 
 var _image_show2 = _interopRequireDefault(_image_show);
 
+var _player_page = __webpack_require__(636);
+
+var _player_page2 = _interopRequireDefault(_player_page);
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -36825,13 +36825,32 @@ var DView = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (DView.__proto__ || Object.getPrototypeOf(DView)).call(this, props));
 
-    _this.state = { image: null };
+    _this.state = { image: null, player: null };
     _this.imageHover = _this.imageHover.bind(_this);
     _this.removeImage = _this.removeImage.bind(_this);
+    _this.playerInfo = _this.playerInfo.bind(_this);
+    _this.toggelModal = _this.toggelModal.bind(_this);
     return _this;
   }
 
+  // componentDidMount() {
+  //   $(".player-modal").css("display, none")
+  // }
+
   _createClass(DView, [{
+    key: "toggelModal",
+    value: function toggelModal(e) {
+      $(".player-modal").css("display", "none");
+      $("body").css("overflow-y", "scroll");
+    }
+  }, {
+    key: "playerInfo",
+    value: function playerInfo(e) {
+      this.setState({ player: e });
+      $(".player-modal").css("display", "block");
+      $("body").css("overflow-y", "hidden");
+    }
+  }, {
     key: "imageHover",
     value: function imageHover(e) {
       var headshot = void 0;
@@ -36948,7 +36967,7 @@ var DView = function (_React$Component) {
 
       var node = _reactFauxDom2.default.createElement("svg");
 
-      var svg = d3.select(node).attr("width", "100%").attr("height", 1000).append("g").attr("transform", "translate(" + (width / 2 + 100) + "," + (height / 2 + 100) + ")");
+      var svg = d3.select(node).attr("width", "1300").attr("height", 1000).attr("class", "svg-circles").append("g").attr("transform", "translate(" + (width / 2 + 100) + "," + (height / 2 + 100) + ")");
 
       data.forEach(function (d) {
         d.ppg = +d.ppg;
@@ -36974,10 +36993,10 @@ var DView = function (_React$Component) {
       }).on("mouseover", this.imageHover).on("mouseout", this.removeImage);
 
       a.append("text").attr("dy", ".8em").attr("x", 25).attr("fill", "white").attr("class", function (d) {
-        return d.personId + " normal";
+        return d.personId + " normal ";
       }).text(function (d) {
         return d.name;
-      }).on("mouseover", this.imageHover).on("mouseout", this.removeImage);
+      }).on("mouseover", this.imageHover).on("mouseout", this.removeImage).on("click", this.playerInfo);
 
       var g = svg.selectAll(".arc").data(pie(data)).enter().append("g").attr("class", "arc");
 
@@ -37059,6 +37078,11 @@ var DView = function (_React$Component) {
           "div",
           { className: "d3" },
           node.toReact()
+        ),
+        _react2.default.createElement(
+          "div",
+          { className: "player-modal", onClick: this.toggelModal },
+          _react2.default.createElement(_player_page2.default, { player: this.state.player })
         )
       );
     }
@@ -54108,7 +54132,209 @@ function nopropagation() {
 
 
 /***/ }),
-/* 636 */,
+/* 636 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactFauxDom = __webpack_require__(161);
+
+var _reactFauxDom2 = _interopRequireDefault(_reactFauxDom);
+
+var _d = __webpack_require__(164);
+
+var d3 = _interopRequireWildcard(_d);
+
+var _image_show = __webpack_require__(247);
+
+var _image_show2 = _interopRequireDefault(_image_show);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var PlayerPage = function (_React$Component) {
+  _inherits(PlayerPage, _React$Component);
+
+  function PlayerPage(props) {
+    _classCallCheck(this, PlayerPage);
+
+    return _possibleConstructorReturn(this, (PlayerPage.__proto__ || Object.getPrototypeOf(PlayerPage)).call(this, props));
+  }
+
+  _createClass(PlayerPage, [{
+    key: "render",
+    value: function render() {
+      if (!this.props.player) {
+        return null;
+      }
+      var stats = this.props.player;
+      var data = [{
+        number: stats.ppg <= 0 ? 0 : stats.ppg / stats.mpg * 48,
+        word: "POINTS"
+      }, {
+        number: stats.apg <= 0 ? 0 : stats.apg / stats.mpg * 48,
+        word: "ASSISTS"
+      }, {
+        number: stats.bpg <= 0 ? 0 : stats.bpg / stats.mpg * 48,
+        word: "BLOCKS"
+      }, {
+        number: stats.spg <= 0 ? 0 : stats.spg / stats.mpg * 48,
+        word: "STEALS"
+      }, {
+        number: stats.rpg <= 0 ? 0 : stats.rpg / stats.mpg * 48,
+        word: "REBOUNDS"
+      }];
+
+      var margin = { top: 20, right: 10, bottom: 100, left: 40 };
+      var width = 700 - margin.right - margin.left;
+      var height = 600 - margin.top - margin.bottom;
+      var color = d3.scaleOrdinal(d3.schemeCategory20);
+
+      var node = _reactFauxDom2.default.createElement("svg");
+
+      data.forEach(function (d) {
+        d.number = +d.number;
+        d.word = d.word;
+      });
+
+      var svg = d3.select(node).attr("width", width + margin.right + margin.left).attr("height", height + margin.top + margin.bottom).attr("class", "svg-player");
+      var g = svg.append("g").attr("transform", "translate(" + 50 + "," + 10 + ")");
+
+      //
+      var x = d3.scaleBand().rangeRound([0, width]).padding(0.1).domain(data.map(function (d) {
+        return d.word;
+      }));
+
+      var y = d3.scaleLinear().rangeRound([0, height]).domain([0, d3.max(data, function (d) {
+        return d.number;
+      })]);
+
+      var y2 = d3.scaleLinear().rangeRound([0, height]).domain([d3.max(data, function (d) {
+        return d.number;
+      }), 0]);
+
+      g.selectAll("rect").data(data).enter().append("rect").attr("class", "bar").attr("x", function (d) {
+        return x(d.word);
+      }).attr("y", function (d) {
+        return 500 - y(d.number);
+      }).attr("width", x.bandwidth()).attr("height", function (d) {
+        return y(d.number);
+      }).attr("fill", function (d) {
+        return color(d.word);
+      });
+
+      svg.selectAll("text").data(data).enter().append("text").text(function (d) {
+        return d.number.toFixed(2);
+      }).attr("y", function (d) {
+        return 500 - y(d.number) + 5;
+      }).attr("x", function (d) {
+        return x(d.word) + 87;
+      });
+
+      g.append("g").attr("class", "x-axis").attr("transform", "translate(0," + (height + margin.top) + ")").call(d3.axisBottom(x));
+
+      g.append("g").attr("class", "y-axis").attr("transform", "translate(0," + margin.top + ")").call(d3.axisLeft(y2));
+
+      return _react2.default.createElement(
+        "div",
+        { className: "player-modal-container" },
+        _react2.default.createElement(
+          "div",
+          { className: "close-button" },
+          _react2.default.createElement(
+            "div",
+            { className: "close-text" },
+            "Close X"
+          )
+        ),
+        _react2.default.createElement(
+          "div",
+          { className: "player-graph" },
+          _react2.default.createElement(
+            "div",
+            { className: "playerName" },
+            this.props.player.name
+          ),
+          _react2.default.createElement(
+            "div",
+            { className: "svg-title" },
+            "Stats Per Minute X 48"
+          ),
+          _react2.default.createElement(
+            "div",
+            { className: "profile-container" },
+            _react2.default.createElement(
+              "div",
+              { className: "all-player-info-container" },
+              _react2.default.createElement(
+                "ul",
+                { className: "player-bio" },
+                _react2.default.createElement(
+                  "li",
+                  null,
+                  _react2.default.createElement("img", {
+                    clasName: "profile",
+                    src: "https://nba-players.herokuapp.com/players/" + this.props.player.lastName.toLowerCase() + "/" + this.props.player.firstName.toLowerCase()
+                  })
+                ),
+                _react2.default.createElement(
+                  "li",
+                  null,
+                  "College Name: ",
+                  this.props.player.collegeName
+                ),
+                _react2.default.createElement(
+                  "li",
+                  null,
+                  "Height:",
+                  " ",
+                  this.props.player.heightFeet + "'" + this.props.player.heightInches + '"'
+                ),
+                _react2.default.createElement(
+                  "li",
+                  null,
+                  "Weight: ",
+                  this.props.player.weightPounds
+                ),
+                _react2.default.createElement(
+                  "li",
+                  null,
+                  "Years Pro: ",
+                  this.props.player.yearsPro
+                )
+              ),
+              node.toReact()
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  return PlayerPage;
+}(_react2.default.Component);
+
+exports.default = PlayerPage;
+
+/***/ }),
 /* 637 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -54226,7 +54452,21 @@ var ProjectInformation = function ProjectInformation() {
         _react2.default.createElement(
           "p",
           { className: "data-info" },
-          "Using the charts, one can see the impact each player has per minute they play. Therefore the chart can be used as a tool to help decide whom should be getting more or less playing time based off of their minute by minute performance."
+          "Using the charts, one can see the impact each player has per minute they play. The chart can be used as a tool to help decide whom should be getting more or less playing time based off of their minute by minute performance."
+        )
+      ),
+      _react2.default.createElement(
+        "li",
+        null,
+        _react2.default.createElement(
+          "div",
+          { className: "interpretation" },
+          "The Fun:"
+        ),
+        _react2.default.createElement(
+          "p",
+          { className: "data-info" },
+          "Select different teams to find their superstars! Click on the player's names to see their individualized minute stats mulitipled by 48."
         )
       )
     )

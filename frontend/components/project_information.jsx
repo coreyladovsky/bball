@@ -23,11 +23,19 @@ const ProjectInformation = () => {
         <div className="interpretation">The Interpretation:</div>
         <p className="data-info">
           Using the charts, one can see the impact each player has per minute
-          they play. Therefore the chart can be used as a tool to help decide
+          they play. The chart can be used as a tool to help decide
           whom should be getting more or less playing time based off of their
           minute by minute performance.
         </p>
         </li>
+        <li>
+          <div className="interpretation">The Fun:</div>
+          <p className="data-info">
+            Select different teams to find their superstars!
+            Click on the player's names to see their individualized minute stats mulitipled by 48.
+          </p>
+        </li>
+
       </div>
     </div>
   );
