@@ -54233,6 +54233,8 @@ var PlayerPage = function (_React$Component) {
       var svg = d3.select(node).attr("width", width + margin.right + margin.left).attr("height", height + margin.top + margin.bottom).attr("class", "svg-player");
       var g = svg.append("g").attr("transform", "translate(" + 50 + "," + 10 + ")");
 
+      var h = svg.append("g").attr("transform", "translate(" + 50 + "," + 10 + ")");
+
       //
       var x = d3.scaleBand().rangeRound([0, width]).padding(0.1).domain(data.map(function (d) {
         return d.word;
@@ -54245,6 +54247,14 @@ var PlayerPage = function (_React$Component) {
       var y2 = d3.scaleLinear().rangeRound([0, height]).domain([d3.max(data, function (d) {
         return d.number;
       }), 0]);
+
+      h.selectAll("rect").data(data).enter().append("rect").attr("class", "whitebar").attr("x", function (d) {
+        return x(d.word);
+      }).attr("y", function (d) {
+        return 425 - y(d.number);
+      }).attr("width", x.bandwidth()).attr("height", function (d) {
+        return y(d.number);
+      }).attr("fill", "white");
 
       g.selectAll("rect").data(data).enter().append("rect").attr("class", "bar").attr("x", function (d) {
         return x(d.word);

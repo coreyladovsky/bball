@@ -52,14 +52,6 @@ text:hover {
   height: 1000px;
 }
 
-.teamName {
-  background: black;
-  color: white;
-  font-weight: 400;
-  margin: 0;
-  text-align: center;
-}
-
 
 .welcome-line {
   font-family: 'Open Sans Condensed', sans-serif;
@@ -142,7 +134,7 @@ html {
   text-align: center;
   font-family: 'Open Sans Condensed', sans-serif;
   font-size: 60px;
-  margin-right: 345px
+  margin-right: 480px
 }
 
 .drop-container {
@@ -258,6 +250,19 @@ html {
   text-decoration: underline;
 }
 
+@keyframes shrink {
+    0% { height: 100%; }
+    30% { height: 70%; }
+    60% { height: 40%; }
+    100% { height: 0%; }
+
+}
+.whitebar {
+  animation: 1s linear 0s 1 normal forwards  shrink;
+
+
+}
+
 .player-modal {
   position: fixed;
   top: 0;
@@ -352,7 +357,11 @@ html {
   padding: 10px;
 }
 
-
+@media only screen and (min-width: 1500px) {
+  .svg-circles {
+    transform: scale(1.2);
+  }
+}
 
 
 //

@@ -8,6 +8,8 @@ class PlayerPage extends React.Component {
     super(props);
   }
 
+
+
   render() {
     if (!this.props.player) {
       return null;
@@ -57,6 +59,10 @@ class PlayerPage extends React.Component {
       .append("g")
       .attr("transform", "translate(" + 50 + "," + 10 + ")");
 
+    var h = svg
+      .append("g")
+      .attr("transform", "translate(" + 50 + "," + 10 + ")");
+
     //
     var x = d3
       .scaleBand()
@@ -88,12 +94,13 @@ class PlayerPage extends React.Component {
         0
       ]);
 
-    g
+
+    h
       .selectAll("rect")
       .data(data)
       .enter()
       .append("rect")
-      .attr("class", "bar")
+      .attr("class", "whitebar")
       .attr("x", function(d) {
         return x(d.word);
       })
@@ -104,9 +111,28 @@ class PlayerPage extends React.Component {
       .attr("height", function(d) {
         return y(d.number);
       })
-      .attr("fill", function(d) {
-        return color(d.word);
-      });
+      .attr("fill", "white");
+
+
+          g
+            .selectAll("rect")
+            .data(data)
+            .enter()
+            .append("rect")
+            .attr("class", "bar")
+            .attr("x", function(d) {
+              return x(d.word);
+            })
+            .attr("y", function(d) {
+              return 425 - y(d.number);
+            })
+            .attr("width", x.bandwidth())
+            .attr("height", function(d) {
+              return y(d.number);
+            })
+            .attr("fill", function(d) {
+              return color(d.word);
+            });
 
     svg
       .selectAll("text")
