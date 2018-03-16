@@ -29,6 +29,7 @@ text:hover {
   margin: auto;
   display: flex;
   justify-content: center;
+  z-index: -1;
 }
 
 .headshot-container-empty {
@@ -40,7 +41,6 @@ text:hover {
   width: 120px;
   top: 250px;
   margin-top: 150px;
-  border: 1px solid red;
 }
 
 .headshot {
@@ -85,6 +85,7 @@ text:hover {
   list-style: none;
   padding-top: 20px;
   padding-left: 20px;
+  border-radius: 5px;
 }
 
 .understanding {
@@ -243,7 +244,7 @@ html {
 .close-button {
   width: 1200px;
   margin: auto;
-  margin-top: 26px;
+  margin-top: 15px;
   display: flex;
   flex-direction: row-reverse;
   cursor: pointer;
@@ -263,7 +264,7 @@ html {
   bottom: 0;
   left: 0;
   right: 0;
-  background-image: url("../../images/transpOrange50.png");
+  background-image: url("../../images/transpBlack90.png");
   overflow: hidden;
   display: none;
 }
@@ -350,5 +351,8 @@ html {
   border-radius: 5px;
   padding: 10px;
 }
+
+
+
 
 //

@@ -38,7 +38,7 @@ class PlayerPage extends React.Component {
 
     const margin = { top: 20, right: 10, bottom: 100, left: 40 };
     const width = 700 - margin.right - margin.left;
-    const height = 600 - margin.top - margin.bottom;
+    const height = 525 - margin.top - margin.bottom;
     const color = d3.scaleOrdinal(d3.schemeCategory20);
 
     const node = ReactFauxDOM.createElement("svg");
@@ -98,7 +98,7 @@ class PlayerPage extends React.Component {
         return x(d.word);
       })
       .attr("y", function(d) {
-        return 500 - y(d.number);
+        return 425 - y(d.number);
       })
       .attr("width", x.bandwidth())
       .attr("height", function(d) {
@@ -117,7 +117,7 @@ class PlayerPage extends React.Component {
         return d.number.toFixed(2);
       })
       .attr("y", function(d) {
-        return 500 - y(d.number) + 5;
+        return 425 - y(d.number) + 5;
       })
       .attr("x", function(d) {
         return x(d.word) + 87;

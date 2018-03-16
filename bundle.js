@@ -54225,7 +54225,7 @@ var PlayerPage = function (_React$Component) {
 
       var margin = { top: 20, right: 10, bottom: 100, left: 40 };
       var width = 700 - margin.right - margin.left;
-      var height = 600 - margin.top - margin.bottom;
+      var height = 525 - margin.top - margin.bottom;
       var color = d3.scaleOrdinal(d3.schemeCategory20);
 
       var node = _reactFauxDom2.default.createElement("svg");
@@ -54254,7 +54254,7 @@ var PlayerPage = function (_React$Component) {
       g.selectAll("rect").data(data).enter().append("rect").attr("class", "bar").attr("x", function (d) {
         return x(d.word);
       }).attr("y", function (d) {
-        return 500 - y(d.number);
+        return 425 - y(d.number);
       }).attr("width", x.bandwidth()).attr("height", function (d) {
         return y(d.number);
       }).attr("fill", function (d) {
@@ -54264,7 +54264,7 @@ var PlayerPage = function (_React$Component) {
       svg.selectAll("text").data(data).enter().append("text").text(function (d) {
         return d.number.toFixed(2);
       }).attr("y", function (d) {
-        return 500 - y(d.number) + 5;
+        return 425 - y(d.number) + 5;
       }).attr("x", function (d) {
         return x(d.word) + 87;
       });
@@ -54458,7 +54458,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var ProjectInformation = function ProjectInformation() {
   return _react2.default.createElement(
     "div",
-    null,
+    { className: "project-info" },
     _react2.default.createElement(
       "div",
       { className: "overview" },
