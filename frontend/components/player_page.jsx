@@ -108,6 +108,18 @@ class PlayerPage extends React.Component {
         return color(d.word);
       });
 
+    svg.selectAll("text")
+      .data(data)
+      .enter()
+      .append("text")
+      .text(function(d) { return d.number.toFixed(2); })
+      .attr("y", function(d) {
+        return 500 - y(d.number) + 10;
+      })
+      .attr("x", function(d) {
+        return x(d.word);
+      })
+
     g
       .append("g")
       .attr("class", "x-axis")

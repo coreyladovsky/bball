@@ -335,6 +335,14 @@ html {
   margin-right: 35px;
 }
 
+.x-axis {
+  font-size: 13px;
+}
+
+.y-axis {
+  font-size: 13px;
+}
+
 .player-modal-container {
   width: 1200;
   margin: auto;
