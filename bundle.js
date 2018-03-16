@@ -54244,9 +54244,9 @@ var PlayerPage = function (_React$Component) {
       svg.selectAll("text").data(data).enter().append("text").text(function (d) {
         return d.number.toFixed(2);
       }).attr("y", function (d) {
-        return 500 - y(d.number) + 10;
+        return 500 - y(d.number) + 5;
       }).attr("x", function (d) {
-        return x(d.word);
+        return x(d.word) + 87;
       });
 
       g.append("g").attr("class", "x-axis").attr("transform", "translate(0," + (height + margin.top) + ")").call(d3.axisBottom(x));

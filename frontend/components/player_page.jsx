@@ -114,10 +114,10 @@ class PlayerPage extends React.Component {
       .append("text")
       .text(function(d) { return d.number.toFixed(2); })
       .attr("y", function(d) {
-        return 500 - y(d.number) + 10;
+        return 500 - y(d.number) + 5;
       })
       .attr("x", function(d) {
-        return x(d.word);
+        return x(d.word) + 87;
       })
 
     g
