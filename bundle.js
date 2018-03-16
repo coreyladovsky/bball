@@ -54275,6 +54275,11 @@ var PlayerPage = function (_React$Component) {
           ),
           _react2.default.createElement(
             "div",
+            { className: "svg-title" },
+            "Stats Per Minute X 48"
+          ),
+          _react2.default.createElement(
+            "div",
             { className: "profile-container" },
             _react2.default.createElement(
               "div",
@@ -54447,7 +54452,21 @@ var ProjectInformation = function ProjectInformation() {
         _react2.default.createElement(
           "p",
           { className: "data-info" },
-          "Using the charts, one can see the impact each player has per minute they play. Therefore the chart can be used as a tool to help decide whom should be getting more or less playing time based off of their minute by minute performance."
+          "Using the charts, one can see the impact each player has per minute they play. The chart can be used as a tool to help decide whom should be getting more or less playing time based off of their minute by minute performance."
+        )
+      ),
+      _react2.default.createElement(
+        "li",
+        null,
+        _react2.default.createElement(
+          "div",
+          { className: "interpretation" },
+          "The Fun:"
+        ),
+        _react2.default.createElement(
+          "p",
+          { className: "data-info" },
+          "Select different teams to find their superstars! Click on the player's names to see their individualized minute stats mulitipled by 48."
         )
       )
     )

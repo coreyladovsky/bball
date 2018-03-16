@@ -137,6 +137,7 @@ class PlayerPage extends React.Component {
         <div className="close-button"><div className="close-text">Close X</div></div>
         <div className="player-graph">
           <div className="playerName">{this.props.player.name}</div>
+          <div className="svg-title">Stats Per Minute X 48</div>
           <div className="profile-container">
             <div className="all-player-info-container">
               <ul className="player-bio">

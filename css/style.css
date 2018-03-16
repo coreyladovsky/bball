@@ -312,6 +312,17 @@ html {
   font-size: 45px;
 }
 
+.svg-title {
+    font-size: 20px;
+    font-family: sans-serif;
+    font-weight: bold;
+    text-align: right;
+    padding-right: 255px;
+    text-decoration: underline;
+    margin-top: 10px;
+}
+
+
 .profile {
   width: 300px;
 }
