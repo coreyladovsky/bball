@@ -2,13 +2,13 @@ import { connect } from "react-redux";
 import TeamSelect from "./team_select";
 import { fetchTeamRoster } from "../actions/team_actions";
 import { fetchPlayerStats } from "../actions/player_actions";
-import { withRouter } from 'react-router-dom';
+import { withRouter } from "react-router-dom";
 
 const mapStateToProps = (state, ownProps) => {
-  return ({
+  return {
     teams: Object.values(state.teams),
-    players: state.players,
-  });
+    players: state.players
+  };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
@@ -18,4 +18,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(TeamSelect));
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(TeamSelect)
+);

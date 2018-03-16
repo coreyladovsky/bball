@@ -24,7 +24,7 @@ class DView extends React.Component {
   }
 
   playerInfo(e) {
-    this.setState({player : e });
+    this.setState({ player: e });
     $(".player-modal").css("display", "block");
     $("body").css("overflow-y", "hidden");
   }
@@ -486,7 +486,9 @@ class DView extends React.Component {
         <ImageShow img={this.state.image} />
         <div className="d3">{node.toReact()}</div>
 
-          <div className="player-modal" onClick={this.toggelModal}><PlayerPage player={this.state.player} /></div>
+        <div className="player-modal" onClick={this.toggelModal}>
+          <PlayerPage player={this.state.player} />
+        </div>
       </div>
     );
   }

@@ -11,8 +11,12 @@ class App extends React.Component {
   }
 
   checkPage() {
-    if(this.props.location.pathname === "/") {
-      $(".app-pages").css({"display": "flex", "flex-direction": "row", "justify-content": "space-around"});
+    if (this.props.location.pathname === "/") {
+      $(".app-pages").css({
+        display: "flex",
+        "flex-direction": "row",
+        "justify-content": "space-around"
+      });
       $(".intro-container").css("display", "block");
       $(".drop-down").css("width", "500px");
       $(".footer-container").css("bottom", "0");
@@ -21,25 +25,23 @@ class App extends React.Component {
       $(".intro-container").css("display", "none");
       $(".drop-down").css("width", "inherit");
       $(".footer-container").css("bottom", "inherit");
-
-
     }
   }
 
   render() {
     this.checkPage();
     return (
-      <div >
+      <div>
         <div className="intro-container">
-        <h1 className="welcome-line"> NBA Stats By The Minute</h1>
-        <h3 className="name">By Corey Ladovsky</h3>
-      </div>
+          <h1 className="welcome-line"> NBA Stats By The Minute</h1>
+          <h3 className="name">By Corey Ladovsky</h3>
+        </div>
         <div className="app-pages">
-        <Route exact path="/" component={ProjectInformation} />
-        <Switch>
-          <Route path="/" component={TeamSelectContainer} />
-        </Switch>
-      </div>
+          <Route exact path="/" component={ProjectInformation} />
+          <Switch>
+            <Route path="/" component={TeamSelectContainer} />
+          </Switch>
+        </div>
       </div>
     );
   }

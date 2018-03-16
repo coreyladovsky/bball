@@ -2389,7 +2389,6 @@ var receiveTeam = exports.receiveTeam = function receiveTeam(team) {
 var fetchAllTeams = exports.fetchAllTeams = function fetchAllTeams() {
   return function (dispatch) {
     return APIUtil.fetchData("http://data.nba.net/data/10s/prod/v1/2017/teams.json").then(function (teams) {
-
       dispatch(receiveTeams(JSON.parse(teams)));
     });
   };
@@ -14273,7 +14272,7 @@ function transform(node) {
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _react = __webpack_require__(1);
@@ -14283,11 +14282,11 @@ var _react2 = _interopRequireDefault(_react);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var ImageShow = function ImageShow(props) {
-    return _react2.default.createElement(
-        "div",
-        { className: "headshot-container" },
-        _react2.default.createElement("img", { className: "headshot", src: props.img })
-    );
+  return _react2.default.createElement(
+    "div",
+    { className: "headshot-container" },
+    _react2.default.createElement("img", { className: "headshot", src: props.img })
+  );
 };
 
 exports.default = ImageShow;
@@ -14802,23 +14801,12 @@ var _store = __webpack_require__(639);
 
 var _store2 = _interopRequireDefault(_store);
 
-var _player_actions = __webpack_require__(47);
-
-var _team_actions = __webpack_require__(46);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 document.addEventListener("DOMContentLoaded", function () {
   var store = (0, _store2.default)();
   var root = document.getElementById("root");
   _reactDom2.default.render(_react2.default.createElement(_root2.default, { store: store }), root);
-
-  window.dispatch = store.dispatch;
-  window.getState = store.getState;
-  window.fetchAllTeams = _team_actions.fetchAllTeams;
-  window.fetchTeamRoster = _team_actions.fetchTeamRoster;
-  window.fetchPlayerStats = _player_actions.fetchPlayerStats;
-  window.fetchAllPlayers = _player_actions.fetchAllPlayers;
 });
 
 /***/ }),
@@ -36370,7 +36358,11 @@ var App = function (_React$Component) {
     key: "checkPage",
     value: function checkPage() {
       if (this.props.location.pathname === "/") {
-        $(".app-pages").css({ "display": "flex", "flex-direction": "row", "justify-content": "space-around" });
+        $(".app-pages").css({
+          display: "flex",
+          "flex-direction": "row",
+          "justify-content": "space-around"
+        });
         $(".intro-container").css("display", "block");
         $(".drop-down").css("width", "500px");
         $(".footer-container").css("bottom", "0");
@@ -36676,8 +36668,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-// import NoReact from "./noreact";
-
 var TeamShow = function (_React$Component) {
   _inherits(TeamShow, _React$Component);
 
@@ -36749,7 +36739,6 @@ var TeamShow = function (_React$Component) {
           }
         });
         if (ready) {
-          // <NoReact teamPlayers={this.props.teamPlayers} />
           return _react2.default.createElement(
             "div",
             null,
@@ -54361,7 +54350,11 @@ var Footer = function Footer() {
       " ",
       _react2.default.createElement(
         "a",
-        { className: "contact-info", href: "https://github.com/coreyladovsky", target: "_blank" },
+        {
+          className: "contact-info",
+          href: "https://github.com/coreyladovsky",
+          target: "_blank"
+        },
         _react2.default.createElement("i", { className: "fab fa-github" })
       ),
       " "
@@ -54371,7 +54364,11 @@ var Footer = function Footer() {
       null,
       _react2.default.createElement(
         "a",
-        { className: "contact-info", href: "https://www.linkedin.com/in/corey-ladovsky/", target: "_blank" },
+        {
+          className: "contact-info",
+          href: "https://www.linkedin.com/in/corey-ladovsky/",
+          target: "_blank"
+        },
         _react2.default.createElement("i", { className: "fab fa-linkedin", "aria-hidden": "true" })
       )
     ),
@@ -54381,7 +54378,11 @@ var Footer = function Footer() {
       " ",
       _react2.default.createElement(
         "a",
-        { className: "contact-info", href: "https://angel.co/corey-ladovsky", target: "_blank" },
+        {
+          className: "contact-info",
+          href: "https://angel.co/corey-ladovsky",
+          target: "_blank"
+        },
         " ",
         _react2.default.createElement("i", { className: "fab fa-angellist" })
       )
@@ -54392,8 +54393,13 @@ var Footer = function Footer() {
       " ",
       _react2.default.createElement(
         "a",
-        { className: "contact-info", href: "https://coreyladovsky.com", target: "_blank" },
-        " Corey Ladovsky"
+        {
+          className: "contact-info",
+          href: "https://coreyladovsky.com",
+          target: "_blank"
+        },
+        " ",
+        "Corey Ladovsky"
       )
     )
   );

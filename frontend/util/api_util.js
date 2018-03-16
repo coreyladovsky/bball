@@ -1,6 +1,5 @@
-export const fetchData = url => (
+export const fetchData = url =>
   $.ajax({
     method: "GET",
     url: `/${url}`
-  })
-);
+  });

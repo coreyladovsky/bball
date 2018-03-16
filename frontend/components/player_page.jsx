@@ -108,17 +108,20 @@ class PlayerPage extends React.Component {
         return color(d.word);
       });
 
-    svg.selectAll("text")
+    svg
+      .selectAll("text")
       .data(data)
       .enter()
       .append("text")
-      .text(function(d) { return d.number.toFixed(2); })
+      .text(function(d) {
+        return d.number.toFixed(2);
+      })
       .attr("y", function(d) {
         return 500 - y(d.number) + 5;
       })
       .attr("x", function(d) {
         return x(d.word) + 87;
-      })
+      });
 
     g
       .append("g")
@@ -134,7 +137,9 @@ class PlayerPage extends React.Component {
 
     return (
       <div className="player-modal-container">
-        <div className="close-button"><div className="close-text">Close X</div></div>
+        <div className="close-button">
+          <div className="close-text">Close X</div>
+        </div>
         <div className="player-graph">
           <div className="playerName">{this.props.player.name}</div>
           <div className="svg-title">Stats Per Minute X 48</div>

@@ -8,21 +8,20 @@ export const receivePlayers = players => ({
   players
 });
 
-
 export const receivePlayer = (player, playerID) => {
-  return({
-  type: RECEIVE_PLAYER,
-  player,
-  playerID
-});};
+  return {
+    type: RECEIVE_PLAYER,
+    player,
+    playerID
+  };
+};
 
+export const fetchAllPlayers = () => dispatch =>
+  APIUtil.fetchData(
+    "http://data.nba.net/data/10s/prod/v1/2017/players.json"
+  ).then(players => dispatch(receivePlayers(JSON.parse(players))));
 
-export const fetchAllPlayers  = () => dispatch =>
-  APIUtil.fetchData("http://data.nba.net/data/10s/prod/v1/2017/players.json").then(
-    players => dispatch(receivePlayers(JSON.parse(players)))
-  );
-
-  export const fetchPlayerStats = (playerID) => dispatch =>
-  APIUtil.fetchData(`http://data.nba.net/data/10s/prod/v1/2017/players/${playerID}_profile.json`).then(
-    player => dispatch(receivePlayer(JSON.parse(player), playerID))
-  );
+export const fetchPlayerStats = playerID => dispatch =>
+  APIUtil.fetchData(
+    `http://data.nba.net/data/10s/prod/v1/2017/players/${playerID}_profile.json`
+  ).then(player => dispatch(receivePlayer(JSON.parse(player), playerID)));

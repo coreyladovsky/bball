@@ -80,12 +80,6 @@ text:hover {
 }
 
 
-
-/* svg {
-  width: 100%;
-  background: black;
-} */
-
 .welcome-line {
   font-family: 'Open Sans Condensed', sans-serif;
   font-size: 60px;
@@ -113,14 +107,12 @@ text:hover {
 }
 
 .understanding {
-  /* border: 1px solid blue; */
   font-size: 20px;
   font-family: sans-serif;
   font-weight: 600;
 }
 
 .data-info {
-    /* border: 1px solid yellow; */
     padding-left: 30px;
     padding-right: 30px;
     font-family: sans-serif;
@@ -129,7 +121,6 @@ text:hover {
 }
 
 .interpretation {
-  /* border: 1px solid green; */
   font-size: 20px;
   font-family: sans-serif;
   font-weight: 600;
@@ -139,9 +130,6 @@ text:hover {
   display: flex;
 }
 
-.drop-down {
- /* border: 1px solid red; */
-}
 
 .please-select {
   font-family: 'Open Sans Condensed', sans-serif;
@@ -221,6 +209,8 @@ html {
   display: flex;
   right: 0;
   position: absolute;
+  margin-bottom: 20px;
+  margin-right: 15px;
 }
 
 .footer-container div {
@@ -342,7 +332,6 @@ html {
 
 
 .svg-player {
-  /* border: 1px solid red; */
   margin-right: 35px;
 }
 
