@@ -26,7 +26,7 @@ class DView extends React.Component {
 
     } else {
       this.setState({ player: e });
-      
+
     }
     $(".player-modal").css("display", "block");
     $("body").css("overflow-y", "hidden");
@@ -71,8 +71,8 @@ class DView extends React.Component {
     const margin = { top: 0, right: 0, bottom: 0, left: 0 };
     var data = this.props.teamPlayers;
 
-    const width = 700 - margin.right - margin.left;
-    const height = 700 - margin.top - margin.bottom;
+    const width = 500 - margin.right - margin.left;
+    const height = 500 - margin.top - margin.bottom;
     const radius = width / 2;
 
     const color = d3.scaleOrdinal(d3.schemeCategory20);
@@ -87,66 +87,66 @@ class DView extends React.Component {
     const arcMinus = d3
       .arc()
       .outerRadius(radius + 60)
-      .innerRadius(radius + 20);
+      .innerRadius(radius + 35);
 
     const arcText = d3
       .arc()
-      .outerRadius(radius)
-      .innerRadius(radius - 40)
+      .outerRadius(radius + 15)
+      .innerRadius(radius - 0)
       .startAngle(0)
       .endAngle(360);
 
     const arc = d3
       .arc()
-      .outerRadius(radius - 10)
-      .innerRadius(radius - 50);
+      .outerRadius(radius + 5)
+      .innerRadius(radius - 20);
 
     const arc2Text = d3
       .arc()
-      .outerRadius(radius - 70)
-      .innerRadius(radius - 110)
+      .outerRadius(radius - 40)
+      .innerRadius(radius - 55)
       .startAngle(0)
       .endAngle(360);
 
     const arc2 = d3
       .arc()
-      .outerRadius(radius - 80)
-      .innerRadius(radius - 120);
+      .outerRadius(radius - 50)
+      .innerRadius(radius - 75);
 
     const arc3Text = d3
       .arc()
-      .outerRadius(radius - 140)
-      .innerRadius(radius - 180)
+      .outerRadius(radius - 95)
+      .innerRadius(radius - 110)
       .startAngle(0)
       .endAngle(360);
 
     const arc3 = d3
       .arc()
-      .outerRadius(radius - 150)
-      .innerRadius(radius - 190);
+      .outerRadius(radius - 105)
+      .innerRadius(radius - 130);
 
     const arc4Text = d3
       .arc()
-      .outerRadius(radius - 210)
-      .innerRadius(radius - 250)
+      .outerRadius(radius - 150)
+      .innerRadius(radius - 165)
       .startAngle(0)
       .endAngle(360);
 
     const arc4 = d3
       .arc()
-      .outerRadius(radius - 220)
-      .innerRadius(radius - 260);
+      .outerRadius(radius - 160)
+      .innerRadius(radius - 185);
 
     const arc5Text = d3
       .arc()
-      .outerRadius(radius - 280)
-      .innerRadius(radius - 320)
+      .outerRadius(radius - 205)
+      .innerRadius(radius - 220)
       .startAngle(0)
       .endAngle(360);
 
     const arc5 = d3
       .arc()
-      .outerRadius(radius - 290)
+      .outerRadius(radius - 210)
       .innerRadius(0);
 
     const pieMinus = d3
@@ -295,7 +295,7 @@ class DView extends React.Component {
       .on("mouseover", this.imageHover)
       .on("mouseout", this.removeImage)
       .on("click", this.playerInfo);
-;
+
 
     var h = svg
       .selectAll(".arc2")
@@ -317,7 +317,7 @@ class DView extends React.Component {
       .on("mouseover", this.imageHover)
       .on("mouseout", this.removeImage)
       .on("click", this.playerInfo);
-;
+
 
     var j = svg
       .selectAll(".arc3")
@@ -360,7 +360,7 @@ class DView extends React.Component {
       .on("mouseover", this.imageHover)
       .on("mouseout", this.removeImage)
       .on("click", this.playerInfo);
-;
+
 
     var l = svg
       .selectAll(".arc5")
@@ -382,7 +382,7 @@ class DView extends React.Component {
       .on("mouseover", this.imageHover)
       .on("mouseout", this.removeImage)
       .on("click", this.playerInfo);
-;
+
 
     var m = svg
       .selectAll(".arcMinus")
@@ -404,7 +404,7 @@ class DView extends React.Component {
       .on("mouseover", this.imageHover)
       .on("mouseout", this.removeImage)
       .on("click", this.playerInfo);
-;
+
 
     svg
       .append("path")
@@ -420,7 +420,7 @@ class DView extends React.Component {
       .attr("fill", "white")
       .attr("xlink:href", "#path")
       .text(
-        "MINUTES --------------------------------------- MINUTES--------------------------------------- MINUTES  --------------------------------------- MINUTES  --------------------------------------- MINUTES   -------------------------------------- MINUTES   ---------------------------------------MINUTES   --------------------------------------MINUTES      --------------------------------------MINUTES  -----------------------------------MINUTES -------------------------------------- "
+        "MINUTES -------------------------------------------- MINUTES--------------------------------------------- MINUTES  ------------------------------------ MINUTES  ---------------------------------------------- MINUTES   -------------------------------------------  MINUTES   --------------------------------------------  MINUTES   -----------------------------------------------  "
       );
 
     svg
@@ -435,7 +435,7 @@ class DView extends React.Component {
       .attr("fill", "white")
       .attr("xlink:href", "#reboundPath")
       .text(
-        "REBOUNDS --------------------------------------- REBOUNDS--------------------------------------- REBOUNDS  -------------------------------------- REBOUNDS  -------------------------------------- REBOUNDS   -------------------------------------- REBOUNDS   ---------------------------"
+        "REBOUNDS -------------------------------------------- REBOUNDS------------------------------------------ REBOUNDS  ------------------------------------------- REBOUNDS  ------------------------------------------ "
       );
 
     svg
@@ -450,7 +450,7 @@ class DView extends React.Component {
       .attr("fill", "white")
       .attr("xlink:href", "#pointsPath")
       .text(
-        "POINTS ------------------------------------- POINTS-------------------------------------- POINTS  ---------------------------------------- POINTS  --------------------------------------- POINTS   -------------------------------------- POINTS   ------------------------------- POINTS   ------------------------------- POINTS   ---------------------------------------------------------"
+        "POINTS ------------------------------------- POINTS-------------------------------------- POINTS  ---------------------------------------- POINTS  --------------------------------------- POINTS   -------------------------------------- POINTS   -------------------------------------------"
       );
 
     svg
@@ -465,7 +465,7 @@ class DView extends React.Component {
       .attr("fill", "white")
       .attr("xlink:href", "#assistPath")
       .text(
-        "ASSISTS ------------------------------------- ASSISTS------------------------------------- ASSISTS  ------------------------------------ ASSISTS  ------------------------------------- ASSISTS  ------------------------------ "
+        "ASSISTS ----------------------------------------------- ASSISTS----------------------------------------------- ASSISTS  -------------------------------------------- "
       );
 
     svg
@@ -480,7 +480,7 @@ class DView extends React.Component {
       .attr("fill", "white")
       .attr("xlink:href", "#stealPath")
       .text(
-        "STEALS --------------------------------------------- STEALS--------------------------------------------- STEALS  ------------------------------------ "
+        "STEALS --------------------------------------------- STEALS---------------------------------------------  "
       );
 
     svg
@@ -495,7 +495,7 @@ class DView extends React.Component {
       .attr("fill", "white")
       .attr("xlink:href", "#blockPath")
       .text(
-        "BLOCKS ---------------------------- BLOCKS --------------------------- "
+        "BLOCKS ----------- BLOCKS ------------- "
       );
 
     return (

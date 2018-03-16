@@ -36901,35 +36901,35 @@ var DView = function (_React$Component) {
       var margin = { top: 0, right: 0, bottom: 0, left: 0 };
       var data = this.props.teamPlayers;
 
-      var width = 700 - margin.right - margin.left;
-      var height = 700 - margin.top - margin.bottom;
+      var width = 500 - margin.right - margin.left;
+      var height = 500 - margin.top - margin.bottom;
       var radius = width / 2;
 
       var color = d3.scaleOrdinal(d3.schemeCategory20);
 
       var arcMinusText = d3.arc().outerRadius(radius + 100).innerRadius(radius + 80).startAngle(0).endAngle(360);
 
-      var arcMinus = d3.arc().outerRadius(radius + 60).innerRadius(radius + 20);
+      var arcMinus = d3.arc().outerRadius(radius + 60).innerRadius(radius + 35);
 
-      var arcText = d3.arc().outerRadius(radius).innerRadius(radius - 40).startAngle(0).endAngle(360);
+      var arcText = d3.arc().outerRadius(radius + 15).innerRadius(radius - 0).startAngle(0).endAngle(360);
 
-      var arc = d3.arc().outerRadius(radius - 10).innerRadius(radius - 50);
+      var arc = d3.arc().outerRadius(radius + 5).innerRadius(radius - 20);
 
-      var arc2Text = d3.arc().outerRadius(radius - 70).innerRadius(radius - 110).startAngle(0).endAngle(360);
+      var arc2Text = d3.arc().outerRadius(radius - 40).innerRadius(radius - 55).startAngle(0).endAngle(360);
 
-      var arc2 = d3.arc().outerRadius(radius - 80).innerRadius(radius - 120);
+      var arc2 = d3.arc().outerRadius(radius - 50).innerRadius(radius - 75);
 
-      var arc3Text = d3.arc().outerRadius(radius - 140).innerRadius(radius - 180).startAngle(0).endAngle(360);
+      var arc3Text = d3.arc().outerRadius(radius - 95).innerRadius(radius - 110).startAngle(0).endAngle(360);
 
-      var arc3 = d3.arc().outerRadius(radius - 150).innerRadius(radius - 190);
+      var arc3 = d3.arc().outerRadius(radius - 105).innerRadius(radius - 130);
 
-      var arc4Text = d3.arc().outerRadius(radius - 210).innerRadius(radius - 250).startAngle(0).endAngle(360);
+      var arc4Text = d3.arc().outerRadius(radius - 150).innerRadius(radius - 165).startAngle(0).endAngle(360);
 
-      var arc4 = d3.arc().outerRadius(radius - 220).innerRadius(radius - 260);
+      var arc4 = d3.arc().outerRadius(radius - 160).innerRadius(radius - 185);
 
-      var arc5Text = d3.arc().outerRadius(radius - 280).innerRadius(radius - 320).startAngle(0).endAngle(360);
+      var arc5Text = d3.arc().outerRadius(radius - 205).innerRadius(radius - 220).startAngle(0).endAngle(360);
 
-      var arc5 = d3.arc().outerRadius(radius - 290).innerRadius(0);
+      var arc5 = d3.arc().outerRadius(radius - 210).innerRadius(0);
 
       var pieMinus = d3.pie().sort(null).value(function (d) {
         return d.mpg;
@@ -37019,7 +37019,6 @@ var DView = function (_React$Component) {
       }).style("fill", function (d) {
         return color(d.data.name);
       }).on("mouseover", this.imageHover).on("mouseout", this.removeImage).on("click", this.playerInfo);
-      ;
 
       var h = svg.selectAll(".arc2").data(pie2(data)).enter().append("g").attr("class", "arc2");
 
@@ -37028,7 +37027,6 @@ var DView = function (_React$Component) {
       }).style("fill", function (d) {
         return color(d.data.name);
       }).on("mouseover", this.imageHover).on("mouseout", this.removeImage).on("click", this.playerInfo);
-      ;
 
       var j = svg.selectAll(".arc3").data(pie3(data)).enter().append("g").attr("class", "arc3");
 
@@ -37046,7 +37044,6 @@ var DView = function (_React$Component) {
       }).style("fill", function (d) {
         return color(d.data.name);
       }).on("mouseover", this.imageHover).on("mouseout", this.removeImage).on("click", this.playerInfo);
-      ;
 
       var l = svg.selectAll(".arc5").data(pie5(data)).enter().append("g").attr("class", "arc5");
 
@@ -37055,7 +37052,6 @@ var DView = function (_React$Component) {
       }).style("fill", function (d) {
         return color(d.data.name);
       }).on("mouseover", this.imageHover).on("mouseout", this.removeImage).on("click", this.playerInfo);
-      ;
 
       var m = svg.selectAll(".arcMinus").data(pieMinus(data)).enter().append("g").attr("class", "arcMinus");
 
@@ -37064,31 +37060,30 @@ var DView = function (_React$Component) {
       }).style("fill", function (d) {
         return color(d.data.name);
       }).on("mouseover", this.imageHover).on("mouseout", this.removeImage).on("click", this.playerInfo);
-      ;
 
       svg.append("path").attr("id", "path").attr("d", arcMinusText);
 
-      svg.append("text").attr("x", 8).attr("dy", 28).append("textPath").attr("class", "textpath").attr("fill", "white").attr("xlink:href", "#path").text("MINUTES --------------------------------------- MINUTES--------------------------------------- MINUTES  --------------------------------------- MINUTES  --------------------------------------- MINUTES   -------------------------------------- MINUTES   ---------------------------------------MINUTES   --------------------------------------MINUTES      --------------------------------------MINUTES  -----------------------------------MINUTES -------------------------------------- ");
+      svg.append("text").attr("x", 8).attr("dy", 28).append("textPath").attr("class", "textpath").attr("fill", "white").attr("xlink:href", "#path").text("MINUTES -------------------------------------------- MINUTES--------------------------------------------- MINUTES  ------------------------------------ MINUTES  ---------------------------------------------- MINUTES   -------------------------------------------  MINUTES   --------------------------------------------  MINUTES   -----------------------------------------------  ");
 
       svg.append("path").attr("id", "reboundPath").attr("d", arc2Text);
 
-      svg.append("text").append("textPath").attr("class", "textpath").attr("fill", "white").attr("xlink:href", "#reboundPath").text("REBOUNDS --------------------------------------- REBOUNDS--------------------------------------- REBOUNDS  -------------------------------------- REBOUNDS  -------------------------------------- REBOUNDS   -------------------------------------- REBOUNDS   ---------------------------");
+      svg.append("text").append("textPath").attr("class", "textpath").attr("fill", "white").attr("xlink:href", "#reboundPath").text("REBOUNDS -------------------------------------------- REBOUNDS------------------------------------------ REBOUNDS  ------------------------------------------- REBOUNDS  ------------------------------------------ ");
 
       svg.append("path").attr("id", "pointsPath").attr("d", arcText);
 
-      svg.append("text").append("textPath").attr("class", "textpath").attr("fill", "white").attr("xlink:href", "#pointsPath").text("POINTS ------------------------------------- POINTS-------------------------------------- POINTS  ---------------------------------------- POINTS  --------------------------------------- POINTS   -------------------------------------- POINTS   ------------------------------- POINTS   ------------------------------- POINTS   ---------------------------------------------------------");
+      svg.append("text").append("textPath").attr("class", "textpath").attr("fill", "white").attr("xlink:href", "#pointsPath").text("POINTS ------------------------------------- POINTS-------------------------------------- POINTS  ---------------------------------------- POINTS  --------------------------------------- POINTS   -------------------------------------- POINTS   -------------------------------------------");
 
       svg.append("path").attr("id", "assistPath").attr("d", arc3Text);
 
-      svg.append("text").append("textPath").attr("class", "textpath").attr("fill", "white").attr("xlink:href", "#assistPath").text("ASSISTS ------------------------------------- ASSISTS------------------------------------- ASSISTS  ------------------------------------ ASSISTS  ------------------------------------- ASSISTS  ------------------------------ ");
+      svg.append("text").append("textPath").attr("class", "textpath").attr("fill", "white").attr("xlink:href", "#assistPath").text("ASSISTS ----------------------------------------------- ASSISTS----------------------------------------------- ASSISTS  -------------------------------------------- ");
 
       svg.append("path").attr("id", "stealPath").attr("d", arc4Text);
 
-      svg.append("text").append("textPath").attr("class", "textpath").attr("fill", "white").attr("xlink:href", "#stealPath").text("STEALS --------------------------------------------- STEALS--------------------------------------------- STEALS  ------------------------------------ ");
+      svg.append("text").append("textPath").attr("class", "textpath").attr("fill", "white").attr("xlink:href", "#stealPath").text("STEALS --------------------------------------------- STEALS---------------------------------------------  ");
 
       svg.append("path").attr("id", "blockPath").attr("d", arc5Text);
 
-      svg.append("text").append("textPath").attr("class", "textpath").attr("fill", "white").attr("xlink:href", "#blockPath").text("BLOCKS ---------------------------- BLOCKS --------------------------- ");
+      svg.append("text").append("textPath").attr("class", "textpath").attr("fill", "white").attr("xlink:href", "#blockPath").text("BLOCKS ----------- BLOCKS ------------- ");
 
       return _react2.default.createElement(
         "div",
