@@ -10,7 +10,7 @@ The team graph shows each player's minute impact compared to the rest of their t
 Click on a player to see a more individualized breakdown of that player's stats. These stats are again created by the "average stat per game" divided by "average minute per game". I have then multiplied the outcome by 48 as if that player were to play for the entire game.
 
 
-![App in Action](https://gfycat.com/GenerousCompetentGopher)
+![App in Action](https://thumbs.gfycat.com/SimplisticPaleCutworm-size_restricted.gif)
 
 
 ### The Technologies
