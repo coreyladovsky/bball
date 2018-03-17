@@ -200,11 +200,13 @@ html {
 /* FOOTER */
 
 .footer-container {
-  display: flex;
-  right: 0;
+  bottom: 0px;
   position: absolute;
-  margin-bottom: 20px;
-  margin-right: 15px;
+}
+
+.link-list {
+  display: flex;
+  flex-direction: row-reverse;
 }
 
 .footer-container div {

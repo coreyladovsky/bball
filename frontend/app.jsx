@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import TeamSelectContainer from "./components/team_select_container";
 import ProjectInformation from "./components/project_information";
+import Footer from "./components/footer";
 
 class App extends React.Component {
   componentDidMount() {
@@ -56,6 +57,7 @@ class App extends React.Component {
             <Route path="/" component={TeamSelectContainer} />
           </Switch>
         </div>
+        <Footer/>
       </div>
     );
   }

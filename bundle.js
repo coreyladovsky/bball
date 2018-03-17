@@ -9290,6 +9290,10 @@ var _project_information = __webpack_require__(637);
 
 var _project_information2 = _interopRequireDefault(_project_information);
 
+var _footer = __webpack_require__(636);
+
+var _footer2 = _interopRequireDefault(_footer);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -9386,7 +9390,8 @@ var App = function (_React$Component) {
             null,
             _react2.default.createElement(_reactRouterDom.Route, { path: "/", component: _team_select_container2.default })
           )
-        )
+        ),
+        _react2.default.createElement(_footer2.default, null)
       );
     }
   }]);
@@ -36463,10 +36468,6 @@ var _team_show_container = __webpack_require__(326);
 
 var _team_show_container2 = _interopRequireDefault(_team_show_container);
 
-var _footer = __webpack_require__(636);
-
-var _footer2 = _interopRequireDefault(_footer);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -36512,6 +36513,11 @@ var TeamSelect = function (_React$Component) {
       for (var i = 0; i < this.props.teams.length; i++) {
         if (this.props.teams[i].teamId === e.currentTarget.value) {
           this.props.history.push("/teams/" + this.props.teams[i].urlName + "/" + this.props.teams[i].teamId);
+
+          this.props.location.pathname = this.props.history.location.pathname;
+          this.setState({ currentTeamId: e.currentTarget.value });
+        } else if ("TEAMS" === e.currentTarget.value) {
+          this.props.history.push("/");
           this.props.location.pathname = this.props.history.location.pathname;
           this.setState({ currentTeamId: e.currentTarget.value });
         }
@@ -36555,8 +36561,7 @@ var TeamSelect = function (_React$Component) {
             path: "/teams/:urlName/:teamId",
             component: _team_show_container2.default
           })
-        ),
-        _react2.default.createElement(_footer2.default, null)
+        )
       );
     }
   }]);
@@ -54347,61 +54352,65 @@ var Footer = function Footer() {
     "div",
     { className: "footer-container" },
     _react2.default.createElement(
-      "div",
-      null,
-      " ",
+      "ul",
+      { className: "link-list" },
       _react2.default.createElement(
-        "a",
-        {
-          className: "contact-info",
-          href: "https://github.com/coreyladovsky",
-          target: "_blank"
-        },
-        _react2.default.createElement("i", { className: "fab fa-github" })
+        "div",
+        null,
+        " ",
+        _react2.default.createElement(
+          "a",
+          {
+            className: "contact-info",
+            href: "https://github.com/coreyladovsky",
+            target: "_blank"
+          },
+          _react2.default.createElement("i", { className: "fab fa-github" })
+        ),
+        " "
       ),
-      " "
-    ),
-    _react2.default.createElement(
-      "div",
-      null,
       _react2.default.createElement(
-        "a",
-        {
-          className: "contact-info",
-          href: "https://www.linkedin.com/in/corey-ladovsky/",
-          target: "_blank"
-        },
-        _react2.default.createElement("i", { className: "fab fa-linkedin", "aria-hidden": "true" })
-      )
-    ),
-    _react2.default.createElement(
-      "div",
-      null,
-      " ",
+        "div",
+        null,
+        _react2.default.createElement(
+          "a",
+          {
+            className: "contact-info",
+            href: "https://www.linkedin.com/in/corey-ladovsky/",
+            target: "_blank"
+          },
+          _react2.default.createElement("i", { className: "fab fa-linkedin", "aria-hidden": "true" })
+        )
+      ),
       _react2.default.createElement(
-        "a",
-        {
-          className: "contact-info",
-          href: "https://angel.co/corey-ladovsky",
-          target: "_blank"
-        },
+        "div",
+        null,
         " ",
-        _react2.default.createElement("i", { className: "fab fa-angellist" })
-      )
-    ),
-    _react2.default.createElement(
-      "div",
-      null,
-      " ",
+        _react2.default.createElement(
+          "a",
+          {
+            className: "contact-info",
+            href: "https://angel.co/corey-ladovsky",
+            target: "_blank"
+          },
+          " ",
+          _react2.default.createElement("i", { className: "fab fa-angellist" })
+        )
+      ),
       _react2.default.createElement(
-        "a",
-        {
-          className: "contact-info",
-          href: "https://coreyladovsky.com",
-          target: "_blank"
-        },
+        "div",
+        null,
         " ",
-        "Corey Ladovsky"
+        _react2.default.createElement(
+          "a",
+          {
+            className: "contact-info",
+            href: "https://coreyladovsky.com",
+            target: "_blank"
+          },
+          " ",
+          "Corey Ladovsky"
+        )
       )
     )
   );
