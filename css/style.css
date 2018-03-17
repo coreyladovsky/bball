@@ -238,16 +238,19 @@ html {
 
 .muted {
   opacity: .5;
+  transition: opacity .2s;
 }
 
 .normal {
   opacity: 1;
+  transition: opacity .2s;
 }
 
 .not-muted {
   cursor: pointer;
   opacity: 1;
   fill: yellow !important;
+  transition: opacity .2s, fill .2s;
 }
 
 /* PLAYER_MODAL */
