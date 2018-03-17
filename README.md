@@ -5,8 +5,10 @@ Welcome and thanks for reading about [NBA Stats By The Minute in 2017](https://n
 
 ### The Concept:
 
-NBA Stats By The Minute is a tool that allows people to dive deeper into player's stats.
-The team graph shows each player's minute impact compared to the rest of their team. The outside ring is their average number of minutes played per game. The following rings are their average in that stat (ex. Points Per Game) divided by their average Minutes Per Game. This leaves us with their average Stat Per Minute. I have chosen to represent their impact this way, because it eliminates the differences in player's allotted play time. An in game situation where the graph could be useful: There's one more play left in the game, your team is ahead by 2 points and the other team has the ball. You absolutely need a stop. By quickly looking at my team graph it is easy to see which of the players have the strongest defensive minute by minute stats.
+NBA Stats By The Minute is a tool that allows people to dive deeper into players' stats.
+The team graph shows each player's minute by minute impact compared to the rest of their teammates. The outside ring is their average number of minutes played per game. Each ring that follows represents the average in another stat (ex. Points Per Game) divided by their average Minutes Per Game. Each result is their average Stat Per Minute. I have chosen to represent their impact this way, because it eliminates the differences in a player's allotted play time.
+
+An in-game situation where the graph could be useful: There's one more play left in the game, your team is ahead by 2 points and the other team has the ball. You absolutely need a stop. By quickly looking at my team graph it is easy to see which of the players have the strongest defensive minute by minute stats.
 Click on a player to see a more individualized breakdown of that player's stats. These stats are again created by the "average stat per game" divided by "average minute per game". I have then multiplied the outcome by 48 as if that player were to play for the entire game.
 
 
