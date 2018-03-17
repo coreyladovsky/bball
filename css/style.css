@@ -200,13 +200,12 @@ html {
 /* FOOTER */
 
 .footer-container {
-  bottom: 0px;
-  position: absolute;
+
 }
 
 .link-list {
   display: flex;
-  flex-direction: row-reverse;
+  float: right;
 }
 
 .footer-container div {
@@ -380,6 +379,7 @@ html {
 @media only screen and (min-width: 1500px) {
   .svg-circles {
     transform: scale(1.2);
+    margin-top: 50px;
   }
 
 
