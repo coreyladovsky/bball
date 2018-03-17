@@ -1,5 +1,7 @@
 
-
+.app-start {
+  min-width: 1170px;
+}
 
 #path {
   color: white;
@@ -78,6 +80,7 @@ text:hover {
   padding-top: 20px;
   padding-left: 20px;
   border-radius: 5px;
+  margin-left: 20px;
 }
 
 .understanding {
@@ -109,6 +112,7 @@ text:hover {
   font-family: 'Open Sans Condensed', sans-serif;
   font-size: 52px;
   margin-bottom: 20px;
+  margin-right: 185px;
 }
 
 html {
@@ -118,7 +122,7 @@ html {
 
 
 .selector {
-  margin-right: 20px;
+  margin-right: 205px;
   width: 200px;
   height: 26px;
   font-size: 15px;
@@ -135,11 +139,10 @@ html {
 .teamName {
   background: black;
     font-weight: bold;
-    margin: 0;
-    /* text-align: center; */
-    font-family: 'Open Sans Condensed', sans-serif;
-    font-size: 60px;
-    display: inline-block;
+  margin: 0;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 60px;
+  display: inline-block;
 }
 
 .div-for-center {
@@ -147,11 +150,16 @@ html {
   text-align: center;
 }
 
+.drop-down-container-master {
+  max-width: 1300px;
+  margin: auto;
+  margin-bottom: -114px;
+  padding-top: 20px;
+}
+
 .drop-container {
   text-align: right;
-  margin-right: 225px;
   top: 77px;
-  position: relative;
 }
 
 .d3 {
@@ -375,6 +383,11 @@ html {
 
   .div-for-center {
     transform: scale(1.2);
+  }
+
+  .drop-down-container {
+    width: 1500px;
+    /* margin-right: 125px; */
   }
 
 

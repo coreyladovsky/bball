@@ -14,17 +14,19 @@ class App extends React.Component {
   checkPage() {
     if (this.props.location.pathname === "/") {
       $(".app-pages").css({
-        display: "flex",
+        "display": "flex",
         "flex-direction": "row",
         "justify-content": "space-around"
       });
       $(".intro-container").css("display", "block");
-      $(".drop-down").css("width", "500px");
+      $(".drop-down").css({"width":"500px"});
+      $(".drop-container").css("min-width", "0");
       $(".footer-container").css("bottom", "0");
     } else {
       $(".app-pages").css("display", "block");
       $(".intro-container").css("display", "none");
       $(".drop-down").css("width", "inherit");
+      $(".drop-container").css("min-width", "1300");
       $(".footer-container").css("bottom", "inherit");
     }
   }
@@ -42,7 +44,7 @@ class App extends React.Component {
     this.checkPage();
 
     return (
-      <div>
+      <div className="app-start">
         {this.browserCheck()}
         <div className="intro-container">
           <h1 className="welcome-line"> NBA Stats By The Minute in 2017</h1>
