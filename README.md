@@ -35,4 +35,6 @@ Another thing that caused some serious set backs was the CORS errors. I wasn't a
 
 There are a few things I would like to continue to implement and improve. The number one thing I would like to add is a player search as well as player comparisons. I think it would be awesome to be able to build a hand picked team and see how their stats differ.
 
+I'd like to add the option for people to choose different years and to see career stats. 
+
 I'd also love to go back and refactor some of the code. This was my first attempt with d3, and I think there are many places I could dry up the code.
