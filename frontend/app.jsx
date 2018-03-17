@@ -26,7 +26,7 @@ class App extends React.Component {
       $(".app-pages").css("display", "block");
       $(".intro-container").css("display", "none");
       $(".drop-down").css("width", "inherit");
-      $(".drop-container").css("min-width", "1300");
+      $(".drop-container").css("min-width", "1300px");
       $(".footer-container").css("bottom", "inherit");
     }
   }
