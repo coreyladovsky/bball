@@ -16,6 +16,8 @@ export const receivePlayer = (player, playerID) => {
   };
 };
 
+
+
 export const fetchAllPlayers = () => dispatch =>
   APIUtil.fetchData(
     "http://data.nba.net/data/10s/prod/v1/2017/players.json"

@@ -3,7 +3,7 @@
 Welcome and thanks for reading about [NBA Stats By The Minute in 2017](https://nba-stats-corey-ladovsky.herokuapp.com)!
 
 
-### The Concept:
+### The Concept
 
 NBA Stats By The Minute is a tool that allows people to dive deeper into players' stats.
 The team graph shows each player's minute by minute impact compared to the rest of their teammates. The outside ring is their average number of minutes played per game. Each ring that follows represents the average in another stat (ex. Points Per Game) divided by their average Minutes Per Game. Each result is their average Stat Per Minute. I have chosen to represent their impact this way, because it eliminates the differences in a player's allotted play time.
@@ -35,6 +35,6 @@ Another thing that caused some serious set backs was the CORS errors. I wasn't a
 
 There are a few things I would like to continue to implement and improve. The number one thing I would like to add is a player search as well as player comparisons. I think it would be awesome to be able to build a hand picked team and see how their stats differ.
 
-I'd like to add the option for people to choose different years and to see career stats. 
+I'd like to add the option for people to choose different years and to see career stats.
 
 I'd also love to go back and refactor some of the code. This was my first attempt with d3, and I think there are many places I could dry up the code.

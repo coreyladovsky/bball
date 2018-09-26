@@ -174,7 +174,7 @@ class PlayerPage extends React.Component {
               <ul className="player-bio">
                 <li>
                   <img
-                    clasName="profile"
+                    className="profile"
                     src={`https://nba-players.herokuapp.com/players/${this.props.player.lastName.toLowerCase()}/${this.props.player.firstName.toLowerCase()}`}
                   />
                 </li>

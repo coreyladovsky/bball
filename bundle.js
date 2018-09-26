@@ -9286,11 +9286,11 @@ var _team_select_container = __webpack_require__(324);
 
 var _team_select_container2 = _interopRequireDefault(_team_select_container);
 
-var _project_information = __webpack_require__(637);
+var _project_information = __webpack_require__(636);
 
 var _project_information2 = _interopRequireDefault(_project_information);
 
-var _footer = __webpack_require__(636);
+var _footer = __webpack_require__(637);
 
 var _footer2 = _interopRequireDefault(_footer);
 
@@ -54287,7 +54287,7 @@ var PlayerPage = function (_React$Component) {
                   "li",
                   null,
                   _react2.default.createElement("img", {
-                    clasName: "profile",
+                    className: "profile",
                     src: "https://nba-players.herokuapp.com/players/" + this.props.player.lastName.toLowerCase() + "/" + this.props.player.firstName.toLowerCase()
                   })
                 ),
@@ -54332,6 +54332,80 @@ exports.default = PlayerPage;
 
 /***/ }),
 /* 636 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var ProjectInformation = function ProjectInformation() {
+  return _react2.default.createElement(
+    "div",
+    { className: "project-info" },
+    _react2.default.createElement(
+      "div",
+      { className: "overview" },
+      _react2.default.createElement(
+        "li",
+        null,
+        _react2.default.createElement(
+          "div",
+          { className: "understanding" },
+          " Understanding The Data: "
+        ),
+        _react2.default.createElement(
+          "p",
+          { className: "data-info" },
+          " ",
+          "Every graph is a visual representation of a team and the impact each player has on that team. The outside ring is the average number of minutes each player plays per game. The following inner-circles represent a player's average stat in that categroy divided by their average number of minutes.",
+          " "
+        )
+      ),
+      _react2.default.createElement(
+        "li",
+        null,
+        _react2.default.createElement(
+          "div",
+          { className: "interpretation" },
+          "The Interpretation:"
+        ),
+        _react2.default.createElement(
+          "p",
+          { className: "data-info" },
+          "Using the charts, one can see the impact each player has per minute they play. The chart can be used as a tool to help decide whom should be getting more or less playing time based off of their minute by minute performance."
+        )
+      ),
+      _react2.default.createElement(
+        "li",
+        null,
+        _react2.default.createElement(
+          "div",
+          { className: "interpretation" },
+          "The Fun:"
+        ),
+        _react2.default.createElement(
+          "p",
+          { className: "data-info" },
+          "Select different teams to find their superstars! Click on the player's names to see their individualized minute stats mulitipled by 48."
+        )
+      )
+    )
+  );
+};
+
+exports.default = ProjectInformation;
+
+/***/ }),
+/* 637 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -54419,80 +54493,6 @@ var Footer = function Footer() {
 exports.default = Footer;
 
 /***/ }),
-/* 637 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var ProjectInformation = function ProjectInformation() {
-  return _react2.default.createElement(
-    "div",
-    { className: "project-info" },
-    _react2.default.createElement(
-      "div",
-      { className: "overview" },
-      _react2.default.createElement(
-        "li",
-        null,
-        _react2.default.createElement(
-          "div",
-          { className: "understanding" },
-          " Understanding The Data: "
-        ),
-        _react2.default.createElement(
-          "p",
-          { className: "data-info" },
-          " ",
-          "Every graph is a visual representation of a team and the impact each player has on that team. The outside ring is the average number of minutes each player plays per game. The following inner-circles represent a player's average stat in that categroy divided by their average number of minutes.",
-          " "
-        )
-      ),
-      _react2.default.createElement(
-        "li",
-        null,
-        _react2.default.createElement(
-          "div",
-          { className: "interpretation" },
-          "The Interpretation:"
-        ),
-        _react2.default.createElement(
-          "p",
-          { className: "data-info" },
-          "Using the charts, one can see the impact each player has per minute they play. The chart can be used as a tool to help decide whom should be getting more or less playing time based off of their minute by minute performance."
-        )
-      ),
-      _react2.default.createElement(
-        "li",
-        null,
-        _react2.default.createElement(
-          "div",
-          { className: "interpretation" },
-          "The Fun:"
-        ),
-        _react2.default.createElement(
-          "p",
-          { className: "data-info" },
-          "Select different teams to find their superstars! Click on the player's names to see their individualized minute stats mulitipled by 48."
-        )
-      )
-    )
-  );
-};
-
-exports.default = ProjectInformation;
-
-/***/ }),
 /* 638 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -54566,7 +54566,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var configureStore = function configureStore() {
   var preloadedState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  return (0, _redux.createStore)(_root_reducer2.default, preloadedState, (0, _redux.applyMiddleware)(_reduxThunk2.default));
+  return (0, _redux.createStore)(_root_reducer2.default, preloadedState, (0, _redux.applyMiddleware)(_reduxThunk2.default, _reduxLogger2.default));
 };
 
 exports.default = configureStore;
@@ -54651,9 +54651,9 @@ Object.defineProperty(exports, "__esModule", {
 
 var _player_actions = __webpack_require__(71);
 
-var _merge3 = __webpack_require__(250);
+var _merge2 = __webpack_require__(250);
 
-var _merge4 = _interopRequireDefault(_merge3);
+var _merge3 = _interopRequireDefault(_merge2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -54674,13 +54674,11 @@ var PlayerReducer = function PlayerReducer() {
   Object.freeze(oldState);
   switch (action.type) {
     case _player_actions.RECEIVE_PLAYERS:
-      var newState = (0, _merge4.default)({}, oldState, cleanerData(action.players.league.standard));
+      var newState = (0, _merge3.default)({}, oldState, cleanerData(action.players.league.standard));
       return newState;
     case _player_actions.RECEIVE_PLAYER:
-      if (action.player.league.orlando) {
-        return (0, _merge4.default)({}, oldState, _defineProperty({}, action.playerID, action.player.league.orlando.stats.latest));
-      }
-      return (0, _merge4.default)({}, oldState, _defineProperty({}, action.playerID, action.player.league.standard.stats.latest));
+      var temp = Object.values(action.player.league)[0].stats;
+      return (0, _merge3.default)({}, oldState, _defineProperty({}, action.playerID, Object.values(action.player.league)[0].stats.latest));
     default:
       return oldState;
   }

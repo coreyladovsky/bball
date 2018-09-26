@@ -20,13 +20,9 @@ const PlayerReducer = (oldState = {}, action) => {
       );
       return newState;
     case RECEIVE_PLAYER:
-      if (action.player.league.orlando) {
-        return merge({}, oldState, {
-          [action.playerID]: action.player.league.orlando.stats.latest
-        });
-      }
+    let temp = Object.values(action.player.league)[0].stats
       return merge({}, oldState, {
-        [action.playerID]: action.player.league.standard.stats.latest
+        [action.playerID]: Object.values(action.player.league)[0].stats.latest
       });
     default:
       return oldState;
