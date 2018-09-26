@@ -54677,8 +54677,7 @@ var PlayerReducer = function PlayerReducer() {
       var newState = (0, _merge3.default)({}, oldState, cleanerData(action.players.league.standard));
       return newState;
     case _player_actions.RECEIVE_PLAYER:
-      var temp = Object.values(action.player.league)[0].stats;
-      return (0, _merge3.default)({}, oldState, _defineProperty({}, action.playerID, Object.values(action.player.league)[0].stats.latest));
+      return (0, _merge3.default)({}, oldState, _defineProperty({}, action.playerID, Object.values(action.player.league)[0].stats.careerSummary));
     default:
       return oldState;
   }
